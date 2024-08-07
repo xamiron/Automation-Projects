@@ -1,0 +1,10 @@
+{
+	"browser": "chrome",
+	
+	"url": "https://bdjobs.com",
+	"urlSign": "https://mybdjobs.bdjobs.com/mybdjobs/signin.asp",
+	
+	"explicitWaitTimeInSeconds": 5,
+	"loginOtpPageWaitTime" : 900
+
+}
