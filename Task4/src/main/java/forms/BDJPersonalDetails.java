@@ -3,6 +3,7 @@ package forms;
 import elements.Element;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import utility.DataReader;
 import waits.ExplicitWait;
 
 public class BDJPersonalDetails extends BaseForm{
@@ -19,39 +20,44 @@ public class BDJPersonalDetails extends BaseForm{
     public void firstName(){
         ExplicitWait.elementToBeClickable(firstName.getLocator());
 
-        //empty name
+        //invalid empty name
         firstName.getElement().clear();
         saveButton.getElement().click();
         errorMessageText();
 
-        //whiteSpace
+        //invalid whiteSpace
         firstName.getElement().clear();
         firstName.getElement().sendKeys(" ");
         saveButton.getElement().click();
         errorMessageText();
 
-        //specialCharacter
+        //invalid specialCharacter
         firstName.getElement().clear();
         firstName.getElement().sendKeys("@");
         saveButton.getElement().click();
         errorMessageText();
 
-        //specialCharacter
+        //invalid specialCharacter
         firstName.getElement().clear();
         firstName.getElement().sendKeys("@");
         saveButton.getElement().click();
         errorMessageText();
 
-        //NumericCharacter
+        //invalid NumericCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.getElement().sendKeys("0123");
         saveButton.getElement().click();
         errorMessageText();
 
-        //maxCharacter
+        //invalid maxCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
+        firstName.getElement().sendKeys(DataReader.getStringValue("maxCharacter","TestData"));
+        saveButton.getElement().clear();
+        errorMessageText();
+
+        
 
     }
 
