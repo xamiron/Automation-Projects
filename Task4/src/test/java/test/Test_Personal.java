@@ -6,6 +6,7 @@ import driver.Browser;
 import elements.Element;
 import forms.BDJApplyJob;
 import forms.BDJHomePage;
+import forms.BDJPersonalDetails;
 import forms.BDJSignInPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -56,6 +57,20 @@ public class Test_Personal {
         test.log(Status.PASS, "Entered password ");
 //        bdjApplyPage.closeAdsIfPresent();
         bdjApplyPage.editProfile();
+    }
+
+    @Test(priority = 2)
+    public void firstName(){
+        BDJPersonalDetails bdjPersonalDetails = new BDJPersonalDetails();
+
+        boolean isPersonalDetailsDisplayed= bdjPersonalDetails.isFormOpen();
+        test.log(Status.INFO, "Check if Personal Details page loaded");
+        Assert.assertTrue(isPersonalDetailsDisplayed, "Personal Details page is not opened");
+        test.log(Status.PASS, "Personal Details Page is opened");
+
+        bdjPersonalDetails.firstName();
+        test.log(Status.PASS, "Empty UserName");
+
     }
 
     @AfterClass
