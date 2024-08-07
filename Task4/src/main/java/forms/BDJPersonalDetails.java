@@ -22,6 +22,36 @@ public class BDJPersonalDetails extends BaseForm{
         //empty name
         firstName.getElement().clear();
         saveButton.getElement().click();
+        errorMessageText();
+
+        //whiteSpace
+        firstName.getElement().clear();
+        firstName.getElement().sendKeys(" ");
+        saveButton.getElement().click();
+        errorMessageText();
+
+        //specialCharacter
+        firstName.getElement().clear();
+        firstName.getElement().sendKeys("@");
+        saveButton.getElement().click();
+        errorMessageText();
+
+        //specialCharacter
+        firstName.getElement().clear();
+        firstName.getElement().sendKeys("@");
+        saveButton.getElement().click();
+        errorMessageText();
+
+        //NumericCharacter
+        firstName.getElement().click();
+        firstName.getElement().sendKeys("0123");
+        saveButton.getElement().click();
+        errorMessageText();
+
+
+    }
+
+    private void errorMessageText() {
         ExplicitWait.elementToBeVisible(emptyErrorMessage.getLocator());
         Assert.assertTrue(emptyErrorMessage.isDisplayed(), errorMessageText);
     }
