@@ -43,11 +43,15 @@ public class BDJPersonalDetails extends BaseForm{
         errorMessageText();
 
         //NumericCharacter
+        firstName.getElement().clear();
         firstName.getElement().click();
         firstName.getElement().sendKeys("0123");
         saveButton.getElement().click();
         errorMessageText();
 
+        //maxCharacter
+        firstName.getElement().clear();
+        firstName.getElement().click();
 
     }
 
