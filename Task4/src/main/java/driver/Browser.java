@@ -8,6 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import utility.DataReader;
 
+import java.io.File;
 import java.util.logging.Logger;
 
 public class Browser {
@@ -15,6 +16,7 @@ public class Browser {
 	private static WebDriver driver;
 	private static final String browserName = DataReader.getStringValue("browser", "config");
 	private static final Logger logger = Logger.getLogger(Browser.class.getName());
+	private static final String adblockerPath = "src/main/resources/uBlock Origin - Chrome Web Store 1.59.0.0.crx";
 
 	public static WebDriver initialize() {
 		// Singleton method
@@ -23,34 +25,10 @@ public class Browser {
 				case "chrome":
 					try {
 						WebDriverManager.chromedriver().setup();
-						driver = new ChromeDriver();
-						logger.info("Initialized ChromeDriver as default.");
-						// Set the path to your Chrome user data directory
-//						options.addArguments("user-data-dir=C:\\Users\\Z3TSU\\AppData\\Local\\Google\\Chrome\\User Data");
-//						options.addArguments("profile-directory=Profile 1"); // Specify the profile directory
-//						options.addArguments("--disable-blink-features=AutomationControlled");
-						//options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-//						//options.addArguments("--incognito");
-//						options.addArguments("--disable-blink-features=AutomationControlled");
-//						options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-//						options.addArguments("--start-maximized");
-//						options.addArguments("--disable-infobars");
-//						options.addArguments("--disable-extensions");
-//						options.addArguments("--disable-gpu");
-//						options.addArguments("--no-sandbox");
-//						options.addArguments("--disable-dev-shm-usage");
-
-//						options.addArguments("--disable-blink-features=AutomationControlled");
-//						options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-//						options.addArguments("--headless");
-//						options.addArguments("--start-maximized");
-//						options.addArguments("--disable-infobars");
-//						options.addArguments("--disable-extensions");
-//						options.addArguments("--disable-gpu");
-//						options.addArguments("--no-sandbox");
-//						options.addArguments("--disable-dev-shm-usage");
-						//driver = new ChromeDriver(options);
-						//.info("Initialized ChromeDriver with custom options.");
+						ChromeOptions options = new ChromeOptions();
+						options.addExtensions(new File(adblockerPath));
+						driver = new ChromeDriver(options);
+						logger.info("Initialized ChromeDriver with Adblocker.");
 					} catch (Exception e) {
 						logger.severe("Failed to initialize ChromeDriver: " + e.getMessage());
 						e.printStackTrace();
@@ -80,8 +58,10 @@ public class Browser {
 					// Set a default browser (e.g., Chrome) when the browserName is not recognized.
 					try {
 						WebDriverManager.chromedriver().setup();
-						driver = new ChromeDriver();
-						logger.info("Initialized ChromeDriver as default.");
+						ChromeOptions options = new ChromeOptions();
+						options.addExtensions(new File(adblockerPath));
+						driver = new ChromeDriver(options);
+						logger.info("Initialized ChromeDriver with Adblocker as default.");
 					} catch (Exception e) {
 						logger.severe("Failed to initialize default ChromeDriver: " + e.getMessage());
 						e.printStackTrace();
@@ -91,6 +71,7 @@ public class Browser {
 		}
 		return driver;
 	}
+
 
 	public static WebDriver getDriver() {
 		if (driver == null) {

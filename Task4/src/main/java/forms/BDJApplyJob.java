@@ -57,12 +57,12 @@ public class BDJApplyJob extends BaseForm{
     }
 
     public void editProfile() {
-        ExplicitWait.elementToBeVisible(editProfileButton.getLocator());
+        ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
 
         editProfileButton.getElement().click();
-        ExplicitWait.elementToBeVisible(editButton.getLocator());
+        ExplicitWait.elementToBeClickable(editButton.getLocator());
         editButton.getElement().click();
-        closeAdsIfPresent();
+       // closeAdsIfPresent();
     }
 
 
