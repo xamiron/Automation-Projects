@@ -69,7 +69,10 @@ public class Test_Personal {
         test.log(Status.PASS, "Personal Details Page is opened");
 
         bdjPersonalDetails.firstName();
-        test.log(Status.PASS, "Empty UserName");
+        test.log(Status.PASS, "First Name entered");
+
+        bdjPersonalDetails.lastName();
+        test.log(Status.PASS, "Last Name entered");
 
     }
 
