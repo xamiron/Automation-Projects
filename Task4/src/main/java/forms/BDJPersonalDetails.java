@@ -138,9 +138,7 @@ public class BDJPersonalDetails extends BaseForm{
         editButton.getElement().click();
         fatherName.getElement().clear();
         fatherName.getElement().sendKeys("  ");
-                
     }
-
 
     private void errorMessageText() {
         ExplicitWait.elementToBeVisible(fNameErrorMessage.getLocator());
