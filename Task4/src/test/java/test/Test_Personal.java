@@ -74,6 +74,9 @@ public class Test_Personal {
         bdjPersonalDetails.lastName();
         test.log(Status.PASS, "Last Name entered");
 
+        bdjPersonalDetails.fatherName();
+        test.log(Status.PASS, "Father Name entered");
+
     }
 
     @AfterClass
