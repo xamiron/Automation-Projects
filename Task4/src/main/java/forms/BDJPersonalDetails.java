@@ -19,6 +19,8 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element lNameErrorMessage = new Element(By.cssSelector("#lnameErrorMsg"));
     private final Element fatherName= new Element(By.cssSelector("#txtFName"));
     private final Element fatherErrorText= new Element(By.cssSelector("#fhrErrorMsg"));
+    private final Element motherName= new Element(By.cssSelector("#txtMName"));
+    private final Element motherErrorText = new Element(By.cssSelector("#mhrErrorMsg"));
 
     private final String errorMessageText = "Error message is not displayed.";
 
@@ -133,11 +135,63 @@ public class BDJPersonalDetails extends BaseForm{
         // valid empty
         fatherName.getElement().clear();
         saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
         editButton.getElement().click();
         fatherName.getElement().clear();
-        fatherName.getElement().sendKeys("  ");
+        fatherName.sendKeysWithDelay("  ");
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid name
+        editButton.getElement().click();
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("fatherName");
+        saveButton.click();
+    }
+
+    public void motherName(){
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // invalid numeric character
+        editButton.click();
+        ExplicitWait.presenceOfElementLocated(motherErrorText.getLocator());
+        motherName.click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("1234586");
+        saveButton.click();
+        erroMotherMessageText();
+
+        // invalid special character
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        saveButton.click();
+        erroMotherMessageText();
+
+        // invalid max character
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        saveButton.click();
+        erroMotherMessageText();
+
+        // valid empty
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("");
+        saveButton.click();
+
+        // valid white space
+        editButton.click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay(" ");
+        saveButton.click();
+
+
+        // valid name
+        editButton.click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("motherName");
+        saveButton.click();
     }
 
     private void errorMessageText() {
@@ -148,11 +202,13 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.elementToBeVisible(lNameErrorMessage.getLocator());
         Assert.assertTrue(lNameErrorMessage.isDisplayed(), errorMessageText);
     }
-
     private void errorFatherNameMessateText(){
         ExplicitWait.elementToBeVisible(fatherErrorText.getLocator());
         Assert.assertTrue(fatherErrorText.isDisplayed(), errorMessageText);
-
+    }
+    private void erroMotherMessageText(){
+        ExplicitWait.elementToBeVisible(motherErrorText.getLocator());
+        Assert.assertTrue(fatherErrorText.isDisplayed(), errorMessageText);
     }
 
 
