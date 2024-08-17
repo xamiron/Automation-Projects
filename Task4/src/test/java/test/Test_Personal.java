@@ -83,8 +83,19 @@ public class Test_Personal {
 //        bdjPersonalDetails.dob();
 //        test.log(Status.PASS, "DOB entered");
 
-        bdjPersonalDetails.gender();
-        test.log(Status.PASS, "Gender selected");
+//        bdjPersonalDetails.gender();
+//        test.log(Status.PASS, "Gender selected");
+
+//        bdjPersonalDetails.religion();
+//        test.log(Status.PASS, "Religion is selected");
+
+//        bdjPersonalDetails.maritalStatus();
+//        test.log(Status.PASS, "MaritalStatus is selected");
+
+//        bdjPersonalDetails.nationality();
+//        test.log(Status.PASS, "Nationality entered");
+        bdjPersonalDetails.nID();
+        test.log(Status.PASS, "NID is entered");
     }
 
     @AfterClass
