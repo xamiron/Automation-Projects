@@ -68,8 +68,8 @@ public class Test_Personal {
         Assert.assertTrue(isPersonalDetailsDisplayed, "Personal Details page is not opened");
         test.log(Status.PASS, "Personal Details Page is opened");
 
-//        bdjPersonalDetails.firstName();
-//        test.log(Status.PASS, "First Name entered");
+        bdjPersonalDetails.firstName();
+        test.log(Status.PASS, "First Name entered");
 //
 //        bdjPersonalDetails.lastName();
 //        test.log(Status.PASS, "Last Name entered");
@@ -77,8 +77,14 @@ public class Test_Personal {
 //        bdjPersonalDetails.fatherName();
 //        test.log(Status.PASS, "Father Name entered");
 
-        bdjPersonalDetails.motherName();
-        test.log(Status.PASS, "Mother Name entered");
+//        bdjPersonalDetails.motherName();
+//        test.log(Status.PASS, "Mother Name entered");
+
+//        bdjPersonalDetails.dob();
+//        test.log(Status.PASS, "DOB entered");
+
+        bdjPersonalDetails.gender();
+        test.log(Status.PASS, "Gender selected");
     }
 
     @AfterClass

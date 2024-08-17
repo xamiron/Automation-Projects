@@ -1,14 +1,10 @@
 package forms;
 
 import elements.Element;
-import org.apache.commons.math3.analysis.function.Exp;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import utility.DataReader;
 import waits.ExplicitWait;
-
-import javax.xml.crypto.Data;
-import java.awt.*;
 
 public class BDJPersonalDetails extends BaseForm{
     private final Element firstName = new Element(By.cssSelector("#txtFirstName"));
@@ -21,6 +17,27 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element fatherErrorText= new Element(By.cssSelector("#fhrErrorMsg"));
     private final Element motherName= new Element(By.cssSelector("#txtMName"));
     private final Element motherErrorText = new Element(By.cssSelector("#mhrErrorMsg"));
+    private final Element dob= new Element(By.cssSelector("#txtBirthDate"));
+    private final Element dobErrorText= new Element(By.cssSelector("#dobErrorMsg"));
+    private final Element genderSelector= new Element(By.cssSelector("#cboGender"));
+    private final Element genderSelectorErrorText= new Element(By.cssSelector("#gdrErrorMsg"));
+    private final Element genderOptionSelect= new Element(By.cssSelector("select#cboGender > option[value='-1']"));
+    private final Element genderOptionMale = new Element(By.cssSelector("select#cboGender > option[value='M']"));
+    private final Element genderOptionFemale= new Element(By.cssSelector("select#cboGender > option[value='F']"));
+    private final Element genderOptionOther= new Element(By.cssSelector("select#cboGender > option[value='O']"));
+    private final Element religionSelector = new Element(By.cssSelector("#txtReligion"));
+   // private final Element getReligionSelectorErrorText= new Element(By.cssSelector(""));
+    private final Element religionSelect = new Element(By.cssSelector("select#txtReligion > option[value='-1']"));
+    private final Element religionBuddhism=  new Element(By.cssSelector("select#txtReligion > option[value='Buddhism']"));
+    private final Element religionChristianity = new Element(By.cssSelector("select#txtReligion > option[value='Christianity']"));
+    private final Element religionHinduism= new Element(By.cssSelector("select#txtReligion > option[value='Hinduism']"));
+    private final Element religionIslam = new Element(By.cssSelector("select#txtReligion > option[value='Islam']"));
+    private final Element religionJainism = new Element(By.cssSelector("select#txtReligion > option[value='Jainism']"));
+    private final Element religionJudaism = new Element(By.cssSelector("select#txtReligion > option[value='Judaism']"));
+    private final Element religionSikhism = new Element(By.cssSelector("select#txtReligion > option[value='Sikhism']"));
+    private final Element religionOthers = new Element(By.cssSelector("select#txtReligion > option[value='Others']"));
+
+
 
     private final String errorMessageText = "Error message is not displayed.";
 
@@ -65,7 +82,7 @@ public class BDJPersonalDetails extends BaseForm{
         // valid combination
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("Ava'r.y-a");
+        firstName.sendKeysWithDelay("Avarya");
         saveButton.getElement().click();
     }
 
@@ -76,20 +93,20 @@ public class BDJPersonalDetails extends BaseForm{
         editButton.getElement().click();
         lastName.sendKeysWithDelay("0123");
         saveButton.getElement().click();
-        errorLastNameMessateText();
+        errorLastNameMessageText();
 
         //invalid special character
         lastName.getElement().click();
         lastName.getElement().clear();
         lastName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
         saveButton.getElement().click();
-        errorLastNameMessateText();
+        errorLastNameMessageText();
 
         //invalid maxCharacter
         lastName.getElement().clear();
         lastName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
         saveButton.getElement().click();
-        errorLastNameMessateText();
+        errorLastNameMessageText();
 
         //valid empty name
         lastName.getElement().click();
@@ -118,19 +135,19 @@ public class BDJPersonalDetails extends BaseForm{
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("11a231");
         saveButton.click();
-        errorFatherNameMessateText();
+        errorFatherNameMessageText();
 
         // invalid special character
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
         saveButton.click();
-        errorFatherNameMessateText();
+        errorFatherNameMessageText();
 
         // invalid max character
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
         saveButton.click();
-        errorFatherNameMessateText();
+        errorFatherNameMessageText();
 
         // valid empty
         fatherName.getElement().clear();
@@ -155,25 +172,24 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // invalid numeric character
-        editButton.click();
-        ExplicitWait.presenceOfElementLocated(motherErrorText.getLocator());
-        motherName.click();
+        editButton.getElement().click();
+        motherName.getElement().click();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("1234586");
-        saveButton.click();
-        erroMotherMessageText();
+        saveButton.getElement().click();
+        errorMotherMessageText();
 
         // invalid special character
         motherName.getElement().clear();
         motherName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
-        saveButton.click();
-        erroMotherMessageText();
+        saveButton.getElement().click();
+        errorMotherMessageText();
 
         // invalid max character
         motherName.getElement().clear();
         motherName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
-        saveButton.click();
-        erroMotherMessageText();
+        saveButton.getElement().click();
+        errorMotherMessageText();
 
         // valid empty
         motherName.getElement().clear();
@@ -194,22 +210,123 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.click();
     }
 
+    public void dob(){
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        //invalid empty name
+        editButton.getElement().click();
+        dob.getElement().click();
+        dob.getElement().clear();
+        saveButton.click();
+        errorDobErrorMessageText();
+
+        //invalid white space
+        dob.getElement().clear();
+        dob.sendKeysWithDelay("  ");
+        saveButton.click();
+        errorDobErrorMessageText();
+
+        //invalid character
+        dob.getElement().clear();
+        dob.sendKeysWithDelay("abc");
+        saveButton.click();
+        errorDobErrorMessageText();
+
+        //invalid numeric character
+        dob.getElement().clear();
+        dob.sendKeysWithDelay("123");
+        saveButton.click();
+        errorDobErrorMessageText();
+
+
+        //invalid special character
+        dob.getElement().clear();
+        dob.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        saveButton.click();
+        errorDobErrorMessageText();
+
+        //ivalid bangla character
+        dob.getElement().clear();
+        dob.sendKeysWithDelay("হাসিব");
+        saveButton.click();
+        errorDobErrorMessageText();
+
+        //invalid max character
+        dob.getElement().clear();
+        dob.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        saveButton.click();
+        errorDobErrorMessageText();
+
+        //valid dob
+        dob.getElement().clear();
+        dob.sendKeysWithDelay(DataReader.getStringValue("dob","TestData"));
+        saveButton.click();
+    }
+    public void gender() {
+        try {
+            // invalid gender Select
+            editButton.getElement().click();
+            genderSelector.getElement().click();
+            genderOptionSelect.click();
+            Thread.sleep(2000);
+            saveButton.getElement().click();
+            errorGenderMEssageText();
+
+            // valid gender Male
+            genderSelector.getElement().click();
+            genderOptionMale.getElement().click();
+            Thread.sleep(2000);
+            saveButton.getElement().click();
+
+            // valid gender Other
+            editButton.getElement().click();
+            genderOptionOther.getElement().click();
+            Thread.sleep(2000);
+            saveButton.getElement().click();
+
+            // valid gender Female
+            editButton.getElement().click();
+            genderOptionFemale.getElement().click();
+            Thread.sleep(2000);
+            saveButton.getElement().click();
+        } catch (InterruptedException e) {
+            // Handle the exception (log it or rethrow it)
+            e.printStackTrace();
+        }
+    }
+
+    public void gender() {
+        try {
+        } catch (InterruptedException e) {
+            // Handle the exception (log it or rethrow it)
+            e.printStackTrace();
+        }
+    }
+
+
     private void errorMessageText() {
         ExplicitWait.elementToBeVisible(fNameErrorMessage.getLocator());
         Assert.assertTrue(fNameErrorMessage.isDisplayed(), errorMessageText);
     }
-    private void errorLastNameMessateText(){
+    private void errorLastNameMessageText(){
         ExplicitWait.elementToBeVisible(lNameErrorMessage.getLocator());
         Assert.assertTrue(lNameErrorMessage.isDisplayed(), errorMessageText);
     }
-    private void errorFatherNameMessateText(){
+    private void errorFatherNameMessageText(){
         ExplicitWait.elementToBeVisible(fatherErrorText.getLocator());
         Assert.assertTrue(fatherErrorText.isDisplayed(), errorMessageText);
     }
-    private void erroMotherMessageText(){
+    private void errorMotherMessageText(){
         ExplicitWait.elementToBeVisible(motherErrorText.getLocator());
-        Assert.assertTrue(fatherErrorText.isDisplayed(), errorMessageText);
+        Assert.assertTrue(motherErrorText.isDisplayed(), errorMessageText);
     }
-
+    private void errorDobErrorMessageText(){
+        ExplicitWait.elementToBeVisible(dobErrorText.getLocator());
+        Assert.assertTrue(dobErrorText.isDisplayed(), errorMessageText);
+    }
+    private void errorGenderMEssageText(){
+        ExplicitWait.elementToBeVisible(genderSelectorErrorText.getLocator());
+        Assert.assertTrue(genderSelectorErrorText.isDisplayed(), errorMessageText);
+    }
 
 }
