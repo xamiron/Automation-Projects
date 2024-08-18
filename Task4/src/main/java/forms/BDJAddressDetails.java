@@ -27,7 +27,8 @@ public class BDJAddressDetails extends BaseForm {
 
         // Click on the dropdown to open address section
         addressDetailsDropdown.click();
-        editButton.click();
+        ExplicitWait.elementToBeVisible(editButton.getLocator());
+        editButton.getElement().click();
 
         // Test for inside Bangladesh
         insideButton.click();

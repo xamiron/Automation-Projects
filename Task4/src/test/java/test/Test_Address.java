@@ -78,6 +78,9 @@ public class Test_Address {
 
     @AfterMethod
     public void cleanUp() {
+        if (driver != null) {
+            driver.quit();
+        }
         ExtentManager.flush();
     }
 }
