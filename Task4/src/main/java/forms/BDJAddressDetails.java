@@ -2,13 +2,20 @@ package forms;
 
 import elements.Element;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import waits.ExplicitWait;
 import java.util.List;
 import java.util.Random;
 
+import static waits.ExplicitWait.threadWait;
+
 public class BDJAddressDetails extends BaseForm {
-    private final Element addressDetailsDropdown = new Element(By.cssSelector("button.btn.collapsed[data-target='#collapseTwo']"));
+    private final Element closeButton = new Element(By.cssSelector("div[class='btn-form-control'] a[aria-label='Click close to go back to edit resume without saving']"));
+    private final Element personalButton = new Element(By.cssSelector("button[class='btn']"));
+    private final Element addressDetailsDropdown = new Element(By.cssSelector("button[data-target='#collapseTwo']"));
     private final Element editButton = new Element(By.cssSelector("button#addressEditBtn"));
     private final Element insideButton = new Element(By.cssSelector("#radioPrsn1"));
     private final Element outsideButton = new Element(By.cssSelector("label.radio-inline > input.outside[name='presentLocation'][value='1']"));
@@ -17,61 +24,65 @@ public class BDJAddressDetails extends BaseForm {
     private final Element postOfficeDropDown = new Element(By.cssSelector("#present_p_office"));
     private final Element countryDropDown = new Element(By.cssSelector("#present_country_list"));
     private final Element houseTextField = new Element(By.cssSelector("#present_Village"));
+    private final Element disableCheckBox = new Element(By.cssSelector("#same_address"));
+    private final Element disabled = new Element(By.cssSelector(".disable-area.disable"));
+    private final Element enabled = new Element(By.cssSelector(".disable-area"));
+    private final Element saveButton = new Element(By.cssSelector("#addressSaveBtn"));
 
     public BDJAddressDetails() {
         super(new Element(By.cssSelector("button.btn.collapsed[data-target='#collapseTwo']")));
     }
 
     public void presentAddress() {
-        ExplicitWait.elementToBeVisible(addressDetailsDropdown.getLocator());
+        ExplicitWait.elementToBeClickable(closeButton.getLocator());
+        closeButton.getElement().click();
+        personalButton.getElement().click();
 
-        // Click on the dropdown to open address section
-        addressDetailsDropdown.click();
-        ExplicitWait.elementToBeVisible(editButton.getLocator());
+        //threadWait();
+        //ExplicitWait.presenceOfElementLocated(addressDetailsDropdown.getLocator());
+        addressDetailsDropdown.getElement().click();
         editButton.getElement().click();
 
-        // Test for inside Bangladesh
+        try {
+            if (disabled.isDisplayed()) {
+                System.out.println("The checkbox is not enabled.");
+            } else {
+                disableCheckBox.getElement().click();
+            }
+        } catch (NoSuchElementException | TimeoutException e) {
+            System.out.println("Element not found or not clickable: " + e.getMessage());
+        }
+
+        // Test inside Bangladesh
         insideButton.click();
         fillInsideBangladeshAddress();
 
-        // Test for outside Bangladesh
+        // Test outside Bangladesh
         outsideButton.click();
         fillOutsideBangladeshAddress();
     }
 
     private void fillInsideBangladeshAddress() {
-        // Iterate through all districts
-        List<WebElement> districts = districtDropDown.findElements(By.tagName("option"));
-        for (int i = 1; i < districts.size(); i++) {  // Start from 1 to skip "Select District"
-            districts.get(i).click();
-            ExplicitWait.elementToBeVisible(thanaDropDown.getLocator());
+        selectFromDropdown(districtDropDown, thanaDropDown);
+        selectFromDropdown(thanaDropDown, postOfficeDropDown);
+        selectFromDropdown(postOfficeDropDown, null);
 
-            // Iterate through all thanas based on district
-            List<WebElement> thanas = thanaDropDown.findElements(By.tagName("option"));
-            for (int j = 1; j < thanas.size(); j++) {  // Start from 1 to skip "Select Thana"
-                thanas.get(j).click();
-                ExplicitWait.elementToBeVisible(postOfficeDropDown.getLocator());
-
-                // Iterate through all post offices based on thana
-                List<WebElement> postOffices = postOfficeDropDown.findElements(By.tagName("option"));
-                for (int k = 1; k < postOffices.size(); k++) {  // Start from 1 to skip "Select P.O"
-                    postOffices.get(k).click();
-
-                    // Provide a random string for the house no/road/village field
-                    houseTextField.sendKeys(generateRandomString());
-                }
-            }
-        }
+        houseTextField.sendKeys(generateRandomString());
     }
 
     private void fillOutsideBangladeshAddress() {
-        // Iterate through all countries
-        List<WebElement> countries = countryDropDown.findElements(By.tagName("option"));
-        for (int i = 1; i < countries.size(); i++) {  // Start from 1 to skip "Select Country"
-            countries.get(i).click();
+        selectFromDropdown(countryDropDown, null);
+        houseTextField.sendKeys(generateRandomString());
+    }
 
-            // Provide a random string for the house no/road/village field
-            houseTextField.sendKeys(generateRandomString());
+    private void selectFromDropdown(Element dropdown, Element nextDropdown) {
+        List<WebElement> options = dropdown.findElements(By.tagName("option"));
+        for (int i = 1; i < options.size(); i++) {
+            options.get(i).click();
+
+            if (nextDropdown != null) {
+                ExplicitWait.elementToBeVisible(nextDropdown.getLocator());
+            }
         }
     }
 

@@ -26,4 +26,12 @@ public class ExplicitWait {
 		WebDriverWait wait = new WebDriverWait(Browser.getDriver(), Duration.ofSeconds(time));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
+	public static void threadWait() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace(); // You can handle the exception here, or log it as needed
+		}
+	}
+
 }

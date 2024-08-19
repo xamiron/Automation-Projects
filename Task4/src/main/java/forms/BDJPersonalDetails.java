@@ -61,7 +61,7 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element emergencyNumberErrorText = new Element(By.cssSelector("#txtPhoneoffErrorMsg"));
     private final Element countryDropdownSelector = new Element(By.cssSelector("#txtCountryCode"));
     private final Element countryBangladesh= new Element(By.cssSelector("select#txtCountryCode> option[value='88']"));
-    private final Element pirmaryEmailField= new Element(By.cssSelector("#txtEmail1"));
+    private final Element primaryEmailField= new Element(By.cssSelector("#txtEmail1"));
     private final Element primaryEmailFieldErrorText = new Element(By.cssSelector("#txtemail1ErrorMsg"));
     private final Element alternateEmailField = new Element(By.cssSelector("#txtEmail2"));
     private final Element alternateEmailFieldErrorText = new Element(By.cssSelector("#altMailErrorMsg"));
@@ -826,43 +826,43 @@ public class BDJPersonalDetails extends BaseForm{
     public void primaryEmail(){
         //invalid email a
         editButton.getElement().click();
-        pirmaryEmailField.getElement().clear();
-        pirmaryEmailField.sendKeysWithDelay("a");
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("a");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
         //invalid special character
-        pirmaryEmailField.getElement().clear();
-        pirmaryEmailField.sendKeysWithDelay("@#%!@#$%^&*()_");
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("@#%!@#$%^&*()_");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
         //invalid special character
-        pirmaryEmailField.getElement().clear();
-        pirmaryEmailField.sendKeysWithDelay("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbb");
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbb");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
         //invalid date character
-        pirmaryEmailField.getElement().clear();
-        pirmaryEmailField.sendKeysWithDelay("8/18/2024");
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("8/18/2024");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
         //valid empty
-        pirmaryEmailField.getElement().clear();
-        pirmaryEmailField.sendKeysWithDelay("");
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("");
         saveButton.getElement().click();
 
         //valid white space
         editButton.getElement().click();
-        pirmaryEmailField.getElement().clear();
+        primaryEmailField.getElement().clear();
         saveButton.getElement().click();
 
         //valid email
         editButton.getElement().click();
-        pirmaryEmailField.getElement().clear();
-        pirmaryEmailField.sendKeysWithDelay("samironreviews@gmail.com");
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("samironreviews@gmail.com");
         saveButton.getElement().click();
     }
 
