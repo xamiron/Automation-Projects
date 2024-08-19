@@ -1,5 +1,6 @@
 package forms;
 
+import elements.BaseElement;
 import elements.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -15,7 +16,7 @@ import static waits.ExplicitWait.threadWait;
 public class BDJAddressDetails extends BaseForm {
     private final Element closeButton = new Element(By.cssSelector("div[class='btn-form-control'] a[aria-label='Click close to go back to edit resume without saving']"));
     private final Element personalButton = new Element(By.cssSelector("button[class='btn']"));
-    private final Element addressDetailsDropdown = new Element(By.cssSelector("button[data-target='#collapseTwo']"));
+    private final Element addressDetailsDropdown = new Element(By.cssSelector("#headingTwo"));
     private final Element editButton = new Element(By.cssSelector("button#addressEditBtn"));
     private final Element insideButton = new Element(By.cssSelector("#radioPrsn1"));
     private final Element outsideButton = new Element(By.cssSelector("label.radio-inline > input.outside[name='presentLocation'][value='1']"));
@@ -40,13 +41,13 @@ public class BDJAddressDetails extends BaseForm {
 
         //threadWait();
         //ExplicitWait.presenceOfElementLocated(addressDetailsDropdown.getLocator());
+        addressDetailsDropdown.scrollUntilElementIsVisible();
         addressDetailsDropdown.getElement().click();
+        ExplicitWait.elementToBeClickable(editButton.getLocator());
         editButton.getElement().click();
 
         try {
-            if (disabled.isDisplayed()) {
-                System.out.println("The checkbox is not enabled.");
-            } else {
+            if (enabled.isDisplayed()) {
                 disableCheckBox.getElement().click();
             }
         } catch (NoSuchElementException | TimeoutException e) {
@@ -54,35 +55,51 @@ public class BDJAddressDetails extends BaseForm {
         }
 
         // Test inside Bangladesh
+        ExplicitWait.elementToBeClickable(insideButton.getLocator());
         insideButton.click();
         fillInsideBangladeshAddress();
 
         // Test outside Bangladesh
+        ExplicitWait.elementToBeClickable(outsideButton.getLocator());
         outsideButton.click();
         fillOutsideBangladeshAddress();
     }
 
     private void fillInsideBangladeshAddress() {
-        selectFromDropdown(districtDropDown, thanaDropDown);
-        selectFromDropdown(thanaDropDown, postOfficeDropDown);
-        selectFromDropdown(postOfficeDropDown, null);
+        // Iterate through all districts
+        List<WebElement> districts = districtDropDown.findElements(By.tagName("option"));
+        for (int i = 1; i < districts.size(); i++) {  // Start from 1 to skip "Select District"
+            districts.get(i).click();
+            ExplicitWait.elementToBeVisible(thanaDropDown.getLocator());
 
-        houseTextField.sendKeys(generateRandomString());
+            // Iterate through all thanas based on district
+            List<WebElement> thanas = thanaDropDown.findElements(By.tagName("option"));
+            for (int j = 1; j < thanas.size(); j++) {  // Start from 1 to skip "Select Thana"
+                thanas.get(j).click();
+                ExplicitWait.elementToBeVisible(postOfficeDropDown.getLocator());
+
+                // Iterate through all post offices based on thana
+                List<WebElement> postOffices = postOfficeDropDown.findElements(By.tagName("option"));
+                for (int k = 1; k < postOffices.size(); k++) {  // Start from 1 to skip "Select P.O"
+                    postOffices.get(k).click();
+
+                    // Provide a random string for the house no/road/village field
+                    houseTextField.getElement().clear();
+                    houseTextField.sendKeys(generateRandomString());
+                }
+            }
+        }
     }
 
     private void fillOutsideBangladeshAddress() {
-        selectFromDropdown(countryDropDown, null);
-        houseTextField.sendKeys(generateRandomString());
-    }
+        // Iterate through all countries
+        List<WebElement> countries = countryDropDown.findElements(By.tagName("option"));
+        for (int i = 1; i < countries.size(); i++) {  // Start from 1 to skip "Select Country"
+            countries.get(i).click();
 
-    private void selectFromDropdown(Element dropdown, Element nextDropdown) {
-        List<WebElement> options = dropdown.findElements(By.tagName("option"));
-        for (int i = 1; i < options.size(); i++) {
-            options.get(i).click();
-
-            if (nextDropdown != null) {
-                ExplicitWait.elementToBeVisible(nextDropdown.getLocator());
-            }
+            // Provide a random string for the house no/road/village field
+            houseTextField.getElement().clear();
+            houseTextField.sendKeys(generateRandomString());
         }
     }
 
