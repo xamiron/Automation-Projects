@@ -9,7 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import utility.DataReader;
 import utility.ExtentManager;
-import waits.ExplicitWait;
 
 import java.lang.reflect.Method;
 
@@ -51,6 +50,8 @@ public class Test_Address {
         test.log(Status.PASS, "Entered password ");
 //        bdjApplyPage.closeAdsIfPresent();
         bdjApplyPage.editProfile();
+
+
     }
 
     @Test(priority = 2)
@@ -68,13 +69,20 @@ public class Test_Address {
         Assert.assertTrue(isAddressDetailsDisplayed, "Address Details page is not opened");
         test.log(Status.PASS, "Address Details Page is opened");
 
-        bdjAddressDetails.presentAddress();
-        test.log(Status.PASS, "Present Address entered");
+//        bdjAddressDetails.presentAddressAllCheck();
+//        test.log(Status.PASS, "Present Address entered");
 
-//        ExplicitWait.elementToBeVisible(bdjAddressDetails.getLocator());
+//        bdjAddressDetails.presentAddressIndividualInsideBangladesh();
+//        test.log(Status.PASS, "Present address individual entered");
 
-        // More steps related to address details can be added here
+//        bdjAddressDetails.presentAddressIndividualOutsideBangladesh();
+//        test.log(Status.PASS, "Present address outside Bangladesh entered");
+
+        bdjAddressDetails.permanentAddressAllChecking();
+        test.log(Status.PASS, "Permanent address entered");
+
     }
+
 
     @AfterMethod
     public void cleanUp() {
