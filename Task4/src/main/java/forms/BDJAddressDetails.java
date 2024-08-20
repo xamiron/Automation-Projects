@@ -108,7 +108,11 @@ public class BDJAddressDetails extends BaseForm {
     private final Element selectPOAlikadam = new Element(By.cssSelector("select#present_p_office > option[value='2501']"));
 //Permanent selector
     private final Element permanentDistrictDropDown = new Element(By.cssSelector("#permanent_district"));
+    private final Element permanentDistrictSelect = new Element(By.cssSelector("select#permanent_district > option[value='-1']"));
+    private final Element permanentBrahmanbaria = new Element(By.cssSelector("select#permanent_district > option[value='1']"));
     private final Element permanentThanaDropdown = new Element(By.cssSelector("#permanent_thana"));
+    private final Element permanentThanaSelect = new Element(By.cssSelector("select#permanent_thana > option[value='-1']"));
+    private final Element permanentAkhauraSelect= new Element(By.cssSelector("select#permanent_thana > option[value='1107']"));
     private final Element permanentPODropdown = new Element(By.cssSelector("#permanent_p_office"));
     private final Element permanentVillageField = new Element(By.cssSelector("#permanent_Village"));
     private final Element permanentInsideBangladesh = new Element(By.cssSelector("#radiopermanentLocation1"));
@@ -160,7 +164,6 @@ public class BDJAddressDetails extends BaseForm {
         }
 
     }
-
     public void permanentAddressAllChecking() {
         ExplicitWait.elementToBeClickable(closeButton.getLocator());
         closeButton.getElement().click();
@@ -181,16 +184,15 @@ public class BDJAddressDetails extends BaseForm {
             System.out.println("Element not found or not clickable: " + e.getMessage());
         }
 
-//        // Test inside Bangladesh
-//        ExplicitWait.elementToBeClickable(insideButton.getLocator());
-//        insideButton.click();
-//        permanentInsideBangladesh.click();
-//        fillInsideBangladeshAddressPermanent();
+        // Test inside Bangladesh
+        ExplicitWait.elementToBeClickable(insideButton.getLocator());
+        insideButton.click();
+        permanentInsideBangladesh.click();
+        fillInsideBangladeshAddressPermanent();
 
         ExplicitWait.elementToBeClickable(permanentOutsideBangladesh.getLocator());
         permanentOutsideBangladesh.click();
         fillOutsideBangladeshAddressPermanent();
-
     }
 
     public void presentAddressIndividualInsideBangladesh() {
@@ -270,7 +272,6 @@ public class BDJAddressDetails extends BaseForm {
         houseTextField.sendKeysWithDelay("Dhaka, rayer bazar");
         saveButton.getElement().click();
     }
-
     public void presentAddressIndividualOutsideBangladesh(){
         ExplicitWait.elementToBeClickable(closeButton.getLocator());
         closeButton.getElement().click();
@@ -332,6 +333,84 @@ public class BDJAddressDetails extends BaseForm {
         saveButton.getElement().click();
     }
 
+    public void permanentAddressIndividualInsideBangladesh(){
+        ExplicitWait.elementToBeClickable(closeButton.getLocator());
+        closeButton.getElement().click();
+        personalButton.getElement().click();
+
+        addressDetailsDropdown.scrollUntilElementIsVisible();
+        addressDetailsDropdown.getElement().click();
+        ExplicitWait.elementToBeClickable(editButton.getLocator());
+        editButton.getElement().click();
+
+        permanentInsideBangladesh.getElement().click();
+
+        //invalid district
+        permanentDistrictDropDown.getElement().click();
+        permanentDistrictSelect.getElement().click();
+        saveButton.getElement().click();
+        errorDistrictMessageText();
+
+        //Valid district
+        permanentDistrictDropDown.getElement().click();
+        permanentBrahmanbaria.getElement().click();
+        saveButton.getElement().click();
+
+//        //invalid thana
+//        permanentThanaDropdown.getElement().click();
+//        permanentThanaSelect.getElement().click();
+//        saveButton.getElement().click();
+//        errorThanaMessageText();
+//
+//        //valid thana
+//        permanentThanaDropdown.getElement().click();
+//        selectThana.getElement().click();
+//        selectThanaBagerhatSadar.getElement().click();
+//        saveButton.getElement().click();
+//
+//        //invalid but accepting
+//        editButton.getElement().click();
+//        permanentPODropdown.getElement().click();
+//        selectPO.getElement().click();
+//        saveButton.getElement().click();
+//
+//        //valid
+//        editButton.getElement().click();
+//        permanentPODropdown.getElement().click();
+//        selectPOAlikadam.getElement().click();
+//        saveButton.getElement().click();
+//
+//        //invalid text name
+//        editButton.getElement().click();
+//        houseTextField.getElement().clear();
+//        houseTextField.sendKeysWithDelay("");
+//        saveButton.getElement().click();
+//        errorVillageMessageText();
+//
+//        //invalid special character
+//        houseTextField.getElement().clear();
+//        houseTextField.sendKeysWithDelay("!@#$%^&*()_");
+//        saveButton.getElement().click();
+//        errorVillageMessageText();
+//
+//        //invalid special character
+//        houseTextField.getElement().clear();
+//        houseTextField.sendKeysWithDelay("!@#$%^&*()_");
+//        saveButton.getElement().click();
+//        errorVillageMessageText();
+//
+//        //invalid special character
+//        houseTextField.getElement().clear();
+//        houseTextField.sendKeysWithDelay("!@ba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba1");
+//        saveButton.getElement().click();
+//        errorVillageMessageText();
+//
+//        //valid special character
+//        houseTextField.getElement().clear();
+//        houseTextField.sendKeysWithDelay("Dhaka, rayer bazar");
+//        saveButton.getElement().click();
+    }
+
     private void fillInsideBangladeshAddress() {
         // Iterate through all districts
         List<WebElement> districts = districtDropDown.findElements(By.tagName("option"));
@@ -381,8 +460,8 @@ public class BDJAddressDetails extends BaseForm {
                     // Provide a random string for the house no/road/village field
                     permanentVillageField.getElement().clear();
                     permanentVillageField.sendKeys(generateRandomString());
-                    //saveButton.getElement().click();
-                   // editButton.getElement().click();
+                    saveButton.getElement().click();
+                    editButton.getElement().click();
                 }
             }
         }
@@ -409,8 +488,8 @@ public class BDJAddressDetails extends BaseForm {
 
             permanentVillageField.getElement().clear();
             permanentVillageField.sendKeys(generateRandomString());
-//            saveButton.getElement().click();
-//            editButton.getElement().click();
+            saveButton.getElement().click();
+            editButton.getElement().click();
         }
     }
 

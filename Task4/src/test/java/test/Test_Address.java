@@ -71,15 +71,16 @@ public class Test_Address {
 
 //        bdjAddressDetails.presentAddressAllCheck();
 //        test.log(Status.PASS, "Present Address entered");
+//        bdjAddressDetails.permanentAddressAllChecking();
+//        test.log(Status.PASS, "Permanent address entered");
 
 //        bdjAddressDetails.presentAddressIndividualInsideBangladesh();
 //        test.log(Status.PASS, "Present address individual entered");
-
 //        bdjAddressDetails.presentAddressIndividualOutsideBangladesh();
 //        test.log(Status.PASS, "Present address outside Bangladesh entered");
 
-        bdjAddressDetails.permanentAddressAllChecking();
-        test.log(Status.PASS, "Permanent address entered");
+        bdjAddressDetails.permanentAddressIndividualInsideBangladesh();
+        test.log(Status.PASS, "Permanent Address Individual entered");
 
     }
 
