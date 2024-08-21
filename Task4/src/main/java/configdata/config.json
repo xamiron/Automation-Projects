@@ -4,7 +4,7 @@
 	"url": "https://bdjobs.com",
 	"urlSign": "https://mybdjobs.bdjobs.com/mybdjobs/signin.asp",
 	
-	"explicitWaitTimeInSeconds": 15,
+	"explicitWaitTimeInSeconds": 60,
 	"loginOtpPageWaitTime" : 900
 
 }

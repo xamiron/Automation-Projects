@@ -24,4 +24,10 @@ public class Element extends BaseElement {
 		WebElement element = getElement();
 		element.sendKeys(keysToSend);  // Delegate to WebElement's sendKeys method
 	}
+
+	public boolean isEmpty() {
+		WebElement element = getElement();
+		// Check if the element has no text and no child elements
+		return element.getText().trim().isEmpty() && element.findElements(By.xpath("./*")).isEmpty();
+	}
 }
