@@ -124,6 +124,12 @@ public class BDJAddressDetails extends BaseForm {
     private final Element permanentAkauraPOSelect = new Element(By.cssSelector("select#permanent_p_office > option[value='1923']"));
     private final Element permanentPOSelect= new Element(By.cssSelector("select#permanent_p_office > option[value='-1']"));
     private final Element permanenetVillageFieldText = new Element(By.cssSelector("#permanent_Village"));
+    private final Element permanentCountryDropDown = new Element(By.cssSelector("#permanent_country_list"));
+    private final Element permanentCountrySelect = new Element(By.cssSelector("select#permanent_country_list>option[value='-1']"));
+    private final Element permanentCountryErrorText = new Element(By.cssSelector("#txtprmtContryErrorMsg"));
+    private final Element permanentCountryAfganistanSelector = new Element(By.cssSelector("select#permanent_country_list>option[value='101']"));
+    private final Element permanentCountryTextField = new Element(By.cssSelector("#permanent_Village"));
+    private final Element permanentVillageErrorText = new Element(By.cssSelector("#txtprmtVillErrorMsg"));
 
     private final String errorMessageText = "Error message is not displayed.";
 
@@ -363,6 +369,14 @@ public class BDJAddressDetails extends BaseForm {
             System.out.println("Element not found or not clickable: " + e.getMessage());
         }
 
+        try {
+            if (houseTextField.isEmpty()) {
+                houseTextField.getElement().clear();
+                houseTextField.sendKeysWithDelay("Dhaka, rayer bazar");
+            }
+        } catch (NoSuchElementException | TimeoutException e) {
+            System.out.println("Element not found or not clickable: " + e.getMessage());
+        }
         permanentInsideBangladesh.getElement().click();
 
         //invalid district
@@ -370,41 +384,35 @@ public class BDJAddressDetails extends BaseForm {
         permanentDistrictSelect.getElement().click();
         saveButton.getElement().click();
         errorPermanentDistrictMessageText();
-
+//
         //Valid district
         permanentDistrictDropDown.getElement().click();
         permanentBrahmanbaria.getElement().click();
         saveButton.getElement().click();
-
+//
         //invalid thana
         permanentThanaDropdown.getElement().click();
         permanentThanaSelect.getElement().click();
         saveButton.getElement().click();
         errorThanaDistrictMessageText();
-
+//
         //valid thana
         permanentThanaDropdown.getElement().click();
-        //selectThana.getElement().click();
         permanentAkhauraSelect.getElement().click();
         saveButton.getElement().click();
-
+//
         //invalid but accepting
-//        editButton.getElement().click();
+        editButton.getElement().click();
         permanentPODropdown.getElement().click();
         permanentPOSelect.getElement().click();
-        if(!permanenetVillageFieldText.isEmpty()){
-            permanenetVillageFieldText.getElement().clear();
-        }
+        permanenetVillageFieldText.getElement().clear();
         saveButton.getElement().click();
         errorPermanentVillageMessageText();
-
 
         //valid
         permanentPODropdown.getElement().click();
         permanentAkauraPOSelect.getElement().click();
-        if(!permanenetVillageFieldText.isEmpty()){
-            permanenetVillageFieldText.getElement().clear();
-        }
+        permanenetVillageFieldText.getElement().clear();
         saveButton.getElement().click();
         errorPermanentVillageMessageText();
 
@@ -434,7 +442,83 @@ public class BDJAddressDetails extends BaseForm {
 
         //valid special character
         permanenetVillageFieldText.getElement().clear();
-        permanenetVillageFieldText.sendKeysWithDelay("Dhaka, rayer bazar");
+        permanenetVillageFieldText.sendKeysWithDelay("Dhaka, rayer bazar 2");
+        saveButton.getElement().click();
+    }
+
+    public void permanentAddressIndividualOutsideBangladesh(){
+        try {
+            if (closeButton.isDisplayed()) {
+                closeButton.getElement().click();
+                personalButton.getElement().click();
+            }
+        } catch (NoSuchElementException | TimeoutException e) {
+            System.out.println("Element not found or not clickable: " + e.getMessage());
+        }
+
+        addressDetailsDropdown.scrollUntilElementIsVisible();
+        addressDetailsDropdown.getElement().click();
+        ExplicitWait.elementToBeClickable(editButton.getLocator());
+        editButton.getElement().click();
+
+        try {
+            if (disabled.isDisplayed()) {
+                ExplicitWait.elementToBeVisible(disableCheckBox.getLocator());
+                disableCheckBox.getElement().click();
+            }
+        } catch (NoSuchElementException | TimeoutException e) {
+            System.out.println("Element not found or not clickable: " + e.getMessage());
+        }
+        try {
+            if (houseTextField.isEmpty()) {
+                houseTextField.getElement().clear();
+                houseTextField.sendKeysWithDelay("Dhaka, rayer bazar");
+            }
+        } catch (NoSuchElementException | TimeoutException e) {
+            System.out.println("Element not found or not clickable: " + e.getMessage());
+        }
+        permanentOutsideBangladesh.getElement().click();
+
+
+        //invalid country name
+        permanentCountryDropDown.getElement().click();
+        permanentCountrySelect.getElement().click();
+        saveButton.getElement().click();
+        errorPermanentCountryMessageText();
+
+        //valid country
+        permanentCountryDropDown.getElement().click();
+        permanentCountryAfganistanSelector.getElement().click();
+        saveButton.getElement().click();
+
+        //invalid text name
+        editButton.getElement().click();
+        permanentCountryTextField.getElement().clear();
+        permanentCountryTextField.sendKeysWithDelay("");
+        saveButton.getElement().click();
+        errorPermanentCountryTextField();
+
+        //invalid special character
+        permanentCountryTextField.getElement().clear();
+        permanentCountryTextField.sendKeysWithDelay("!@#$%^&*()_");
+        saveButton.getElement().click();
+        errorPermanentCountryTextField();
+
+        //invalid special character
+        permanentCountryTextField.getElement().clear();
+        permanentCountryTextField.sendKeysWithDelay("!@#$%^&*()_");
+        saveButton.getElement().click();
+        errorPermanentCountryTextField();
+
+        //invalid special character
+        permanentCountryTextField.getElement().clear();
+        permanentCountryTextField.sendKeysWithDelay("!@ba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba1");
+        saveButton.getElement().click();
+        errorPermanentCountryTextField();
+
+        //valid special character
+        permanentCountryTextField.getElement().clear();
+        permanentCountryTextField.sendKeysWithDelay("Dhaka, rayer bazar");
         saveButton.getElement().click();
     }
 
@@ -557,6 +641,14 @@ public class BDJAddressDetails extends BaseForm {
     private void errorPermanentVillageMessageText(){
         ExplicitWait.elementToBeVisible(permanentVillageFieldErrorText.getLocator());
         Assert.assertTrue(permanentVillageFieldErrorText.isDisplayed(), errorMessageText);
+    }
+    private void errorPermanentCountryMessageText(){
+        ExplicitWait.elementToBeClickable(permanentCountryErrorText.getLocator());
+        Assert.assertTrue(permanentCountryErrorText.isDisplayed(), errorMessageText);
+    }
+    private void errorPermanentCountryTextField(){
+        ExplicitWait.elementToBeClickable(permanentVillageErrorText.getLocator());
+        Assert.assertTrue(permanentVillageErrorText.isDisplayed(),errorMessageText);
     }
 
 }

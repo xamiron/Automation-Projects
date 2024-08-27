@@ -79,8 +79,11 @@ public class Test_Address {
 //        bdjAddressDetails.presentAddressIndividualOutsideBangladesh();
 //        test.log(Status.PASS, "Present address outside Bangladesh entered");
 
-        bdjAddressDetails.permanentAddressIndividualInsideBangladesh();
-        test.log(Status.PASS, "Permanent Address Individual entered");
+//        bdjAddressDetails.permanentAddressIndividualInsideBangladesh();
+//        test.log(Status.PASS, "Permanent Address Individual entered");
+
+        bdjAddressDetails.permanentAddressIndividualOutsideBangladesh();
+        test.log(Status.PASS, "Permanent Address Individual Outside Bangladesh entered");
 
     }
 
