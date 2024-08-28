@@ -55,7 +55,10 @@ public class Test_CareerAndApplication {
     @Test(priority = 2)
     public void Careerandinformation() {
         BDJOCareerAndApplication bdjoCareerAndApplication= new BDJOCareerAndApplication();
-        bdjoCareerAndApplication.careerObjective();
+        bdjoCareerAndApplication.dropdown();
+//        bdjoCareerAndApplication.careerObjective();
+//        bdjoCareerAndApplication.presentSalary();
+        bdjoCareerAndApplication.expectedSalary();
     }
 
 
