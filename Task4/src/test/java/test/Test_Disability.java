@@ -12,7 +12,7 @@ import utility.ExtentManager;
 
 import java.lang.reflect.Method;
 
-public class Test_Address {
+public class Test_Disability {
     WebDriver driver;
     private ExtentTest test;
 
@@ -38,6 +38,7 @@ public class Test_Address {
         BDJHomePage bdjHomePage = new BDJHomePage();
         BDJApplyJob bdjApplyPage = new BDJApplyJob();
 
+
         boolean isLoginPageDisplayed = bdjApplyPage.isFormOpen();
         test.log(Status.INFO, "Check if login page is displayed");
         Assert.assertTrue(isLoginPageDisplayed, "Login Page is not opened");
@@ -48,43 +49,14 @@ public class Test_Address {
 
         bdjApplyPage.sendingPasswordInPasswordField();
         test.log(Status.PASS, "Entered password ");
-//        bdjApplyPage.closeAdsIfPresent();
         bdjApplyPage.editProfile();
-
-
     }
 
     @Test(priority = 2)
-    public void addressDetails() {
-        BDJAddressDetails bdjAddressDetails = new BDJAddressDetails();
-        BDJPersonalDetails bdjPersonalDetails = new BDJPersonalDetails();
+    public void Careerandinformation() {
+        BDJDisability_Information bdjDisability_information = new BDJDisability_Information();
 
-        boolean isPersonalDetailsDisplayed= bdjPersonalDetails.isFormOpen();
-        test.log(Status.INFO, "Check if Personal Details page loaded");
-        Assert.assertTrue(isPersonalDetailsDisplayed, "Personal Details page is not opened");
-        test.log(Status.PASS, "Personal Details Page is opened");
-
-        boolean isAddressDetailsDisplayed = bdjAddressDetails.isFormOpen();
-        test.log(Status.INFO, "Check if Address Details page loaded");
-        Assert.assertTrue(isAddressDetailsDisplayed, "Address Details page is not opened");
-        test.log(Status.PASS, "Address Details Page is opened");
-
-        bdjAddressDetails.presentAddressAllCheck();
-        test.log(Status.PASS, "Present Address entered");
-        bdjAddressDetails.permanentAddressAllChecking();
-        test.log(Status.PASS, "Permanent address entered");
-
-        bdjAddressDetails.presentAddressIndividualInsideBangladesh();
-        test.log(Status.PASS, "Present address individual entered");
-        bdjAddressDetails.presentAddressIndividualOutsideBangladesh();
-        test.log(Status.PASS, "Present address outside Bangladesh entered");
-
-        bdjAddressDetails.permanentAddressIndividualInsideBangladesh();
-        test.log(Status.PASS, "Permanent Address Individual entered");
-
-        bdjAddressDetails.permanentAddressIndividualOutsideBangladesh();
-        test.log(Status.PASS, "Permanent Address Individual Outside Bangladesh entered");
-
+        bdjDisability_information.noIdCheck();
     }
 
 
