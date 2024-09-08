@@ -59,7 +59,6 @@ public class Test_Education {
         BDJEducationalTraining bdjEducationalTraining = new BDJEducationalTraining();
 
         bdjEducationalTraining.education();
-
     }
 
 

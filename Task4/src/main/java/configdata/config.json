@@ -6,7 +6,7 @@
 	
 	"explicitWaitTimeInSeconds": 60,
 	"loginOtpPageWaitTime" : 900,
-	"educationLevel": "hsc",
-	"degree": "others"
-
+	"educationLevel": "psc",
+	"degree": "others",
+	"board": "barishal"
 }
