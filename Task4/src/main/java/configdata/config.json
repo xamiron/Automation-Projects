@@ -5,6 +5,8 @@
 	"urlSign": "https://mybdjobs.bdjobs.com/mybdjobs/signin.asp",
 	
 	"explicitWaitTimeInSeconds": 60,
-	"loginOtpPageWaitTime" : 900
+	"loginOtpPageWaitTime" : 900,
+	"educationLevel": "hsc",
+	"degree": "others"
 
 }

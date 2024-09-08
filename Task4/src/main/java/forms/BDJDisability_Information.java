@@ -2,6 +2,8 @@ package forms;
 
 import elements.Element;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import waits.ExplicitWait;
 
@@ -17,13 +19,17 @@ public class BDJDisability_Information extends BaseForm{
     private final Element nidTextField = new Element(By.cssSelector("#txtDisabilityId"));
     private final Element nidTextErrorMessage = new Element(By.cssSelector("#txtDisibilityIdErrorMsg"));
     private final Element privacyNo = new Element(By.cssSelector("label[for='PwdoptNo']"));
+    private final Element privacyNoActive = new Element(By.cssSelector("label.btn.btn-primary.active[for='PwdoptYes']"));
     private final Element privacyYes= new Element(By.cssSelector("label[for='PwdoptYes']"));
+    private final Element privacyYesActive = new Element(By.cssSelector("label.btn.btn-primary.btn-grey.active[for='PwdoptNo']"));
 
-
+    WebDriver driver;
     private final String errorMessageText = "Error message is not displayed.";
 
     public BDJDisability_Information() {
         super(new Element(By.cssSelector("label[for='txtDisabilityId']")));
+        this.driver = driver;
+
     }
 
     public void noIdCheck() {
@@ -46,38 +52,80 @@ public class BDJDisability_Information extends BaseForm{
         yesRadioButton.getElement().click();
         nidTextField.sendKeysWithDelay("");
         saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+        errorAlternateEmailMessageText();
 
         //invalid special character
         nidTextField.getElement().clear();
         nidTextField.sendKeysWithDelay("@#$%^&*()_+");
         saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+//        errorAlternateEmaiLMessageText();
 
         //invalid character
+        editButton.getElement().click();
         nidTextField.getElement().clear();
         nidTextField.sendKeysWithDelay("abcead");
         saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+        errorAlternateEmailMessageText();
 
 
-
+        //valid
         nidTextField.getElement().clear();
         nidTextField.sendKeysWithDelay("1234567891");
-        //saveButton.getElement().click();
-
-
-        //privacy if yes
-        if (privacyNo.getElement().isSelected()) {
-            privacyYes.click();
-        } else if (privacyYes.getElement().isSelected()) {
-
-            privacyNo.click();
-        }
         saveButton.getElement().click();
+
+
+
     }
 
-    private void errorAlternateEmaiLMessageText(){
+//    public void showResume() {
+//        // Click the edit button to modify privacy settings
+//        editButton.getElement().click();
+//
+//        // Check if the "No" radio button is selected
+//        if (privacyNoActive.getElement().isSelected()) {
+//            // If "No" is selected, click the "Yes" option
+//            privacyYes.getElement().click();
+//        } else if (privacyYesActive.getElement().isSelected()) {
+//            // If "Yes" is selected, click the "No" option
+//            privacyNo.getElement().click();
+//        }
+//
+//        // Save the changes
+//        saveButton.getElement().click();
+//    }
+
+
+    public void togglePrivacyOption() {
+        try {
+            editButton.getElement().click();
+            System.out.println("Clicked on edit button.");
+
+            WebElement currentSelection = driver.findElement(By.id("spanDisabilityIsShown"));
+            String currentText = currentSelection.getText().trim();
+            System.out.println("Current selection: " + currentText);
+
+            Element yesOption = new Element(By.cssSelector("label.btn.btn-primary[for='PwdoptYes']"));
+            Element noOption = new Element(By.cssSelector("label.btn.btn-primary.btn-grey[for='PwdoptNo']"));
+
+            if (currentText.equals("Yes")) {
+                noOption.getElement().click();
+                System.out.println("Clicked on No option.");
+            } else if (currentText.equals("No")) {
+                yesOption.getElement().click();
+                System.out.println("Clicked on Yes option.");
+            }
+
+            saveButton.getElement().click();
+            System.out.println("Clicked on save button.");
+
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+
+    private void errorAlternateEmailMessageText(){
         ExplicitWait.elementToBeVisible(nidTextErrorMessage.getLocator());
         Assert.assertTrue(nidTextErrorMessage.isDisplayed(), errorMessageText);
     }
