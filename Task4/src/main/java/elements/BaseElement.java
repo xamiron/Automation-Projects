@@ -47,7 +47,7 @@ public abstract class BaseElement {
 		for (char c : keys.toCharArray()) {
 			this.getElement().sendKeys(Character.toString(c));
 			try {
-				Thread.sleep(5); // Adjust the delay as needed
+				Thread.sleep(10); // Adjust the delay as needed
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

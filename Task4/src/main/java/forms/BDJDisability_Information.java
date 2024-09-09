@@ -54,6 +54,8 @@ public class BDJDisability_Information extends BaseForm{
         saveButton.getElement().click();
         errorAlternateEmailMessageText();
 
+
+
         //invalid special character
         nidTextField.getElement().clear();
         nidTextField.sendKeysWithDelay("@#$%^&*()_+");

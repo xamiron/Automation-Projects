@@ -10,7 +10,7 @@ import waits.ExplicitWait;
 
 public class BDJPersonalDetails extends BaseForm{
     private final Element firstName = new Element(By.cssSelector("#txtFirstName"));
-    private final Element saveButton = new Element(By.cssSelector("body > div:nth-child(19) > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(11) > div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > form:nth-child(3) > div:nth-child(2) > div:nth-child(1) > a:nth-child(1)"));
+    private final Element saveButton = new Element(By.xpath("//a[@id='perbtn-save']"));
     private final Element fNameErrorMessage = new Element(By.cssSelector("#fnameErrorMsg"));
     private final Element lastName = new Element(By.cssSelector("#txtLastName"));
     private final Element editButton = new Element(By.cssSelector("button[aria-label='Click on Edit to fill up personal details']"));
@@ -87,25 +87,29 @@ public class BDJPersonalDetails extends BaseForm{
 
         // invalid empty name
         firstName.getElement().clear();
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
 
         // invalid whiteSpace
         firstName.getElement().clear();
         firstName.sendKeysWithDelay(" ");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
 
         // invalid specialCharacter
         firstName.getElement().clear();
         firstName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
 
         // invalid NumericCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("0123");
+        firstName.sendKeysWithDelay("12458641");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
 
@@ -113,52 +117,257 @@ public class BDJPersonalDetails extends BaseForm{
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
 
+        // invalid maxCharacter
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("145.4545");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorMessageText();
+
+        // invalid maxCharacter
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("1,234.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorMessageText();
+
+        // invalid maxCharacter
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("1,234.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorMessageText();
+
+        // invalid maxCharacter
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("east wes(){}*");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorMessageText();
+
+        // invalid maxCharacter
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay(" <p>east west;</p>");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorMessageText();
+
+        //valid white space left
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("    Avarya");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
         // valid combination
+        editButton.getElement().click();
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("Avarya     ");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        // valid combination
+        editButton.getElement().click();
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("ASSDcadfa");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("qwert");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("AVDFCD");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        firstName.getElement().clear();
+        firstName.getElement().click();
+        firstName.sendKeysWithDelay("asfadgaf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        // valid combination
+        editButton.getElement().click();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("Avarya");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
     }
+
     public void lastName(){
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
-        // invalid numeric character
+        // valid empty name
         editButton.getElement().click();
-        lastName.sendKeysWithDelay("0123");
+        lastName.getElement().clear();
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
-        errorLastNameMessageText();
 
-        //invalid special character
-        lastName.getElement().click();
+        // invalid whiteSpace
+        editButton.scrollUntilElementIsVisible();
+        editButton.getElement().click();
+        lastName.getElement().clear();
+        lastName.sendKeysWithDelay(" ");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        // invalid specialCharacter
+        editButton.scrollUntilElementIsVisible();
+        editButton.getElement().click();
         lastName.getElement().clear();
         lastName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorLastNameMessageText();
 
-        //invalid maxCharacter
+        // invalid NumericCharacter
         lastName.getElement().clear();
-        lastName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
-        saveButton.getElement().click();
-        errorLastNameMessageText();
-
-        //valid empty name
         lastName.getElement().click();
+        lastName.sendKeysWithDelay("12458641");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        // invalid maxCharacter
         lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        // invalid maxCharacter
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("145.4545");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        // invalid maxCharacter
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("1,234.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        // invalid maxCharacter
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("1,234.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        // invalid maxCharacter
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("east wes(){}*");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        // invalid maxCharacter
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay(" <p>east west;</p>");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorLastNameMessageText();
+
+        //valid white space left
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("    Avarya");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
-        // valid white-space character
+        // valid combination
         editButton.getElement().click();
         lastName.getElement().clear();
-        lastName.sendKeysWithDelay("   ");
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("Avarya     ");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
-        //valid name
+        // valid combination
         editButton.getElement().click();
         lastName.getElement().clear();
-        lastName.sendKeysWithDelay("Mondal");
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("ASSDcadfa");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("qwert");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("AVDFCD");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space left
+        editButton.getElement().click();
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("asfadgaf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        // valid combination
+        editButton.getElement().click();
+        lastName.getElement().clear();
+        lastName.getElement().click();
+        lastName.sendKeysWithDelay("Internal Test Account for My Bdjobs");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
     }
 
@@ -170,23 +379,55 @@ public class BDJPersonalDetails extends BaseForm{
         fatherName.getElement().click();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("11a231");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
         errorFatherNameMessageText();
 
         // invalid special character
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
         errorFatherNameMessageText();
 
         // invalid max character
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorFatherNameMessageText();
+
+        // invalid max character
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("145.4545");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorFatherNameMessageText();
+
+        // invalid max character
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("1,23.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorFatherNameMessageText();
+
+        // invalid max character
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("east wes(){}*");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorFatherNameMessageText();
+
+        // invalid max character
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("<p>east west;</p>");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
         errorFatherNameMessageText();
 
         // valid empty
         fatherName.getElement().clear();
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
@@ -194,6 +435,48 @@ public class BDJPersonalDetails extends BaseForm{
         editButton.getElement().click();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("  ");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space
+        editButton.getElement().click();
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("ASSDcadfa");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space
+        editButton.getElement().click();
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("AVDFCD");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space
+        editButton.getElement().click();
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("asfadgaf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+
+        // valid white space before character
+        editButton.getElement().click();
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("        abcdes");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space before character
+        editButton.getElement().click();
+        fatherName.getElement().clear();
+        fatherName.sendKeysWithDelay("qwert");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
@@ -201,6 +484,7 @@ public class BDJPersonalDetails extends BaseForm{
         editButton.getElement().click();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("fatherName");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
     }
     public void motherName(){
@@ -210,38 +494,113 @@ public class BDJPersonalDetails extends BaseForm{
         editButton.getElement().click();
         motherName.getElement().click();
         motherName.getElement().clear();
-        motherName.sendKeysWithDelay("1234586");
-        saveButton.getElement().click();
+        motherName.sendKeysWithDelay("11a231");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
         errorMotherMessageText();
 
         // invalid special character
         motherName.getElement().clear();
         motherName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
-        saveButton.getElement().click();
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
         errorMotherMessageText();
 
         // invalid max character
         motherName.getElement().clear();
         motherName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
-        saveButton.getElement().click();
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorMotherMessageText();
+
+        // invalid max character
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("145.4545");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorMotherMessageText();
+
+        // invalid max character
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("1,23.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorMotherMessageText();
+
+        // invalid max character
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("east wes(){}*");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        errorMotherMessageText();
+
+        // invalid max character
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("<p>east west;</p>");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
         errorMotherMessageText();
 
         // valid empty
         motherName.getElement().clear();
-        motherName.sendKeysWithDelay("");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.click();
+        editButton.getElement().click();
         motherName.getElement().clear();
-        motherName.sendKeysWithDelay(" ");
+        motherName.sendKeysWithDelay("  ");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
+        // valid white space
+        editButton.getElement().click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("ASSDcadfa");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space
+        editButton.getElement().click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("AVDFCD");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space
+        editButton.getElement().click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("asfadgaf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+
+        // valid white space before character
+        editButton.getElement().click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("        abcdes");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
+
+        // valid white space before character
+        editButton.getElement().click();
+        motherName.getElement().clear();
+        motherName.sendKeysWithDelay("qwert");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.click();
+        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid name
-        editButton.click();
+        editButton.getElement().click();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("motherName");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.click();
     }
 
@@ -459,6 +818,7 @@ public class BDJPersonalDetails extends BaseForm{
         disableCheck();
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay("");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNationalityMessageText();
 
@@ -466,6 +826,7 @@ public class BDJPersonalDetails extends BaseForm{
         nationalityField.getElement().click();
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay("  ");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNationalityMessageText();
 
@@ -473,61 +834,156 @@ public class BDJPersonalDetails extends BaseForm{
         nationalityField.getElement().click();
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay("14789632");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNationalityMessageText();
 
         //invalid special character
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNationalityMessageText();
 
         //invalid max character
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNationalityMessageText();
 
         //valid nationality
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay("Bangladeshi");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
+
     }
     public void nID(){
         //invalid alphabet
         editButton.getElement().click();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("abced");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNIDMessageText();
 
         //invalid max character
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("aaaaaaaaaaaaaaaaa");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNIDMessageText();
 
         //invalid special character
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("~!@#$%^&*()_+}{|/'");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+//        //invalid special character
+//        nationalIDField.getElement().clear();
+//        nationalIDField.sendKeysWithDelay("12458641");
+//        saveButton.scrollUntilElementIsVisible();
+//        saveButton.getElement().click();
+//        errorNIDMessageText();
+
+//        //invalid special character
+//        nationalIDField.getElement().clear();
+//        nationalIDField.sendKeysWithDelay("145.4545");
+//        saveButton.scrollUntilElementIsVisible();
+//        saveButton.getElement().click();
+//        errorNIDMessageText();
+
+        //invalid special character
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("1,234.568");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //invalid special character
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("<p>east west;</p>");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //valid white space
+//        editButton.getElement().click();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("ASSDcadfa");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //invalid special character
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("east wes(){}*");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //valid white space
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("AVDFCD");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("asfadgaf");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNIDMessageText();
 
         //valid empty
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
         //valid white space
         editButton.getElement().click();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("   ");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+
+        //valid white space
+        editButton.getElement().click();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("   asfafasf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space
+        editButton.getElement().click();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("asfafasf   ");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space
+        editButton.getElement().click();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("qwert");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        //valid white space
+        editButton.getElement().click();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
         //valid nid 18 character
         editButton.getElement().click();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("12345678912345678");
+        saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
     }
 

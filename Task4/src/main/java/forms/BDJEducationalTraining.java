@@ -211,6 +211,7 @@ public class BDJEducationalTraining extends BaseForm {
             errorPSETextMessage();
 
             //valid check
+            degreeDropdown.getElement().click();
             selectedElement.getElement().click();
         }
         else if("jdc".equalsIgnoreCase(educationLevel1)){
