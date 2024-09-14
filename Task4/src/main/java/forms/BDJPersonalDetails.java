@@ -925,7 +925,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorNIDMessageText();
 
-        //valid white space
+        //invalid white space
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("AVDFCD");
         saveButton.scrollUntilElementIsVisible();
@@ -933,6 +933,34 @@ public class BDJPersonalDetails extends BaseForm{
         errorNIDMessageText();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("asfadgaf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //invalid white space
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("   asfafasf");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //invalid white space
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("asfafasf   ");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //invalid white space
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("qwert");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        errorNIDMessageText();
+
+        //invalid white space
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorNIDMessageText();
@@ -950,34 +978,6 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
-
-        //valid white space
-        editButton.getElement().click();
-        nationalIDField.getElement().clear();
-        nationalIDField.sendKeysWithDelay("   asfafasf");
-        saveButton.scrollUntilElementIsVisible();
-        saveButton.getElement().click();
-
-        //valid white space
-        editButton.getElement().click();
-        nationalIDField.getElement().clear();
-        nationalIDField.sendKeysWithDelay("asfafasf   ");
-        saveButton.scrollUntilElementIsVisible();
-        saveButton.getElement().click();
-
-        //valid white space
-        editButton.getElement().click();
-        nationalIDField.getElement().clear();
-        nationalIDField.sendKeysWithDelay("qwert");
-        saveButton.scrollUntilElementIsVisible();
-        saveButton.getElement().click();
-
-        //valid white space
-        editButton.getElement().click();
-        nationalIDField.getElement().clear();
-        nationalIDField.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
-        saveButton.scrollUntilElementIsVisible();
-        saveButton.getElement().click();
 
         //valid nid 18 character
         editButton.getElement().click();
@@ -1001,17 +1001,6 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorPassportMessageText();
 
-        //invalid empty
-        passportField.getElement().clear();
-        passportField.sendKeysWithDelay("");
-        saveButton.getElement().click();
-        errorPassportMessageText();
-
-        //invalid white space
-        passportField.getElement().clear();
-        passportField.sendKeysWithDelay("    ");
-        saveButton.getElement().click();
-        errorPassportMessageText();
 
         //invalid date entry
         passportField.getElement().clear();
@@ -1019,7 +1008,20 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorPassportMessageText();
 
+        //valid white space
+        passportField.getElement().clear();
+        passportField.sendKeysWithDelay("    ");
+        saveButton.getElement().click();
+        errorPassportMessageText();
+
+        //valid empty
+        passportField.getElement().clear();
+        passportField.sendKeysWithDelay("");
+        saveButton.getElement().click();
+
+
         //Valid date entry
+        editButton.getElement().click();
         passportField.getElement().clear();
         passportField.sendKeysWithDelay("12345678");
         saveButton.getElement().click();
@@ -1027,13 +1029,11 @@ public class BDJPersonalDetails extends BaseForm{
     public void passportIssuedDate(){
         //invalid empty date
         editButton.getElement().click();
-        passportIssueDate.getElement().click();
-        passportIssueDate.getElement().clear();
+        passportIssueDate.sendKeysWithDelay("");
         saveButton.click();
         errorPassportIssuedDateMessageText();
 
         //invalid white space
-        passportIssueDate.getElement().clear();
         passportIssueDate.sendKeysWithDelay("  ");
         saveButton.click();
         errorPassportIssuedDateMessageText();

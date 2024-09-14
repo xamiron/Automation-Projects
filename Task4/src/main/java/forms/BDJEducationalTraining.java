@@ -83,6 +83,7 @@ public class BDJEducationalTraining extends BaseForm {
     private final Element degreeCertificateMarineTrade = new Element(By.cssSelector("select#txtExamTitle > option[value='Certificate in Marine Trade']"));
     private final Element degreeDiplomaMedicalPhysiotherapy = new Element(By.cssSelector("select#txtExamTitle > option[value='Diploma in Medical Technology (Physiotherapy)']"));
     private final Element degreeDiplomaOthers = new Element(By.cssSelector("select#txtExamTitle > option[value='others']"));
+
     //board
     private final Element boardSelector = new Element(By.cssSelector("#txtExamBoard"));
     private final Element boardSelect = new Element(By.cssSelector("select#txtExamBoard > option[value='-1']"));
