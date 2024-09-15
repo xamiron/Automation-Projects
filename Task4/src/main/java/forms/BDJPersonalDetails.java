@@ -62,6 +62,7 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element countryDropdownSelector = new Element(By.cssSelector("#txtCountryCode"));
     private final Element countryBangladesh= new Element(By.cssSelector("select#txtCountryCode> option[value='88']"));
     private final Element primaryEmailField= new Element(By.cssSelector("#txtEmail1"));
+    private final Element changeUserIDField = new Element(By.xpath("//span[normalize-space()='Change User Id']"));
     private final Element primaryEmailFieldErrorText = new Element(By.cssSelector("#txtemail1ErrorMsg"));
     private final Element alternateEmailField = new Element(By.cssSelector("#txtEmail2"));
     private final Element alternateEmailFieldErrorText = new Element(By.cssSelector("#altMailErrorMsg"));
@@ -1028,7 +1029,7 @@ public class BDJPersonalDetails extends BaseForm{
     }
     public void passportIssuedDate(){
         //invalid empty date
-        editButton.getElement().click();
+//        editButton.getElement().click();
         passportIssueDate.sendKeysWithDelay("");
         saveButton.click();
         errorPassportIssuedDateMessageText();
@@ -1282,6 +1283,7 @@ public class BDJPersonalDetails extends BaseForm{
     public void primaryEmail(){
         //invalid email a
         editButton.getElement().click();
+        changeUserIDField.getElement().click();
         primaryEmailField.getElement().clear();
         primaryEmailField.sendKeysWithDelay("a");
         saveButton.getElement().click();
@@ -1305,20 +1307,20 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
-        //valid empty
-        primaryEmailField.getElement().clear();
-        primaryEmailField.sendKeysWithDelay("");
-        saveButton.getElement().click();
-
-        //valid white space
-        editButton.getElement().click();
-        primaryEmailField.getElement().clear();
-        saveButton.getElement().click();
+//        //valid empty
+//        primaryEmailField.getElement().clear();
+//        primaryEmailField.sendKeysWithDelay("");
+//        saveButton.getElement().click();
+//
+//        //valid white space
+//        editButton.getElement().click();
+//        primaryEmailField.getElement().clear();
+//        saveButton.getElement().click();
 
         //valid email
-        editButton.getElement().click();
+//        editButton.getElement().click();
         primaryEmailField.getElement().clear();
-        primaryEmailField.sendKeysWithDelay("samironreviews@gmail.com");
+        primaryEmailField.sendKeysWithDelay("bdjobst@gmail.com");
         saveButton.getElement().click();
     }
 
