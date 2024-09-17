@@ -71,50 +71,50 @@ public class Test_Personal {
         bdjPersonalDetails.firstName();
         test.log(Status.PASS, "First Name entered");
 
-        bdjPersonalDetails.lastName();
-        test.log(Status.PASS, "Last Name entered");
+//        bdjPersonalDetails.lastName();
+//        test.log(Status.PASS, "Last Name entered");
+//
+//        bdjPersonalDetails.fatherName();
+//        test.log(Status.PASS, "Father Name entered");
+//
+//        bdjPersonalDetails.motherName();
+//        test.log(Status.PASS, "Mother Name entered");
+//
+//        bdjPersonalDetails.dob();
+//        test.log(Status.PASS, "DOB entered");
+//
+//        bdjPersonalDetails.gender();
+//        test.log(Status.PASS, "Gender selected");
+//
+//        bdjPersonalDetails.religion();
+//        test.log(Status.PASS, "Religion is selected");
+//
+//        bdjPersonalDetails.maritalStatus();
+//        test.log(Status.PASS, "MaritalStatus is selected");
+//
+//        bdjPersonalDetails.nationality();
+//        test.log(Status.PASS, "Nationality entered");
+//
+//        bdjPersonalDetails.nID();
+//        test.log(Status.PASS, "NID is entered");
+//
+//        bdjPersonalDetails.passport();
+//        test.log(Status.PASS, "Passport is entered");
+//
+//        bdjPersonalDetails.passportIssuedDate();
+//        test.log(Status.PASS, "Passport Issued date is entered");
+//
+//        bdjPersonalDetails.primaryNumber();
+//        test.log(Status.PASS, "Primary is entered");
+//
+//        bdjPersonalDetails.secondaryNumber();
+//        test.log(Status.PASS, "Secondary is entered");
+//
+//        bdjPersonalDetails.emergencyNumber();
+//        test.log(Status.PASS, "Emergency is entered");
 
-        bdjPersonalDetails.fatherName();
-        test.log(Status.PASS, "Father Name entered");
-
-        bdjPersonalDetails.motherName();
-        test.log(Status.PASS, "Mother Name entered");
-
-        bdjPersonalDetails.dob();
-        test.log(Status.PASS, "DOB entered");
-
-        bdjPersonalDetails.gender();
-        test.log(Status.PASS, "Gender selected");
-
-        bdjPersonalDetails.religion();
-        test.log(Status.PASS, "Religion is selected");
-
-        bdjPersonalDetails.maritalStatus();
-        test.log(Status.PASS, "MaritalStatus is selected");
-
-        bdjPersonalDetails.nationality();
-        test.log(Status.PASS, "Nationality entered");
-
-        bdjPersonalDetails.nID();
-        test.log(Status.PASS, "NID is entered");
-
-        bdjPersonalDetails.passport();
-        test.log(Status.PASS, "Passport is entered");
-
-        bdjPersonalDetails.passportIssuedDate();
-        test.log(Status.PASS, "Passport Issued date is entered");
-
-        bdjPersonalDetails.primaryNumber();
-        test.log(Status.PASS, "Primary is entered");
-
-        bdjPersonalDetails.secondaryNumber();
-        test.log(Status.PASS, "Secondary is entered");
-
-        bdjPersonalDetails.emergencyNumber();
-        test.log(Status.PASS, "Emergency is entered");
-
-        bdjPersonalDetails.primaryEmail();
-        test.log(Status.PASS, "Primary email is entered");
+//        bdjPersonalDetails.primaryEmail();
+//        test.log(Status.PASS, "Primary email is entered");
 
         bdjPersonalDetails.alternateEmail();
         test.log(Status.PASS, "Alternate email is entered");

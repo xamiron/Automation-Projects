@@ -83,6 +83,7 @@ public class BDJPersonalDetails extends BaseForm{
         super(new Element(By.cssSelector("button[aria-label='Click Personal section to add or edit your personal information in resume']")));
     }
 
+    //tc wise done
     public void firstName(){
         ExplicitWait.elementToBeClickable(firstName.getLocator());
 
@@ -226,6 +227,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
     }
 
+    //tc wise done
     public void lastName(){
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
@@ -372,6 +374,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
     }
 
+    //tc wise done
     public void fatherName(){
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
@@ -605,6 +608,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.click();
     }
 
+    //tc wise done
     public void dob(){
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
@@ -681,6 +685,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.click();
     }
 
+    //tc wise done
     public void gender() {
         try {
             // invalid gender Select
@@ -714,6 +719,7 @@ public class BDJPersonalDetails extends BaseForm{
         }
     }
 
+    //tc wise done
     public void religion() {
         try {
             editButton.getElement().click();
@@ -782,6 +788,7 @@ public class BDJPersonalDetails extends BaseForm{
         }
     }
 
+    //tc wise done
     public void maritalStatus() {
         try {
             editButton.getElement().click();
@@ -813,6 +820,7 @@ public class BDJPersonalDetails extends BaseForm{
         }
     }
 
+    //tc wise done
     public void nationality(){
         //invalid empty space
         editButton.getElement().click();
@@ -988,9 +996,12 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
     }
 
+    //tc wise done
     public void passport(){
-        //invalid passport
         editButton.getElement().click();
+
+        passportIssueDate.getElement().clear();
+        //invalid passport
         passportField.getElement().clear();
         passportField.sendKeysWithDelay("!$");
         saveButton.getElement().click();
@@ -1099,6 +1110,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.click();
     }
 
+    //tc wise done
     public void primaryNumber(){
         //invalid empty entry
         editButton.getElement().click();
@@ -1324,6 +1336,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
     }
 
+    //tc wise done
     public void alternateEmail(){
         //invalid email a
         editButton.getElement().click();
@@ -1350,6 +1363,42 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorAlternateEmaiLMessageText();
 
+        //invalid date character -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("        abc@mail.com");
+        saveButton.getElement().click();
+
+        //invalid date character -->
+        editButton.getElement().click();
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("12458641");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //invalid date character -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("145.4545");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //invalid date character -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("1,234.568");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //invalid date character -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("east wes(){}*");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //invalid date character -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("<p>east west;</p>");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
         //valid empty
         alternateEmailField.getElement().clear();
         alternateEmailField.sendKeysWithDelay("");
@@ -1360,13 +1409,44 @@ public class BDJPersonalDetails extends BaseForm{
         alternateEmailField.getElement().clear();
         saveButton.getElement().click();
 
-        //valid email
+        //valid white space -->
         editButton.getElement().click();
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("asdasdagsfagsdfkghgggggggggggggggggddadag@mail.com");
+        saveButton.getElement().click();
+
+        //valid white space -->
+        editButton.getElement().click();
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("AVDFCD");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //valid white space -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("      145458645245          ");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //valid white space -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("asfadgaf");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //valid white space -->
+        alternateEmailField.getElement().clear();
+        alternateEmailField.sendKeysWithDelay("ASSDcadfa");
+        saveButton.getElement().click();
+        errorAlternateEmaiLMessageText();
+
+        //valid email
         alternateEmailField.getElement().clear();
         alternateEmailField.sendKeysWithDelay("khckgc@ff.vv");
         saveButton.getElement().click();
     }
 
+    //tc wise done
     public void bloodGroup(){
         //valid select
         editButton.click();

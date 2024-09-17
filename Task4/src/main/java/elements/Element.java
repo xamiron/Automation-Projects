@@ -25,9 +25,16 @@ public class Element extends BaseElement {
 		element.sendKeys(keysToSend);  // Delegate to WebElement's sendKeys method
 	}
 
+//	public boolean isEmpty() {
+//		WebElement element = getElement();
+//		return element.getText().trim().isEmpty() && element.findElements(By.xpath("./*")).isEmpty();
+//	}
+
 	public boolean isEmpty() {
 		WebElement element = getElement();
-		// Check if the element has no text and no child elements
-		return element.getText().trim().isEmpty() && element.findElements(By.xpath("./*")).isEmpty();
+		if (element != null && element.isDisplayed()) {
+			return element.getText().trim().isEmpty() && element.findElements(By.xpath("./*")).isEmpty();
+		}
+		return true; // or handle this case as needed
 	}
 }
