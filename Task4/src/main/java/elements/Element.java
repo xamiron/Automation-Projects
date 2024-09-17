@@ -22,8 +22,16 @@ public class Element extends BaseElement {
 	// Add the sendKeys method to expose WebElement's sendKeys
 	public void sendKeys(CharSequence... keysToSend) {
 		WebElement element = getElement();
-		element.sendKeys(keysToSend);  // Delegate to WebElement's sendKeys method
+		element.sendKeys(keysToSend);
+
+		// Wait for 3 seconds after sending the keys
+		try {
+			Thread.sleep(3000);  // 3000 milliseconds = 3 seconds
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
+
 
 //	public boolean isEmpty() {
 //		WebElement element = getElement();

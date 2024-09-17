@@ -43,14 +43,26 @@ public abstract class BaseElement {
 				.perform();
 	}
 
-	public void sendKeysWithDelay(String keys) {
-		for (char c : keys.toCharArray()) {
-			this.getElement().sendKeys(Character.toString(c));
-			try {
-				Thread.sleep(1000); // Adjust the delay as needed
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//	public void sendKeysWithDelay(String keys) {
+//		for (char c : keys.toCharArray()) {
+//			this.getElement().sendKeys(Character.toString(c));
+//			try {
+//				Thread.sleep(1000); // Adjust the delay as needed
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+
+	public void sendKeysWithDelay(CharSequence... keysToSend) {
+		WebElement element = getElement();
+		element.sendKeys(keysToSend);
+
+		// Wait for 3 seconds after sending the keys
+		try {
+			Thread.sleep(3000);  // 3000 milliseconds = 3 seconds
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 	}
 }

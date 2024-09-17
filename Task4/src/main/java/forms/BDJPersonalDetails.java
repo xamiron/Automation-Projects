@@ -95,14 +95,14 @@ public class BDJPersonalDetails extends BaseForm{
 
         // invalid whiteSpace
         firstName.getElement().clear();
-        firstName.sendKeysWithDelay(" ");
+        firstName.sendKeys(" ");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
 
         // invalid specialCharacter
         firstName.getElement().clear();
-        firstName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
+        firstName.sendKeys(DataReader.getStringValue("specialCharacter", "TestData"));
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
@@ -110,7 +110,7 @@ public class BDJPersonalDetails extends BaseForm{
         // invalid NumericCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("12458641");
+        firstName.sendKeys("12458641");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
@@ -118,7 +118,7 @@ public class BDJPersonalDetails extends BaseForm{
         // invalid maxCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay(DataReader.getStringValue("maxCharacter", "TestData"));
+        firstName.sendKeys(DataReader.getStringValue("maxCharacter", "TestData"));
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
@@ -126,7 +126,7 @@ public class BDJPersonalDetails extends BaseForm{
         // invalid maxCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("145.4545");
+        firstName.sendKeys("145.4545");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
@@ -134,7 +134,7 @@ public class BDJPersonalDetails extends BaseForm{
         // invalid maxCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("1,234.568");
+        firstName.sendKeys("1,234.568");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
@@ -142,7 +142,7 @@ public class BDJPersonalDetails extends BaseForm{
         // invalid maxCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("1,234.568");
+        firstName.sendKeys("1,234.568");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
@@ -150,7 +150,7 @@ public class BDJPersonalDetails extends BaseForm{
         // invalid maxCharacter
         firstName.getElement().clear();
         firstName.getElement().click();
-        firstName.sendKeysWithDelay("east wes(){}*");
+        firstName.sendKeys("east wes(){}*");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
         errorMessageText();
