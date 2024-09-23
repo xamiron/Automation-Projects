@@ -3,6 +3,7 @@ package forms;
 import elements.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import utility.DataReader;
 import utility.RandomStringGenerator;
@@ -20,7 +21,9 @@ public class BDJApplyJob extends BaseForm{
     private final Element getErrorMessagePassword = new Element(By.xpath("//span[@class='text-danger' and contains(text(), 'Please enter Password.')]"));
     private final Element getErrorMessagePassword2 = new Element(By.xpath("//span[@class='text-danger' and contains(text(), 'Wrong password. Try again or click Forgot password to reset it.')]"));
     private final Element editProfileButton = new Element(By.cssSelector("li.faldes > a[href='https://mybdjobs.bdjobs.com/new_mybdjobs/step_01_view.asp']"));
+    private final Element editProfileButton2 = new Element(By.cssSelector("li.faldes a[href='https://mybdjobs.bdjobs.com/new_mybdjobs/b_step_01_view.asp']"));
     private final Element editButton = new Element(By.cssSelector("button.btn.edit-btn[aria-label='Click on Edit to fill up personal details']"));
+    private final Element editButton2 = new Element(By.cssSelector("button.btn.edit-btn[aria-label='Edit Personal Details']"));
     private final Element closeAd = new Element(By.cssSelector("div[style='cursor: pointer;'] > svg[viewBox='0 0 48 48']"));
     private final Element closeAd2 = new Element(By.cssSelector("div.ns-n6jyj-e-15 > span.ns-n6jyj-e-16"));
 
@@ -56,15 +59,49 @@ public class BDJApplyJob extends BaseForm{
         signInButtonPassword.click();
     }
 
+//    public void editProfile() {
+//        ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
+//        ExplicitWait.elementToBeClickable(editProfileButton2.getLocator());
+//        editProfileButton.scrollUntilElementIsVisible();
+//        editProfileButton.getElement().click();
+//        ExplicitWait.elementToBeClickable(editButton.getLocator());
+//        editButton.getElement().click();
+//       // closeAdsIfPresent();
+//    }
+
     public void editProfile() {
-        ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
+        boolean isButton1Clickable = false;
+        boolean isButton2Clickable = false;
 
-        editProfileButton.getElement().click();
-        ExplicitWait.elementToBeClickable(editButton.getLocator());
-        editButton.getElement().click();
-       // closeAdsIfPresent();
+        try {
+            ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
+            isButton1Clickable = true; // If no exception is thrown, it's clickable
+        } catch (TimeoutException e) {
+            System.out.println("Edit Profile Button 1 is not clickable: " + e.getMessage());
+        }
+
+        try {
+            ExplicitWait.elementToBeClickable(editProfileButton2.getLocator());
+            isButton2Clickable = true; // If no exception is thrown, it's clickable
+        } catch (TimeoutException e) {
+            System.out.println("Edit Profile Button 2 is not clickable: " + e.getMessage());
+        }
+
+        // Click the appropriate button if it is clickable
+        if (isButton1Clickable) {
+            editProfileButton.getElement().click();
+        } else if (isButton2Clickable) {
+            editProfileButton2.getElement().click();
+        }
+
+        if(editButton.isPresent()){
+            ExplicitWait.elementToBeClickable(editButton.getLocator());
+            editButton.getElement().click();
+        }else {
+        ExplicitWait.elementToBeClickable(editButton2.getLocator());
+        editButton2.getElement().click();
+        }
     }
-
 
 
     public void closeAdsIfPresent() {

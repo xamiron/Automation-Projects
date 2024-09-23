@@ -14,6 +14,7 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element fNameErrorMessage = new Element(By.cssSelector("#fnameErrorMsg"));
     private final Element lastName = new Element(By.cssSelector("#txtLastName"));
     private final Element editButton = new Element(By.cssSelector("button[aria-label='Click on Edit to fill up personal details']"));
+    private final Element editButton2 = new Element(By.cssSelector("button.btn.edit-btn[aria-label='Edit Personal Details']"));
     private final Element lNameErrorMessage = new Element(By.cssSelector("#lnameErrorMsg"));
     private final Element fatherName= new Element(By.cssSelector("#txtFName"));
     private final Element fatherErrorText= new Element(By.cssSelector("#fhrErrorMsg"));
@@ -53,20 +54,25 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element passportFieldErrorText= new Element(By.cssSelector("#passNoErrorMsg"));
     private final Element passportIssueDate = new Element(By.cssSelector("input#issueDate"));
     private final Element passportIssueErrorText = new Element(By.cssSelector("#passIssdateErrorMsg"));
-    private final Element primaryNumberField = new Element(By.cssSelector("input#txtMobile"));
+    private final Element primaryNumberField = new Element(By.cssSelector("input#txtMobile.form-control.from-control-login.aria-disabled:not([readonly])\n"));
+    private final Element primaryNumberDisabled = new Element(By.cssSelector("input#txtMobile.form-control.from-control-login.aria-disabled[readonly]"));
     private final Element primaryNumberFieldErrorText = new Element(By.cssSelector("#txtMob1ErrorMsg"));
     private final Element secondNumberField = new Element(By.cssSelector("#txtPhone_H"));
     private final Element secondNumberFieldErrorText = new Element(By.cssSelector("#txtPhoneHmeErrorMsg"));
     private final Element emergencyNumberField = new Element(By.cssSelector("#txtPhone_Off"));
     private final Element emergencyNumberErrorText = new Element(By.cssSelector("#txtPhoneoffErrorMsg"));
+    private final Element emergencyNumberNotPresent = new Element(By.cssSelector("label[for='txtPhone_Off']"));
     private final Element countryDropdownSelector = new Element(By.cssSelector("#txtCountryCode"));
     private final Element countryBangladesh= new Element(By.cssSelector("select#txtCountryCode> option[value='88']"));
-    private final Element primaryEmailField= new Element(By.cssSelector("#txtEmail1"));
+    private final Element primaryEmailField= new Element(By.cssSelector("input#txtEmail1.form-control.aria-disabled:not([readonly])"));
+    private final Element primaryEmailDisabled = new Element(By.cssSelector("input#txtEmail1.form-control.aria-disabled[readonly]"));
     private final Element changeUserIDField = new Element(By.xpath("//span[normalize-space()='Change User Id']"));
     private final Element primaryEmailFieldErrorText = new Element(By.cssSelector("#txtemail1ErrorMsg"));
     private final Element alternateEmailField = new Element(By.cssSelector("#txtEmail2"));
     private final Element alternateEmailFieldErrorText = new Element(By.cssSelector("#altMailErrorMsg"));
+    private final Element alternateEmailNotPresent = new Element(By.cssSelector("label[for='txtEmail2']"));
     private final Element bloodSelector= new Element(By.cssSelector("#txtBloodGroup"));
+    private final Element bloodGroupNotPresent = new Element(By.cssSelector("label[for='txtBloodGroup']"));
     private final Element bloodSelect = new Element(By.cssSelector("select#txtBloodGroup> option[value='-1']"));
     private final Element bloodAPos = new Element(By.cssSelector("select#txtBloodGroup> option[value='A+']"));
     private final Element bloodANeg = new Element(By.cssSelector("select#txtBloodGroup> option[value='A-']"));
@@ -86,6 +92,8 @@ public class BDJPersonalDetails extends BaseForm{
     //tc wise done
     public void firstName(){
         ExplicitWait.elementToBeClickable(firstName.getLocator());
+
+        String originalName = firstName.getElement().getAttribute("value");
 
         // invalid empty name
         firstName.getElement().clear();
@@ -171,7 +179,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         // valid combination
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("Avarya     ");
@@ -179,7 +187,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         // valid combination
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("ASSDcadfa");
@@ -187,7 +195,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("qwert");
@@ -195,7 +203,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
@@ -203,7 +211,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("AVDFCD");
@@ -211,7 +219,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("asfadgaf");
@@ -219,35 +227,39 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         // valid combination
-        editButton.getElement().click();
+        editButton();
         firstName.getElement().clear();
         firstName.getElement().click();
         firstName.sendKeysWithDelay("Avarya");
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        // Restore the original name
+        editButton();
+        firstName.getElement().clear();
+        firstName.sendKeys(originalName);
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
     }
 
     //tc wise done
     public void lastName(){
-        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
-
         // valid empty name
-        editButton.getElement().click();
+        editButton();
+        String originalName = lastName.getElement().getAttribute("value");
         lastName.getElement().clear();
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
         // invalid whiteSpace
-        editButton.scrollUntilElementIsVisible();
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.sendKeysWithDelay(" ");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
         // invalid specialCharacter
-        editButton.scrollUntilElementIsVisible();
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.sendKeysWithDelay(DataReader.getStringValue("specialCharacter", "TestData"));
         saveButton.scrollUntilElementIsVisible();
@@ -318,7 +330,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         // valid combination
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("Avarya     ");
@@ -326,7 +338,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         // valid combination
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("ASSDcadfa");
@@ -334,7 +346,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("qwert");
@@ -342,7 +354,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("asdfasdfadgfazsdcvfasdfdfffffffffffffffffggggggggg");
@@ -350,7 +362,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("AVDFCD");
@@ -358,7 +370,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space left
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("asfadgaf");
@@ -366,20 +378,28 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         // valid combination
-        editButton.getElement().click();
+        editButton();
         lastName.getElement().clear();
         lastName.getElement().click();
         lastName.sendKeysWithDelay("Internal Test Account for My Bdjobs");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
+
+        // Restore the original name
+        editButton();
+        lastName.getElement().clear();
+        lastName.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
     }
 
     //tc wise done
     public void fatherName(){
-        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // invalid numeric character
-        editButton.getElement().click();
+        editButton();
+        String originalName = fatherName.getElement().getAttribute("value");
         fatherName.getElement().click();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("11a231");
@@ -436,7 +456,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("  ");
         saveButton.scrollUntilElementIsVisible();
@@ -444,7 +464,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("ASSDcadfa");
         saveButton.scrollUntilElementIsVisible();
@@ -452,7 +472,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("AVDFCD");
         saveButton.scrollUntilElementIsVisible();
@@ -460,7 +480,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("asfadgaf");
         saveButton.scrollUntilElementIsVisible();
@@ -469,7 +489,7 @@ public class BDJPersonalDetails extends BaseForm{
 
 
         // valid white space before character
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("        abcdes");
         saveButton.scrollUntilElementIsVisible();
@@ -477,7 +497,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space before character
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("qwert");
         saveButton.scrollUntilElementIsVisible();
@@ -485,17 +505,25 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid name
-        editButton.getElement().click();
+        editButton();
         fatherName.getElement().clear();
         fatherName.sendKeysWithDelay("fatherName");
         saveButton.scrollUntilElementIsVisible();
         saveButton.click();
+
+        // Restore the original name
+        editButton();
+        fatherName.getElement().clear();
+        fatherName.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
     }
     public void motherName(){
-        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // invalid numeric character
-        editButton.getElement().click();
+        editButton();
+        String originalName = motherName.getElement().getAttribute("value");
         motherName.getElement().click();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("11a231");
@@ -552,7 +580,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("  ");
         saveButton.scrollUntilElementIsVisible();
@@ -560,7 +588,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("ASSDcadfa");
         saveButton.scrollUntilElementIsVisible();
@@ -568,7 +596,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("AVDFCD");
         saveButton.scrollUntilElementIsVisible();
@@ -576,7 +604,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("asfadgaf");
         saveButton.scrollUntilElementIsVisible();
@@ -585,7 +613,7 @@ public class BDJPersonalDetails extends BaseForm{
 
 
         // valid white space before character
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("        abcdes");
         saveButton.scrollUntilElementIsVisible();
@@ -593,7 +621,7 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid white space before character
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("qwert");
         saveButton.scrollUntilElementIsVisible();
@@ -601,19 +629,25 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.presenceOfElementLocated(editButton.getLocator());
 
         // valid name
-        editButton.getElement().click();
+        editButton();
         motherName.getElement().clear();
         motherName.sendKeysWithDelay("motherName");
         saveButton.scrollUntilElementIsVisible();
         saveButton.click();
+
+        // Restore the original name
+        editButton();
+        motherName.getElement().clear();
+        motherName.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
     }
 
     //tc wise done
     public void dob(){
-        ExplicitWait.presenceOfElementLocated(editButton.getLocator());
-
         //invalid empty name
-        editButton.getElement().click();
+        editButton();
+        String originalName = dob.getElement().getAttribute("value");
         dob.getElement().click();
         dob.getElement().clear();
         saveButton.click();
@@ -683,13 +717,21 @@ public class BDJPersonalDetails extends BaseForm{
         dob.getElement().clear();
         dob.sendKeysWithDelay(DataReader.getStringValue("dob","TestData"));
         saveButton.click();
+
+        // Restore the original name
+        editButton();
+        dob.getElement().clear();
+        dob.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
     }
 
     //tc wise done
     public void gender() {
         try {
             // invalid gender Select
-            editButton.getElement().click();
+            editButton();
             genderSelector.getElement().click();
             genderOptionSelect.click();
             Thread.sleep(2000);
@@ -703,13 +745,13 @@ public class BDJPersonalDetails extends BaseForm{
             saveButton.getElement().click();
 
             // valid gender Other
-            editButton.getElement().click();
+            editButton();
             genderOptionOther.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
             // valid gender Female
-            editButton.getElement().click();
+            editButton();
             genderOptionFemale.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
@@ -722,61 +764,61 @@ public class BDJPersonalDetails extends BaseForm{
     //tc wise done
     public void religion() {
         try {
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionSelect.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionBuddhism.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionChristianity.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionHinduism.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionIslam.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionJainism.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionJudaism.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionSikhism.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionOthers.getElement().click();
             Thread.sleep(2000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             religionSelector.getElement().click();
             religionHinduism.getElement().click();
             Thread.sleep(2000);
@@ -791,7 +833,7 @@ public class BDJPersonalDetails extends BaseForm{
     //tc wise done
     public void maritalStatus() {
         try {
-            editButton.getElement().click();
+            editButton();
             maritalSelector.getElement().click();
             maritalSelect.getElement().click();
             Thread.sleep(1000);
@@ -803,13 +845,13 @@ public class BDJPersonalDetails extends BaseForm{
             Thread.sleep(1000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             maritalSelector.getElement().click();
             maritalUnmarried.getElement().click();
             Thread.sleep(1000);
             saveButton.getElement().click();
 
-            editButton.getElement().click();
+            editButton();
             maritalSelector.getElement().click();
             maritalSingle.getElement().click();
             Thread.sleep(1000);
@@ -820,10 +862,11 @@ public class BDJPersonalDetails extends BaseForm{
         }
     }
 
-    //tc wise done
+
     public void nationality(){
         //invalid empty space
-        editButton.getElement().click();
+        editButton();
+        String originalName = nationalityField.getElement().getAttribute("value");
         disableCheck();
         nationalityField.getElement().clear();
         nationalityField.sendKeysWithDelay("");
@@ -867,10 +910,19 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
 
+        // Restore the original name
+        editButton();
+        nationalityField.getElement().clear();
+        nationalityField.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+
     }
     public void nID(){
         //invalid alphabet
-        editButton.getElement().click();
+        editButton();
+        String originalName = nationalIDField.getElement().getAttribute("value");
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("abced");
         saveButton.scrollUntilElementIsVisible();
@@ -920,7 +972,7 @@ public class BDJPersonalDetails extends BaseForm{
         errorNIDMessageText();
 
         //valid white space
-//        editButton.getElement().click();
+//        editButton();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("ASSDcadfa");
         saveButton.scrollUntilElementIsVisible();
@@ -981,7 +1033,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //valid white space
-        editButton.getElement().click();
+        editButton();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("   ");
         saveButton.scrollUntilElementIsVisible();
@@ -989,18 +1041,28 @@ public class BDJPersonalDetails extends BaseForm{
 
 
         //valid nid 18 character
-        editButton.getElement().click();
+        editButton();
         nationalIDField.getElement().clear();
         nationalIDField.sendKeysWithDelay("12345678912345678");
         saveButton.scrollUntilElementIsVisible();
         saveButton.getElement().click();
+
+        // Restore the original name
+        editButton();
+        nationalIDField.getElement().clear();
+        nationalIDField.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+
     }
 
-    //tc wise done
-    public void passport(){
-        editButton.getElement().click();
 
+    public void passport(){
+        editButton();
+//        String originalName = passportIssueDate.getElement().getAttribute("value");
         passportIssueDate.getElement().clear();
+
         //invalid passport
         passportField.getElement().clear();
         passportField.sendKeysWithDelay("!$");
@@ -1026,26 +1088,37 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorPassportMessageText();
 
-        //valid empty
-        passportField.getElement().clear();
-        passportField.sendKeysWithDelay("");
-        saveButton.getElement().click();
-
+//        //valid empty
+//        passportField.getElement().clear();
+//        passportField.sendKeysWithDelay("");
+//        saveButton.getElement().click();
+//        errorPassportMessageText();
 
         //Valid date entry
-        editButton.getElement().click();
+//        editButton();
         passportField.getElement().clear();
         passportField.sendKeysWithDelay("12345678");
         saveButton.getElement().click();
+
+//        // Restore the original name
+//        editButton();
+//        passportField.getElement().clear();
+//        passportField.sendKeys(originalName);
+//        saveButton.scrollUntilElementIsVisible();
+//        saveButton.getElement().click();
+
     }
     public void passportIssuedDate(){
         //invalid empty date
-//        editButton.getElement().click();
+//        editButton();
+//        String originalName = passportIssueDate.getElement().getAttribute("value");
+        passportIssueDate.getElement().clear();
         passportIssueDate.sendKeysWithDelay("");
         saveButton.click();
         errorPassportIssuedDateMessageText();
 
         //invalid white space
+        passportIssueDate.getElement().clear();
         passportIssueDate.sendKeysWithDelay("  ");
         saveButton.click();
         errorPassportIssuedDateMessageText();
@@ -1108,12 +1181,22 @@ public class BDJPersonalDetails extends BaseForm{
         passportIssueDate.getElement().clear();
         passportIssueDate.sendKeysWithDelay(DataReader.getStringValue("dob","TestData"));
         saveButton.click();
+
+//        // Restore the original name
+//        editButton();
+//        passportIssueDate.getElement().clear();
+//        passportIssueDate.sendKeys(originalName);
+//        saveButton.scrollUntilElementIsVisible();
+//        saveButton.getElement().click();
+
     }
 
-    //tc wise done
+
     public void primaryNumber(){
+        if(primaryNumberDisabled.isNotPresent()){
         //invalid empty entry
-        editButton.getElement().click();
+        editButton();
+        String originalName = primaryNumberField.getElement().getAttribute("value");
         countryDropdownSelector.getElement().click();
         countryBangladesh.getElement().click();
         primaryNumberField.getElement().clear();
@@ -1182,10 +1265,23 @@ public class BDJPersonalDetails extends BaseForm{
         primaryNumberField.getElement().clear();
         primaryNumberField.sendKeysWithDelay("01761288821");
         saveButton.getElement().click();
+
+        // Restore the original name
+        editButton();
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
+        }
+
     }
     public void secondaryNumber(){
         //invalid digits
-        editButton.getElement().click();
+        editButton();
+        String originalName = secondNumberField.getElement().getAttribute("value");
         secondNumberField.getElement().clear();
         secondNumberField.sendKeysWithDelay("123");
         saveButton.getElement().click();
@@ -1227,19 +1323,29 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //invalid empty entry
-        editButton.getElement().click();
+        editButton();
         secondNumberField.getElement().clear();
         saveButton.getElement().click();
 
         //invalid white space
-        editButton.getElement().click();
+        editButton();
         secondNumberField.getElement().clear();
         secondNumberField.sendKeysWithDelay("  ");
         saveButton.getElement().click();
+
+        // Restore the original name
+        editButton();
+        secondNumberField.getElement().clear();
+        secondNumberField.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+
     }
     public void emergencyNumber(){
+        if(emergencyNumberNotPresent.isPresent()){
         //Max character
         editButton.click();
+        String originalName = emergencyNumberField.getElement().getAttribute("value");
         emergencyNumberField.getElement().clear();
         emergencyNumberField.sendKeysWithDelay("01920784081222j");
         saveButton.getElement().click();
@@ -1274,28 +1380,37 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
 
         //invalid digits
-        editButton.getElement().click();
+        editButton();
         emergencyNumberField.getElement().clear();
         emergencyNumberField.sendKeysWithDelay("123");
         saveButton.getElement().click();
 
         //invalid white space
-        editButton.getElement().click();
+        editButton();
         emergencyNumberField.getElement().clear();
         emergencyNumberField.sendKeysWithDelay("  ");
         saveButton.getElement().click();
 
         //valid digits
-        editButton.getElement().click();
+        editButton();
         emergencyNumberField.getElement().clear();
         emergencyNumberField.sendKeysWithDelay("01666666667");
         saveButton.getElement().click();
+
+        // Restore the original name
+        editButton();
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        }
     }
 
     public void primaryEmail(){
+        if(primaryEmailDisabled.isNotPresent()){
         //invalid email a
-        editButton.getElement().click();
-        changeUserIDField.getElement().click();
+        editButton();
+        String originalName = primaryEmailField.getElement().getAttribute("value");
         primaryEmailField.getElement().clear();
         primaryEmailField.sendKeysWithDelay("a");
         saveButton.getElement().click();
@@ -1325,182 +1440,201 @@ public class BDJPersonalDetails extends BaseForm{
 //        saveButton.getElement().click();
 //
 //        //valid white space
-//        editButton.getElement().click();
+//        editButton();
 //        primaryEmailField.getElement().clear();
 //        saveButton.getElement().click();
 
         //valid email
-//        editButton.getElement().click();
+//        editButton();
         primaryEmailField.getElement().clear();
         primaryEmailField.sendKeysWithDelay("bdjobst@gmail.com");
         saveButton.getElement().click();
-    }
 
+        // Restore the original name
+        editButton();
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeys(originalName);
+        saveButton.scrollUntilElementIsVisible();
+        saveButton.getElement().click();
+        }
+    }
     //tc wise done
     public void alternateEmail(){
-        //invalid email a
-        editButton.getElement().click();
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("a");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+        if(alternateEmailNotPresent.isPresent()) {
+            //invalid email a
+            editButton();
+            String originalName = alternateEmailField.getElement().getAttribute("value");
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("a");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid special character
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("@#%!@#$%^&*()_");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid special character
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("@#%!@#$%^&*()_");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid special character
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbb");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid special character
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbb");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid date character
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("8/18/2024");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid date character
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("8/18/2024");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid date character -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("        abc@mail.com");
-        saveButton.getElement().click();
+            //invalid date character -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("        abc@mail.com");
+            saveButton.getElement().click();
 
-        //invalid date character -->
-        editButton.getElement().click();
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("12458641");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid date character -->
+            editButton();
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("12458641");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid date character -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("145.4545");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid date character -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("145.4545");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid date character -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("1,234.568");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid date character -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("1,234.568");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid date character -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("east wes(){}*");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid date character -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("east wes(){}*");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //invalid date character -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("<p>east west;</p>");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //invalid date character -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("<p>east west;</p>");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //valid empty
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("");
-        saveButton.getElement().click();
+            //valid empty
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("");
+            saveButton.getElement().click();
 
-        //valid white space
-        editButton.getElement().click();
-        alternateEmailField.getElement().clear();
-        saveButton.getElement().click();
+            //valid white space
+            editButton();
+            alternateEmailField.getElement().clear();
+            saveButton.getElement().click();
 
-        //valid white space -->
-        editButton.getElement().click();
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("asdasdagsfagsdfkghgggggggggggggggggddadag@mail.com");
-        saveButton.getElement().click();
+            //valid white space -->
+            editButton();
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("asdasdagsfagsdfkghgggggggggggggggggddadag@mail.com");
+            saveButton.getElement().click();
 
-        //valid white space -->
-        editButton.getElement().click();
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("AVDFCD");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //valid white space -->
+            editButton();
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("AVDFCD");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //valid white space -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("      145458645245          ");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //valid white space -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("      145458645245          ");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //valid white space -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("asfadgaf");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //valid white space -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("asfadgaf");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //valid white space -->
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("ASSDcadfa");
-        saveButton.getElement().click();
-        errorAlternateEmaiLMessageText();
+            //valid white space -->
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("ASSDcadfa");
+            saveButton.getElement().click();
+            errorAlternateEmailMessageText();
 
-        //valid email
-        alternateEmailField.getElement().clear();
-        alternateEmailField.sendKeysWithDelay("khckgc@ff.vv");
-        saveButton.getElement().click();
+            //valid email
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeysWithDelay("khckgc@ff.vv");
+            saveButton.getElement().click();
+
+            // Restore the original name
+            editButton();
+            alternateEmailField.getElement().clear();
+            alternateEmailField.sendKeys(originalName);
+            saveButton.scrollUntilElementIsVisible();
+            saveButton.getElement().click();
+        }
     }
 
     //tc wise done
     public void bloodGroup(){
-        //valid select
-        editButton.click();
-        bloodSelector.click();
-        bloodSelect.click();
-        saveButton.click();
+        if(bloodGroupNotPresent.isPresent()) {
+            //valid select
+            editButton.click();
+            bloodSelector.click();
+            bloodSelect.click();
+            saveButton.click();
 
-        //valid A+
-        editButton.click();
-        bloodSelector.click();
-        bloodAPos.click();
-        saveButton.click();
+            //valid A+
+            editButton.click();
+            bloodSelector.click();
+            bloodAPos.click();
+            saveButton.click();
 
-        //valid A-
-        editButton.click();
-        bloodSelector.click();
-        bloodANeg.click();
-        saveButton.click();
+            //valid A-
+            editButton.click();
+            bloodSelector.click();
+            bloodANeg.click();
+            saveButton.click();
 
-        //valid B+
-        editButton.click();
-        bloodSelector.click();
-        bloodBPos.click();
-        saveButton.click();
+            //valid B+
+            editButton.click();
+            bloodSelector.click();
+            bloodBPos.click();
+            saveButton.click();
 
-        //valid B-
-        editButton.click();
-        bloodSelector.click();
-        bloodBNeg.click();
-        saveButton.click();
+            //valid B-
+            editButton.click();
+            bloodSelector.click();
+            bloodBNeg.click();
+            saveButton.click();
 
-        //valid O+
-        editButton.click();
-        bloodSelector.click();
-        bloodOPos.click();
-        saveButton.click();
+            //valid O+
+            editButton.click();
+            bloodSelector.click();
+            bloodOPos.click();
+            saveButton.click();
 
-        //valid O-
-        editButton.click();
-        bloodSelector.click();
-        bloodONeg.click();
-        saveButton.click();
+            //valid O-
+            editButton.click();
+            bloodSelector.click();
+            bloodONeg.click();
+            saveButton.click();
 
-        //valid AB+
-        editButton.click();
-        bloodSelector.click();
-        bloodABPos.click();
-        saveButton.click();
+            //valid AB+
+            editButton.click();
+            bloodSelector.click();
+            bloodABPos.click();
+            saveButton.click();
 
-        //valid AB-
-        editButton.click();
-        bloodSelector.click();
-        bloodABNeg.click();
-        saveButton.click();
+            //valid AB-
+            editButton.click();
+            bloodSelector.click();
+            bloodABNeg.click();
+            saveButton.click();
+        }
     }
 
     private void errorMessageText() {
@@ -1568,9 +1702,21 @@ public class BDJPersonalDetails extends BaseForm{
         ExplicitWait.elementToBeVisible(primaryEmailFieldErrorText.getLocator());
         Assert.assertTrue(primaryEmailFieldErrorText.isDisplayed(), errorMessageText);
     }
-    private void errorAlternateEmaiLMessageText(){
+    private void errorAlternateEmailMessageText(){
         ExplicitWait.elementToBeVisible(alternateEmailFieldErrorText.getLocator());
         Assert.assertTrue(alternateEmailFieldErrorText.isDisplayed(), errorMessageText);
+    }
+
+    private void editButton(){
+        if(editButton.isPresent()){
+            ExplicitWait.elementToBeClickable(editButton.getLocator());
+            editButton.scrollUntilElementIsVisible();
+            editButton.getElement().click();
+        }else {
+            ExplicitWait.elementToBeClickable(editButton2.getLocator());
+            editButton2.scrollUntilElementIsVisible();
+            editButton2.getElement().click();
+        }
     }
 
 }

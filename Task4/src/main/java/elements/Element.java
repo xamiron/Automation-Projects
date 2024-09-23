@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+import static driver.Browser.getDriver;
+
 public class Element extends BaseElement {
 
 	public Element(By locator) {
@@ -45,4 +47,19 @@ public class Element extends BaseElement {
 		}
 		return true; // or handle this case as needed
 	}
+
+	public boolean isPresent() {
+		try {
+			List<WebElement> elements = getDriver().findElements(getLocator());
+			return !elements.isEmpty();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public boolean isNotPresent() {
+		// Return the opposite of isPresent
+		return !isPresent();
+	}
+
 }
