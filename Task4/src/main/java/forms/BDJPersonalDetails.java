@@ -1707,6 +1707,18 @@ public class BDJPersonalDetails extends BaseForm{
         Assert.assertTrue(alternateEmailFieldErrorText.isDisplayed(), errorMessageText);
     }
 
+//    private void editButton(){
+//        if(editButton.isPresent()){
+//            ExplicitWait.elementToBeClickable(editButton.getLocator());
+//            editButton.scrollUntilElementIsVisible();
+//            editButton.getElement().click();
+//        }else {
+//            ExplicitWait.elementToBeClickable(editButton2.getLocator());
+//            editButton2.scrollUntilElementIsVisible();
+//            editButton2.getElement().click();
+//        }
+//    }
+
     private void editButton(){
         if(editButton.isPresent()){
             ExplicitWait.elementToBeClickable(editButton.getLocator());
