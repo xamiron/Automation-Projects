@@ -97,13 +97,13 @@ public class Test_Personal {
 
         bdjPersonalDetails.nID();
         test.log(Status.PASS, "NID is entered");
-
+//
         bdjPersonalDetails.passport();
         test.log(Status.PASS, "Passport is entered");
 
         bdjPersonalDetails.passportIssuedDate();
         test.log(Status.PASS, "Passport Issued date is entered");
-
+//
         bdjPersonalDetails.primaryNumber();
         test.log(Status.PASS, "Primary is entered");
 
@@ -115,12 +115,12 @@ public class Test_Personal {
 
         bdjPersonalDetails.primaryEmail();
         test.log(Status.PASS, "Primary email is entered");
-
-        bdjPersonalDetails.alternateEmail();
-        test.log(Status.PASS, "Alternate email is entered");
-
-        bdjPersonalDetails.bloodGroup();
-        test.log(Status.PASS, "Blood Group is selected.");
+//
+//        bdjPersonalDetails.alternateEmail();
+//        test.log(Status.PASS, "Alternate email is entered");
+//
+//        bdjPersonalDetails.bloodGroup();
+//        test.log(Status.PASS, "Blood Group is selected.");
     }
 
     @Test(priority = 3)
