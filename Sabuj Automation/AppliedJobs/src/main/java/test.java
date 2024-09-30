@@ -23,7 +23,7 @@ public class test {
 
         // Maximize the window and set up WebDriverWait
         driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));  // Increased timeout
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 
         try {
             // Navigate to bdjobs.com
@@ -42,84 +42,91 @@ public class test {
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(2000);
 
-            // Wait for the pop-up close button to appear
-            WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
-
-            // Ensure that the element is visible and enabled before clicking
-            if (popUpButton.isDisplayed() && popUpButton.isEnabled()) {
-                popUpButton.click(); // Native Selenium click
-            } else {
-                System.out.println("Pop-up close button is not clickable!");
+            // Wait for and close the pop-up if it appears
+            try {
+                WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
+                if (popUpButton.isDisplayed()) {
+                    popUpButton.click();  // Close the pop-up
+                }
+            } catch (TimeoutException ignored) {
+                System.out.println("No pop-up appeared.");
             }
 
+            // Navigate to Applied Jobs section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
             Thread.sleep(2000);
+
             WebElement Appliedjobs = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".icon-applied")));
             Appliedjobs.click();
             Thread.sleep(2000);
 
+            // Filtering jobs based on dates and company name
             WebElement FromDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
             FromDateField.sendKeys("05/01/2024");
 
             WebElement ToDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
-            ToDateField.sendKeys("05/01/2024");
-            Thread.sleep(1000);
+            ToDateField.sendKeys("30/09/2024");
 
             WebElement CompanyName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
             CompanyName.sendKeys("Bdjobs");
-            Thread.sleep(2000);
 
             WebElement SearchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
             SearchButton.click();
-            Thread.sleep(2000);
 
-            // Handle the select dropdown and iterate over each option
+            // Iterate through dropdown options
             WebElement selectElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtsSelect")));
             Select selectDropdown = new Select(selectElement);
 
-            // Loop through all options in the select dropdown
             for (WebElement option : selectDropdown.getOptions()) {
-                String optionText = option.getText();
-
-                // Skip empty options or group labels (optgroup)
                 if (option.getAttribute("value").isEmpty()) {
-                    continue;
+                    continue;  // Skip empty options
                 }
 
-                // Select the option
-                selectDropdown.selectByVisibleText(optionText);
-                System.out.println("Selected option: " + optionText);
+                selectDropdown.selectByVisibleText(option.getText());
+                System.out.println("Selected option: " + option.getText());
 
-                // Click the search button after selecting each option
+                // Click search after each selection
                 WebElement SearchButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
                 SearchButton1.click();
 
-                // Add a delay for better observation of actions
-                Thread.sleep(2000);
-
-                // Clear the previous selection
+                Thread.sleep(2000);  // Delay for observation
                 selectDropdown.selectByIndex(0);  // Clear selection by selecting the first (empty) option
             }
 
-            //Clear all previous search
+            // Clear the search fields and refresh the page
+            FromDateField.clear();
+            ToDateField.clear();
+            CompanyName.clear();
+            driver.navigate().refresh();
 
-            WebElement FromDateField1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
-            FromDateField1.clear();
-            Thread.sleep(3000);
+            // Click on the job title link after refreshing
+            WebElement JobTitle = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] a[class='ajtlnk']")));
+            JobTitle.click();
+            Thread.sleep(2000);
 
-            WebElement ToDateField2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
-            ToDateField2.clear();
-            Thread.sleep(3000);
+            // Switch to the newly opened tab and close it
+            String originalWindow = driver.getWindowHandle();
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!originalWindow.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    break;
+                }
+            }
 
-            WebElement CompanyName2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
-            CompanyName2.clear();
-            Thread.sleep(3000);
+            driver.close();  // Close the newly opened tab
+            driver.switchTo().window(originalWindow);  // Switch back to the original tab
 
-            WebElement SearchButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
-            SearchButton2.clear();
-            Thread.sleep(3000);
+            driver.navigate().refresh();  // Refresh the original tab
 
+            // Interact with the SMS icon
+            WebElement SmsIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] span[class='icon-send-message isndmsg']")));
+            SmsIcon.click();
+            Thread.sleep(2000);
+
+            // Close the SMS modal
+            WebElement CloseIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cancel.chatclose.icon-times-o")));
+            CloseIcon.click();
 
         } catch (Exception e) {
             e.printStackTrace();
