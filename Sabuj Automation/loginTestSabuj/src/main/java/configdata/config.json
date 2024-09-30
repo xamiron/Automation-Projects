@@ -1,0 +1,6 @@
+{
+  "browser": "firefox",
+  "url": "https://bdjobs.com",
+  "explicitWaitTimeInSeconds": 5,
+  "loginOtpPageWaitTime": 900
+}
