@@ -119,7 +119,7 @@ public class test {
 
             driver.navigate().refresh();  // Refresh the original tab
 
-            // Interact with the SMS icon
+            // Interact with the SMS ico
             WebElement SmsIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] span[class='icon-send-message isndmsg']")));
             SmsIcon.click();
             Thread.sleep(2000);
