@@ -3,8 +3,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 import java.io.File;
 import java.time.Duration;
@@ -52,25 +52,73 @@ public class test {
                 System.out.println("Pop-up close button is not clickable!");
             }
 
-
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
-            ActivityMenu .click();
+            ActivityMenu.click();
             Thread.sleep(2000);
             WebElement Appliedjobs = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".icon-applied")));
             Appliedjobs.click();
             Thread.sleep(2000);
 
-
             WebElement FromDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
-            FromDateField .sendKeys("05/01/2024");
+            FromDateField.sendKeys("05/01/2024");
 
             WebElement ToDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
-            ToDateField .sendKeys("05/01/2024");
+            ToDateField.sendKeys("05/01/2024");
             Thread.sleep(1000);
+
+            WebElement CompanyName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
+            CompanyName.sendKeys("Bdjobs");
+            Thread.sleep(2000);
+
             WebElement SearchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
             SearchButton.click();
+            Thread.sleep(2000);
 
+            // Handle the select dropdown and iterate over each option
+            WebElement selectElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtsSelect")));
+            Select selectDropdown = new Select(selectElement);
 
+            // Loop through all options in the select dropdown
+            for (WebElement option : selectDropdown.getOptions()) {
+                String optionText = option.getText();
+
+                // Skip empty options or group labels (optgroup)
+                if (option.getAttribute("value").isEmpty()) {
+                    continue;
+                }
+
+                // Select the option
+                selectDropdown.selectByVisibleText(optionText);
+                System.out.println("Selected option: " + optionText);
+
+                // Click the search button after selecting each option
+                WebElement SearchButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
+                SearchButton1.click();
+
+                // Add a delay for better observation of actions
+                Thread.sleep(2000);
+
+                // Clear the previous selection
+                selectDropdown.selectByIndex(0);  // Clear selection by selecting the first (empty) option
+            }
+
+            //Clear all previous search
+
+            WebElement FromDateField1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
+            FromDateField1.clear();
+            Thread.sleep(2000);
+
+            WebElement ToDateField2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
+            ToDateField2.clear();
+            Thread.sleep(1000);
+
+            WebElement CompanyName2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
+            CompanyName2.clear();
+            Thread.sleep(2000);
+
+            WebElement SearchButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
+            SearchButton2.clear();
+            Thread.sleep(2000);
 
 
         } catch (Exception e) {
