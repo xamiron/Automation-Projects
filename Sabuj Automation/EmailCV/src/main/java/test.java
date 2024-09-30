@@ -69,7 +69,7 @@ public class test {
             Thread.sleep(2000);
 
             // Write your Email
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtUserEmail"))).sendKeys("sabuj191761@gmail.com");
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtUserEmail"))).sendKeys("bdjobs.qa@gmail.com");
             Thread.sleep(2000);
 
             //Write Company Email
