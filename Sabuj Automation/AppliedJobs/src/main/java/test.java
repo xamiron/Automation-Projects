@@ -106,19 +106,19 @@ public class test {
 
             WebElement FromDateField1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
             FromDateField1.clear();
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             WebElement ToDateField2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
             ToDateField2.clear();
-            Thread.sleep(1000);
+            Thread.sleep(3000);
 
             WebElement CompanyName2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
             CompanyName2.clear();
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
             WebElement SearchButton2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
             SearchButton2.clear();
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 
 
         } catch (Exception e) {
