@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.io.File;
 import java.time.Duration;
 
@@ -52,6 +53,22 @@ public class test {
             }
 
 
+            WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
+            ActivityMenu .click();
+            Thread.sleep(2000);
+            WebElement Appliedjobs = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".icon-applied")));
+            Appliedjobs.click();
+            Thread.sleep(2000);
+
+
+            WebElement FromDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
+            FromDateField .sendKeys("05/01/2024");
+
+            WebElement ToDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
+            ToDateField .sendKeys("05/01/2024");
+            Thread.sleep(1000);
+            WebElement SearchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
+            SearchButton.click();
 
 
 
