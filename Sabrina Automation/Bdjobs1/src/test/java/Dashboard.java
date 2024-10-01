@@ -63,7 +63,7 @@ public class Dashboard {
 //            WebElement changeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Change']")));
 //            changeButton.click();
 
-///////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
             // Navigate back after interaction
 //            driver.navigate().back();
 //            Thread.sleep(2000);
@@ -214,7 +214,7 @@ public class Dashboard {
                         WebElement file_input = driver.findElement(By.xpath("//input[@id='Upload_File']"));
                         file_input.sendKeys("/input[@id='Upload_File']");
 
-
+                      //Thread.sleep();
                         // Wait for the file input element to be visible
                        // WebElement upload_file = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='Upload_File']")));
                         WebElement upload_file = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div.btn.btn-primary>input#Upload_File")));
