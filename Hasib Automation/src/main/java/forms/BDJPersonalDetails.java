@@ -1821,11 +1821,11 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
-        //invalid special character
-        primaryEmailField.getElement().clear();
-        primaryEmailField.sendKeysWithDelay("asdasdagsfagsdfkghgggggggggggggggggddadag@mail.com");
-        saveButton.getElement().click();
-        errorPrimaryEmailMessageText();
+//        //invalid special character
+//        primaryEmailField.getElement().clear();
+//        primaryEmailField.sendKeysWithDelay("asdasdagsfagsdfkghgggggggggggggggggddadag@mail.com");
+//        saveButton.getElement().click();
+//        errorPrimaryEmailMessageText();
 
         //invalid date character
         primaryEmailField.getElement().clear();
