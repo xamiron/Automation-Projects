@@ -40,7 +40,7 @@ public class test {
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(2000);
-
+/*
             // Wait for the pop-up close button to appear
             WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
 
@@ -50,6 +50,8 @@ public class test {
             } else {
                 System.out.println("Pop-up close button is not clickable!");
             }
+
+ */
             // Wait and click the EmailCv icon
             WebElement EmailCv = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("i[class='icon-send-email']")));
             Thread.sleep(3000);
@@ -61,20 +63,35 @@ public class test {
             MyEmail.clear();
 
             //Click on Send Cv Button
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
+            WebElement SendCv = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+            SendCv.click();
             Thread.sleep(2000);
 
             //Click on Pop-Up Ok button
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']"))).click();
+            WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            okButton.click();
             Thread.sleep(2000);
+
+///Test Case
+            MyEmail.sendKeys("ahf@hkg");
+            SendCv.click();
+            //SendCv.sendKeys("bdj@gmail");
+            //okButton.click();
+            okButton.click();
+
+          /*
+
 
             // Write your Email
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtUserEmail"))).sendKeys("bdjobs.qa@gmail.com");
             Thread.sleep(2000);
 
+
+
             //Write Company Email
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtCompanyEmail"))).sendKeys("bdjobs.qa@gmail.com");
-            Thread.sleep(2000);
+           WebElement CpMail= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtCompanyEmail")));
+           CpMail.sendKeys("bdjobs.qa@gmail.com");
+           Thread.sleep(2000);
 
             //Write Email Subject
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtMailSubject"))).sendKeys("Demo Test Account");
@@ -102,7 +119,7 @@ public class test {
 
       
 
-
+*/
 
 
         } catch (Exception e) {
