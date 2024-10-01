@@ -1145,7 +1145,7 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
     }
 
-
+    //tc wise done
     public void passport(){
         editButton();
 //        String originalName = passportIssueDate.getElement().getAttribute("value");
@@ -1349,7 +1349,7 @@ public class BDJPersonalDetails extends BaseForm{
 
     }
 
-
+    //tc wise done
     public void primaryNumber(){
         if(primaryNumberDisabled.isNotPresent()){
         //invalid empty entry
@@ -1366,6 +1366,14 @@ public class BDJPersonalDetails extends BaseForm{
         countryBangladesh.getElement().click();
         primaryNumberField.getElement().clear();
         primaryNumberField.sendKeysWithDelay("  ");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid white space
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("005465132165");
         saveButton.getElement().click();
         errorPrimaryNumberMessageText();
 
@@ -1390,6 +1398,87 @@ public class BDJPersonalDetails extends BaseForm{
         countryBangladesh.getElement().click();
         primaryNumberField.getElement().clear();
         primaryNumberField.sendKeysWithDelay("!@#$%^&*()");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("12458641");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("qwert");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("145.4545");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("1,234.568");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("AVDFCD");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("asfadgaf");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("east wes(){}*");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("ASSDcadfa");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("<p>east west;</p>");
+        saveButton.getElement().click();
+        errorPrimaryNumberMessageText();
+
+
+        //invalid Character
+        countryDropdownSelector.getElement().click();
+        countryBangladesh.getElement().click();
+        primaryNumberField.getElement().clear();
+        primaryNumberField.sendKeysWithDelay("      145458645245          ");
         saveButton.getElement().click();
         errorPrimaryNumberMessageText();
 
@@ -1421,7 +1510,7 @@ public class BDJPersonalDetails extends BaseForm{
         countryDropdownSelector.getElement().click();
         countryBangladesh.getElement().click();
         primaryNumberField.getElement().clear();
-        primaryNumberField.sendKeysWithDelay("01761288821");
+        primaryNumberField.sendKeysWithDelay("01516051683");
         saveButton.getElement().click();
 
         // Restore the original name
@@ -1521,6 +1610,60 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorEmergencyMessageText();
 
+//        //invalid Value
+//        emergencyNumberField.getElement().clear();
+//        emergencyNumberField.sendKeysWithDelay("      0132165464");
+//        saveButton.getElement().click();
+//        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("qwert");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("145.4545");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("1,234.568");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("AVDFCD");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("asfadgaf");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("<p>east west;</p>");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
+//        //invalid character
+//        emergencyNumberField.getElement().clear();
+//        emergencyNumberField.sendKeysWithDelay("     145458645245          ");
+//        saveButton.getElement().click();
+//        errorEmergencyMessageText();
+
+        //invalid character
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay(" east wes(){}*");
+        saveButton.getElement().click();
+        errorEmergencyMessageText();
+
         //invalid character
         emergencyNumberField.getElement().clear();
         emergencyNumberField.sendKeysWithDelay("abec!23ta");
@@ -1555,6 +1698,18 @@ public class BDJPersonalDetails extends BaseForm{
         emergencyNumberField.sendKeysWithDelay("01666666667");
         saveButton.getElement().click();
 
+        //valid digits
+        editButton();
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("123456789123456");
+        saveButton.getElement().click();
+
+        //valid digits
+        editButton();
+        emergencyNumberField.getElement().clear();
+        emergencyNumberField.sendKeysWithDelay("12458641");
+        saveButton.getElement().click();
+
         // Restore the original name
         editButton();
         emergencyNumberField.getElement().clear();
@@ -1579,6 +1734,30 @@ public class BDJPersonalDetails extends BaseForm{
         primaryEmailField.sendKeysWithDelay("@#%!@#$%^&*()_");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
+
+        //invalid  character
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("");
+        saveButton.getElement().click();
+        errorPrimaryEmailMessageText();
+
+        //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("       abc@mail.com");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("12458641");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("@#%!@#$%^&*()_");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
 
         //invalid special character
         primaryEmailField.getElement().clear();
