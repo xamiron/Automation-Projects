@@ -113,7 +113,7 @@ public class test {
             Thread.sleep(3000);
             driver.navigate().back();
 
-        /// Success case 
+        /// Success case
 
 
             //Write Email Subject
