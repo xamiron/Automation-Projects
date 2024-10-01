@@ -97,16 +97,21 @@ public class test {
             SendCv.click();
             Thread.sleep(2000);
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']"))).click();
+            Thread.sleep(3000);
+            //wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']"))).click();
+            //Thread.sleep(10000);
+
+            //Long text in subject field
+            Esub.sendKeys("rghkghfklbihgilfhgfikhdlhlkjhgrioeuahgkjthjp;hgjhrtihre;ojjhlohjutrhjkrthioghrahkthjpthjakghjoi");
             Thread.sleep(2000);
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']"))).click();
 
 
             //Blank Message
-            WebElement TypeMessage =  wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtApplication")));
-            TypeMessage.sendKeys("");
+            WebElement TypeMessage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtApplication")));
+            TypeMessage.sendKeys("hello");
             SendCv.click();
             Thread.sleep(3000);
-            //driver.navigate().back();
+            driver.navigate().back();
 
 ///
 
