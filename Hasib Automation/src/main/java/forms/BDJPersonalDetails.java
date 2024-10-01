@@ -82,11 +82,31 @@ public class BDJPersonalDetails extends BaseForm{
     private final Element bloodONeg= new Element(By.cssSelector("select#txtBloodGroup> option[value='O-']"));
     private final Element bloodABPos=new Element(By.cssSelector("select#txtBloodGroup> option[value='AB+']"));
     private final Element bloodABNeg = new Element(By.cssSelector("select#txtBloodGroup> option[value='AB-']"));
+    //upload elements
+    private final Element uploadPhotoButton = new Element(By.cssSelector("a[type='button']"));
+    private final Element choosePhoto = new Element(By.cssSelector("//input[@id='imageFile']"));
+    private final Element changePhoto = new Element(By.xpath("//button[@id='changePhoto']"));
+    private final Element uploadPhoto = new Element(By.xpath("//button[@id='uploadPhoto']"));
 
     private final String errorMessageText = "Error message is not displayed.";
 
     public BDJPersonalDetails(){
         super(new Element(By.cssSelector("button[aria-label='Click Personal section to add or edit your personal information in resume']")));
+    }
+
+    public void uploadImage(){
+        editButton();
+        ExplicitWait.elementToBeClickable(uploadPhotoButton.getLocator());
+        uploadPhotoButton.getElement().click();
+
+        // Check if the "Change Photo" button is displayed and clickable
+        if (choosePhoto.getElement().isDisplayed()) {
+            choosePhoto.getElement().click();
+        }
+        // If "Change Photo" is not visible, check for the "Upload Photo" button
+        else if (uploadPhoto.getElement().isDisplayed()) {
+            uploadPhoto.getElement().click();
+        }
     }
 
     //tc wise done
