@@ -135,8 +135,34 @@ public class test {
 
             WebElement YesButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".visitbdjp")));
             YesButton.click();
-            driver.close();  // Close the newly opened tab
-          
+            // Switch to the newly opened tab
+            String originalWindow1 = driver.getWindowHandle();
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!originalWindow1.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    break;
+                }
+            }
+
+            // Close the new tab
+            driver.close();
+
+            // Switch back to the original tab
+            driver.switchTo().window(originalWindow);
+            driver.navigate().refresh();
+
+            // Continue with the Boost icon interaction
+            WebElement BoostIcon1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
+            BoostIcon1.click();
+            Thread.sleep(2000);
+
+            // Continue with the Boost icon interaction
+            WebElement NoButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".boastNo")));
+            NoButton.click();
+            Thread.sleep(2000);
+
+
+
 
 
 
