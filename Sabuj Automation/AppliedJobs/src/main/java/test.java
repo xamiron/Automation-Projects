@@ -41,7 +41,7 @@ public class test {
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(2000);
-
+/*
             // Wait for and close the pop-up if it appears
             try {
                 WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
@@ -51,7 +51,7 @@ public class test {
             } catch (TimeoutException ignored) {
                 System.out.println("No pop-up appeared.");
             }
-
+*/
             // Navigate to Applied Jobs section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
@@ -128,7 +128,21 @@ public class test {
             WebElement CloseIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cancel.chatclose.icon-times-o")));
             CloseIcon.click();
 
-            //click on 
+            //click on Boost icon
+            WebElement BoostIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
+            BoostIcon.click();
+            Thread.sleep(2000);
+
+            WebElement YesButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".visitbdjp")));
+            YesButton.click();
+            driver.close();  // Close the newly opened tab
+          
+
+
+
+
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
