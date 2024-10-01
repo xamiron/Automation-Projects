@@ -58,110 +58,14 @@ public class test {
             WebElement dashboardLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Dashboard']")));
             dashboardLink.click();
 
-            // Wait for the Change button and click it
-            WebElement changeButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Change']")));
-            changeButton.click();
 
-            // Navigate back after interaction
-            driver.navigate().back();
-            Thread.sleep(2000);
-            WebElement bdjobsCvcount = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@class='pcv-legend']//span[contains(text(),'3')]")));
-            bdjobsCvcount.click();
-            driver.navigate().back();
-
-            WebElement bdjobsCv = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='tab-bdjresume']")));
-            bdjobsCv.click();
-
-            Thread.sleep(2000);
-            WebElement viewbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='https://mybdjobs.bdjobs.com/mybdjobs/masterview.asp'][normalize-space()='View']")));
-            viewbutton.click();
-            Thread.sleep(5000);
-
-            driver.navigate().back();
-            Thread.sleep(2000);
-
-            WebElement editbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='bdjreswrap']//a[@class='veactbtned'][normalize-space()='Edit']")));
-            editbutton.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement personaldetails = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Personal Details']")));
-            personaldetails.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement professionalqualification = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Professional Qualification']")));
-            professionalqualification.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement academicqualification = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Academic Qualification']")));
-            academicqualification.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement Experience = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Academic Qualification']")));
-            Experience.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement experience = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Experience']")));
-            experience.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-
-            WebElement reference = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Reference']")));
-            reference.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement training = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Training']")));
-            training.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement specialization = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Specialization']")));
-            specialization.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement photograph = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Photograph']")));
-            photograph.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            WebElement videoCV = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='tab-vdeoresume']")));
-            videoCV.click();
-
-            // WebElement videopopup = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='videoTutorialCloseBtn']//span[@aria-hidden='true'][normalize-space()='×']")));
-            // videopopup.click();
-            Thread.sleep(2000);
-            WebElement view = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='https://mybdjobs.bdjobs.com/mybdjobs/videoResume/video_resume_home.asp'][normalize-space()='View']")));
-            view.click();
-            Thread.sleep(2000);
-            driver.navigate().back();
-
-            //will click 3rd question
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Your long term career objective. Where you want to')]"))).click();
-            driver.navigate().back();
-            Thread.sleep(2000);
-
-            //will click 2nd question
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(),'Talk about your experience (if any), your skills a')]"))).click();
-            driver.navigate().back();
-
-            //will click 1st question
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Introduce yourself, including your education.']"))).click();
-            driver.navigate().back();
-            Thread.sleep(2000);
 
             //will click on personalized cv
-            WebElement personalizedcv = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='tab-personaliz']")));
-            personalizedcv.click();
+            WebElement customizedcv = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#tab-personaliz")));
+            customizedcv.click();
             Thread.sleep(2000);
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='bactbtn']"))).click();//view button click
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bactbtn"))).click();//view button click
             Thread.sleep(2000);
 
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='icon-video-help-o']"))).click(); //video icon click
@@ -171,14 +75,7 @@ public class test {
             Thread.sleep(200);
 
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Download']"))).click();
-            Thread.sleep(2000);
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Delete']"))).click();
-            Thread.sleep(2000);
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Yes, delete']"))).click();
-            Thread.sleep(2000);
-            driver.navigate().back();
 
 
         } catch (Exception e) {
