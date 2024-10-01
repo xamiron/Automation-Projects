@@ -71,33 +71,50 @@ public class test {
             WebElement okButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
             okButton.click();
             Thread.sleep(2000);
-
+/*
 ///Test Case
             MyEmail.sendKeys("ahf@hkg");
+            WebElement CpMail1= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtCompanyEmail")));
+            CpMail1.sendKeys("bdjobs.qa@gmail.com");
+            Thread.sleep(2000);
             SendCv.click();
-            //SendCv.sendKeys("bdj@gmail");
-            //okButton.click();
+            Thread.sleep(1000);
             okButton.click();
-
-          /*
-
+            okButton.click();
+*/
 
             // Write your Email
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtUserEmail"))).sendKeys("bdjobs.qa@gmail.com");
+           MyEmail.sendKeys("bdjobs.qa@gmail.com");
             Thread.sleep(2000);
-
-
-
             //Write Company Email
            WebElement CpMail= wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtCompanyEmail")));
            CpMail.sendKeys("bdjobs.qa@gmail.com");
            Thread.sleep(2000);
+           //Blank Email Subject
+            WebElement Esub = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtMailSubject")));
+            Esub.sendKeys("");
+            Thread.sleep(2000);
+            SendCv.click();
+            Thread.sleep(2000);
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']"))).click();
+            Thread.sleep(2000);
+            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']"))).click();
+
+
+            //Blank Message
+            WebElement TypeMessage =  wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtApplication")));
+            TypeMessage.sendKeys("");
+            SendCv.click();
+            Thread.sleep(3000);
+            //driver.navigate().back();
+
+///
+
 
             //Write Email Subject
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtMailSubject"))).sendKeys("Demo Test Account");
-
+            Esub.sendKeys("Demo Test Account");
             //Type Message
-           wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtApplication"))).sendKeys("Hello This is Test SMS");
+           TypeMessage.sendKeys("Hello This is Test SMS");
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
             driver.navigate().back();
@@ -119,7 +136,7 @@ public class test {
 
       
 
-*/
+
 
 
         } catch (Exception e) {
