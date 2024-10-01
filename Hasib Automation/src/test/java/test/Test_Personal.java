@@ -41,8 +41,6 @@ public class Test_Personal {
 
     @Test(priority = 1)
     public void bdjobsLogin() {
-        BDJSignInPage signInPage = new BDJSignInPage();
-        BDJHomePage bdjHomePage = new BDJHomePage();
         BDJApplyJob bdjApplyPage = new BDJApplyJob();
 
         boolean isLoginPageDisplayed = bdjApplyPage.isFormOpen();
@@ -97,36 +95,31 @@ public class Test_Personal {
 //
 //        bdjPersonalDetails.nID();
 //        test.log(Status.PASS, "NID is entered");
-////
+//
 //        bdjPersonalDetails.passport();
 //        test.log(Status.PASS, "Passport is entered");
 //
 //        bdjPersonalDetails.passportIssuedDate();
 //        test.log(Status.PASS, "Passport Issued date is entered");
 //
-        bdjPersonalDetails.primaryNumber();
-        test.log(Status.PASS, "Primary is entered");
+//        bdjPersonalDetails.primaryNumber();
+//        test.log(Status.PASS, "Primary is entered");
+//
+//        bdjPersonalDetails.secondaryNumber();
+//        test.log(Status.PASS, "Secondary is entered");
+//
+//        bdjPersonalDetails.emergencyNumber();
+//        test.log(Status.PASS, "Emergency is entered");
+//
+        bdjPersonalDetails.primaryEmail();
+        test.log(Status.PASS, "Primary email is entered");
 
-        bdjPersonalDetails.secondaryNumber();
-        test.log(Status.PASS, "Secondary is entered");
+        bdjPersonalDetails.alternateEmail();
+        test.log(Status.PASS, "Alternate email is entered");
 
-        bdjPersonalDetails.emergencyNumber();
-        test.log(Status.PASS, "Emergency is entered");
-//
-//        bdjPersonalDetails.primaryEmail();
-//        test.log(Status.PASS, "Primary email is entered");
-//
-//        bdjPersonalDetails.alternateEmail();
-//        test.log(Status.PASS, "Alternate email is entered");
-//
-//        bdjPersonalDetails.bloodGroup();
-//        test.log(Status.PASS, "Blood Group is selected.");
+        bdjPersonalDetails.bloodGroup();
+        test.log(Status.PASS, "Blood Group is selected.");
     }
-
-    @Test(priority = 3)
-    public void addressDetails(){
-    }
-
 
     @AfterClass
     public void cleanUp() {

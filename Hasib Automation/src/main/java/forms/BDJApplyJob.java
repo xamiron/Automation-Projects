@@ -43,10 +43,10 @@ public class BDJApplyJob extends BaseForm{
         // Valid username
         userNameTextField.getElement().clear();
         userNameTextField.getElement().sendKeys(DataReader.getStringValue("userName", "TestData"));
-        logger.info("/n Send valid userName from json file");
+//        logger.info("Send valid userName from json file");
         ExplicitWait.elementToBeClickable(continueButton.getLocator());
         continueButton.click();
-        logger.info("Clicked on Continue button");
+//        logger.info("Clicked on Continue button");
     }
 
     public void sendingPasswordInPasswordField() {
@@ -73,18 +73,38 @@ public class BDJApplyJob extends BaseForm{
         boolean isButton1Clickable = false;
         boolean isButton2Clickable = false;
 
-        try {
-            ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
-            isButton1Clickable = true; // If no exception is thrown, it's clickable
-        } catch (TimeoutException e) {
-            System.out.println("Edit Profile Button 1 is not clickable: " + e.getMessage());
-        }
+//        try {
+//            ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
+//            isButton1Clickable = true; // If no exception is thrown, it's clickable
+//        } catch (TimeoutException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            ExplicitWait.elementToBeClickable(editProfileButton2.getLocator());
+//            isButton2Clickable = true;
+//        } catch (TimeoutException e) {
+//            e.printStackTrace();
+//        }
 
         try {
-            ExplicitWait.elementToBeClickable(editProfileButton2.getLocator());
-            isButton2Clickable = true; // If no exception is thrown, it's clickable
-        } catch (TimeoutException e) {
-            System.out.println("Edit Profile Button 2 is not clickable: " + e.getMessage());
+            // Try the first button
+            ExplicitWait.elementToBeClickable(editProfileButton.getLocator());
+            isButton1Clickable = true;  // If the first button is clickable
+//            System.out.println("Edit Profile Button 1 is clickable.");
+        } catch (TimeoutException e1) {
+            // If first button is not clickable, check the second one
+            System.out.println("Edit Profile Button 1 is not clickable, checking Button 2.");
+//            e1.printStackTrace();
+
+            try {
+                ExplicitWait.elementToBeClickable(editProfileButton2.getLocator());
+                isButton2Clickable = true;  // If the second button is clickable
+//                System.out.println("Edit Profile Button 2 is clickable.");
+            } catch (TimeoutException e2) {
+                System.out.println("Edit Profile Button 2 is not clickable.");
+//                e2.printStackTrace();
+            }
         }
 
         // Click the appropriate button if it is clickable

@@ -28,9 +28,9 @@ public class Browser {
 						ChromeOptions options = new ChromeOptions();
 						options.addExtensions(new File(adblockerPath));
 						driver = new ChromeDriver(options);
-						logger.info("Initialized ChromeDriver with Adblocker.");
+//						logger.info("Initialized ChromeDriver with Adblocker.");
 					} catch (Exception e) {
-						logger.severe("Failed to initialize ChromeDriver: " + e.getMessage());
+//						logger.severe("Failed to initialize ChromeDriver: " + e.getMessage());
 						e.printStackTrace();
 					}
 					break;
@@ -38,9 +38,9 @@ public class Browser {
 					try {
 						WebDriverManager.firefoxdriver().setup();
 						driver = new FirefoxDriver();
-						logger.info("Initialized FirefoxDriver.");
+//						logger.info("Initialized FirefoxDriver.");
 					} catch (Exception e) {
-						logger.severe("Failed to initialize FirefoxDriver: " + e.getMessage());
+//						logger.severe("Failed to initialize FirefoxDriver: " + e.getMessage());
 						e.printStackTrace();
 					}
 					break;
@@ -48,9 +48,9 @@ public class Browser {
 					try {
 						WebDriverManager.edgedriver().setup();
 						driver = new EdgeDriver();
-						logger.info("Initialized EdgeDriver.");
+//						logger.info("Initialized EdgeDriver.");
 					} catch (Exception e) {
-						logger.severe("Failed to initialize EdgeDriver: " + e.getMessage());
+//						logger.severe("Failed to initialize EdgeDriver: " + e.getMessage());
 						e.printStackTrace();
 					}
 					break;
@@ -61,9 +61,9 @@ public class Browser {
 						ChromeOptions options = new ChromeOptions();
 						options.addExtensions(new File(adblockerPath));
 						driver = new ChromeDriver(options);
-						logger.info("Initialized ChromeDriver with Adblocker as default.");
+//						logger.info("Initialized ChromeDriver with Adblocker as default.");
 					} catch (Exception e) {
-						logger.severe("Failed to initialize default ChromeDriver: " + e.getMessage());
+//						logger.severe("Failed to initialize default ChromeDriver: " + e.getMessage());
 						e.printStackTrace();
 					}
 					break;
@@ -84,7 +84,7 @@ public class Browser {
 		if (driver != null) {
 			driver.quit();
 			driver = null;
-			logger.info("Closed and nullified WebDriver instance.");
+//			logger.info("Closed and nullified WebDriver instance.");
 		}
 	}
 }
