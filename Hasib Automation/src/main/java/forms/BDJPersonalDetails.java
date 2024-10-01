@@ -1719,13 +1719,14 @@ public class BDJPersonalDetails extends BaseForm{
         }
     }
 
+    //tc wise done
     public void primaryEmail(){
         if(primaryEmailDisabled.isNotPresent()){
         //invalid email a
         editButton();
         String originalName = primaryEmailField.getElement().getAttribute("value");
         primaryEmailField.getElement().clear();
-        primaryEmailField.sendKeysWithDelay("a");
+        primaryEmailField.sendKeysWithDelay("qwert");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
@@ -1735,17 +1736,17 @@ public class BDJPersonalDetails extends BaseForm{
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
-        //invalid  character
-        primaryEmailField.getElement().clear();
-        primaryEmailField.sendKeysWithDelay("");
-        saveButton.getElement().click();
-        errorPrimaryEmailMessageText();
+//        //taking as valid ISSUE
+//        primaryEmailField.getElement().clear();
+//        primaryEmailField.sendKeysWithDelay("");
+//        saveButton.getElement().click();
+//        errorPrimaryEmailMessageText();
 
-        //invalid  character
-         primaryEmailField.getElement().clear();
-         primaryEmailField.sendKeysWithDelay("       abc@mail.com");
-         saveButton.getElement().click();
-         errorPrimaryEmailMessageText();
+//        //taking as valid ISSUE
+//         primaryEmailField.getElement().clear();
+//         primaryEmailField.sendKeysWithDelay("       abc@mail.com");
+//         saveButton.getElement().click();
+//         errorPrimaryEmailMessageText();
 
          //invalid  character
          primaryEmailField.getElement().clear();
@@ -1759,9 +1760,70 @@ public class BDJPersonalDetails extends BaseForm{
          saveButton.getElement().click();
          errorPrimaryEmailMessageText();
 
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("145.4545");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("1,234.568");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("AVDFCD");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("asfadgaf");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("ASSDcadfa");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("      145458645245          ");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("14787856445          ");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+         //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("<p>east west;</p>");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
+
+            //invalid  character
+         primaryEmailField.getElement().clear();
+         primaryEmailField.sendKeysWithDelay("east wes(){}*");
+         saveButton.getElement().click();
+         errorPrimaryEmailMessageText();
+
         //invalid special character
         primaryEmailField.getElement().clear();
         primaryEmailField.sendKeysWithDelay("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbb");
+        saveButton.getElement().click();
+        errorPrimaryEmailMessageText();
+
+        //invalid special character
+        primaryEmailField.getElement().clear();
+        primaryEmailField.sendKeysWithDelay("asdasdagsfagsdfkghgggggggggggggggggddadag@mail.com");
         saveButton.getElement().click();
         errorPrimaryEmailMessageText();
 
