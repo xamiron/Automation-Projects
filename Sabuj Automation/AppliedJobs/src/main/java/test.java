@@ -100,6 +100,10 @@ public class test {
             Thread.sleep(2000);
             SearchButton.click();
 
+            FromDateField.clear();
+            ToDateField.clear();
+            CompanyName.clear();
+
 
 
 
