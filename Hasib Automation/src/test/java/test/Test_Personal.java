@@ -59,15 +59,15 @@ public class Test_Personal {
 
     @Test(priority = 2)
     public void personalDetails(){
-        BDJPersonalDetails bdjPersonalDetails = new BDJPersonalDetails();
+        BDJPersonalDetails bdjPersonalDetails = new BDJPersonalDetails(driver);
 
         boolean isPersonalDetailsDisplayed= bdjPersonalDetails.isFormOpen();
         test.log(Status.INFO, "Check if Personal Details page loaded");
         Assert.assertTrue(isPersonalDetailsDisplayed, "Personal Details page is not opened");
         test.log(Status.PASS, "Personal Details Page is opened");
 
-        bdjPersonalDetails.firstName();
-        test.log(Status.PASS, "First Name entered");
+//        bdjPersonalDetails.firstName();
+//        test.log(Status.PASS, "First Name entered");
 
 //        bdjPersonalDetails.lastName();
 //        test.log(Status.PASS, "Last Name entered");

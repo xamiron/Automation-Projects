@@ -57,7 +57,7 @@ public class Test_Address {
     @Test(priority = 2)
     public void addressDetails() {
         BDJAddressDetails bdjAddressDetails = new BDJAddressDetails();
-        BDJPersonalDetails bdjPersonalDetails = new BDJPersonalDetails();
+        BDJPersonalDetails bdjPersonalDetails = new BDJPersonalDetails(driver);
 
         boolean isPersonalDetailsDisplayed= bdjPersonalDetails.isFormOpen();
         test.log(Status.INFO, "Check if Personal Details page loaded");
