@@ -108,18 +108,28 @@ public class test {
 
             //Blank Message
             WebElement TypeMessage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtApplication")));
-            TypeMessage.sendKeys("");
+            TypeMessage.sendKeys("Hi");
             SendCv.click();
             Thread.sleep(3000);
             driver.navigate().back();
+
+            TypeMessage.sendKeys("Hello This is test message!hnttttttttttttttttttttnnnnnnnnnnnmyrhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+            SendCv.click();
+            Thread.sleep(2000);
+            driver.navigate().back();
+
 
         /// Success case
 
 
             //Write Email Subject
+            Esub.clear();
+            Thread.sleep(2000);
             Esub.sendKeys("Demo Test Account");
             //Type Message
-           TypeMessage.sendKeys("Hello This is Test SMS");
+            TypeMessage.clear();
+            Thread.sleep(2000);
+            TypeMessage.sendKeys("Hello This is Test SMS");
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']"))).click();
             driver.navigate().back();
