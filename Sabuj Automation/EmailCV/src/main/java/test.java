@@ -108,7 +108,7 @@ public class test {
 
             //Blank Message
             WebElement TypeMessage = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#txtApplication")));
-            TypeMessage.sendKeys("hello");
+            TypeMessage.sendKeys("");
             SendCv.click();
             Thread.sleep(3000);
             driver.navigate().back();
@@ -139,7 +139,7 @@ public class test {
             Thread.sleep(1000);
             driver.navigate().back();
 
-      
+      ///
 
 
 
