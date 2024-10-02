@@ -79,14 +79,27 @@ public class test {
             FromDateField.clear();
             ToDateField.clear();
             CompanyName.clear();
-
+            /// Invalid Date & Company Name
             FromDateField.sendKeys("2024");
             Thread.sleep(2000);
             ToDateField.sendKeys("05");
             Thread.sleep(2000);
-            CompanyName.sendKeys("Bd");
+            CompanyName.sendKeys("@&*%$");
             Thread.sleep(2000);
             SearchButton.click();
+
+            FromDateField.clear();
+            ToDateField.clear();
+            CompanyName.clear();
+            /// Invalid Date & Company Name
+            FromDateField.sendKeys("greirtrkhj");
+            Thread.sleep(2000);
+            ToDateField.sendKeys("gbjtnjk");
+            Thread.sleep(2000);
+            CompanyName.sendKeys("WFR#$@~!798609");
+            Thread.sleep(2000);
+            SearchButton.click();
+
 
 
 
