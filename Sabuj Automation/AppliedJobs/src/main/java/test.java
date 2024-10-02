@@ -66,13 +66,32 @@ public class test {
             FromDateField.sendKeys("05/01/2024");
 
             WebElement ToDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
-            ToDateField.sendKeys("30/09/2024");
+            ToDateField.sendKeys("09/01/2024");
 
             WebElement CompanyName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
             CompanyName.sendKeys("Bdjobs");
 
             WebElement SearchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
             SearchButton.click();
+            Thread.sleep(2000);
+
+
+            FromDateField.clear();
+            ToDateField.clear();
+            CompanyName.clear();
+
+            FromDateField.sendKeys("2024");
+            Thread.sleep(2000);
+            ToDateField.sendKeys("05");
+            Thread.sleep(2000);
+            CompanyName.sendKeys("Bd");
+            Thread.sleep(2000);
+            SearchButton.click();
+
+
+
+
+
 
             // Iterate through dropdown options
             WebElement selectElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtsSelect")));
