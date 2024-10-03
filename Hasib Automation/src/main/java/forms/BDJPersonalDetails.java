@@ -95,8 +95,11 @@ public class BDJPersonalDetails extends BaseForm {
     private final Element changePhoto = new Element(By.xpath("//button[@id='changePhoto']"));
     private final Element uploadPhoto = new Element(By.xpath("//button[@id='uploadPhoto']"));
     private final Element deleteButton = new Element(By.cssSelector("#btnDelete"));
+    private final Element yesDeleteButton = new Element(By.xpath("//button[normalize-space()='Yes, delete']"));
     private final Element skipCropButton = new Element(By.cssSelector("#skipCroppingPhoto"));
     private final Element uploadPhotoButton1 = new Element(By.cssSelector("#uploadPhoto"));
+    private final Element youtube = new Element(By.xpath("//div[@id='accordion5']//a[@target='_blank']"));
+    private final Element cropAndSkipButton = new Element(By.xpath("//button[@id='cropNuploadPhoto']"));
 
     private final String errorMessageText = "Error message is not displayed.";
 
@@ -106,40 +109,120 @@ public class BDJPersonalDetails extends BaseForm {
         this.driver = driver;
     }
 
+
+    ///////////////////////////////////////////////////
+    //Upload Photo____________________________________
     public void uploadImage() {
         String url = "H:/Code/New folder/BdjobsPersonalDetails/Hasib Automation/reports/";
-        String filePathCorrect = url+"5KB.png";
-        String filePath8MB = url+"8MB.jpg";
-        String filePath2KB = url+"2KB.png";
-        String pdfFile = url+"testCV.pdf";
+        String filePathCorrect = url + "5KB.png";
+        String filePath8MB = url + "8MB.jpg";
+        String filePath5MB = url + "5MB.jpg";
+        String filePath4MB = url + "4MB.jpg";
+        String filePath2KB = url + "2KB.png";
+        String gifImage = url + "1dARa.gif";
+        String pdfFile = url + "testCV.pdf";
+        String exeFile = url + "idm.exe";
+        String exeFile2 = url + "netspeedmonitor.msi";
 
-//        editButton();
+        // Store the original window handle before clicking the button
+        String originalWindow = driver.getWindowHandle();
+
+        // Click the upload button or any other element if needed
         ExplicitWait.elementToBeClickable(uploadPhotoButton.getLocator());
         uploadPhotoButton.getElement().click();
 
+        // Click the YouTube or any button that opens a new window
+        ExplicitWait.presenceOfElementLocated(youtube.getLocator());
+        youtube.getElement().click();
+
+        // Wait for the new window or tab to open
+        ExplicitWait.threadWait();  // Adjust waiting time as necessary
+
+        // Loop through all open windows/tabs
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!originalWindow.equals(windowHandle)) {
+                // Switch to the new window (YouTube tab)
+                driver.switchTo().window(windowHandle);
+
+                // Perform actions in the new window (if needed)
+
+                // Close the new tab/window
+                driver.close();
+            }
+        }
+
+        // Ensure the new window is fully closed before switching back to the original
+        driver.switchTo().window(originalWindow);
+
+        // Wait for a moment to ensure that the switch is stable
+        ExplicitWait.threadWait();  // Adjust the wait time as necessary
         if(changePhoto.isDisplayed() && deleteButton.isDisplayed()) {
-            // If "Upload Photo" button is available
-            changePhoto.getElement().click();
+            // If photo previously available deleting the photo
+            ExplicitWait.presenceOfElementLocated(deleteButton.getLocator());
+            deleteButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(yesDeleteButton.getLocator());
+            yesDeleteButton.getElement().click();
+
+
+
         } else if(choosePhoto.isDisplayed() && uploadPhotoButton1.isDisplayed()) {
             // Invalid image upload (8MB image)
+            ///////////////////////////////
             choosePhoto.getElement().sendKeys(filePath8MB);
             handleAlertIfPresent();
 
+            // Invalid image upload (5.2MB image)
+            ///////////////////////////////
+            choosePhoto.getElement().sendKeys(filePath5MB);
+            handleAlertIfPresent();
+
             // Invalid PDF upload (PDF File)
+            ///////////////////////////////
             choosePhoto.getElement().sendKeys(pdfFile);
             handleAlertIfPresent();
 
+            // Invalid exe upload (exe File)
+            ///////////////////////////////
+            choosePhoto.getElement().sendKeys(exeFile);
+            handleAlertIfPresent();
+            // Invalid exe upload (exe File)
+            ///////////////////////////////
+            choosePhoto.getElement().sendKeys(exeFile2);
+            handleAlertIfPresent();
+
             // Valid image upload (2KB image)
-            choosePhoto.getElement().sendKeys(filePathCorrect);
+            ///////////////////////////////
+            choosePhoto.getElement().sendKeys(filePath2KB);
+            skipCropButton();
+            ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.getElement().click();
+
+            // Valid gif image upload
+            ///////////////////////////////
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            choosePhoto.getElement().sendKeys(gifImage);
+            skipCropButton();
+            ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.getElement().click();
+
+            // Valid gif image upload
+            ///////////////////////////////
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            choosePhoto.getElement().sendKeys(filePath4MB);
             skipCropButton();
             ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
             uploadPhotoButton1.getElement().click();
 
             // Valid image upload
+            ///////////////////////////////
             ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
             uploadPhotoButton.getElement().click();
             ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
-            choosePhoto.getElement().sendKeys(filePath2KB);
+            choosePhoto.getElement().sendKeys(filePathCorrect);
             skipCropButton();
             ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
             uploadPhotoButton1.getElement().click();
@@ -172,9 +255,11 @@ public class BDJPersonalDetails extends BaseForm {
             e.printStackTrace();
         }
     }
+    //Upload Photo ends here___________________________
+    ///////////////////////////////////////////////////
 
-
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //First Name (TC Wise)------------------------------
     public void firstName() {
         ExplicitWait.elementToBeClickable(firstName.getLocator());
 
@@ -327,7 +412,9 @@ public class BDJPersonalDetails extends BaseForm {
         saveButton.getElement().click();
     }
 
-    //tc wise done
+
+    /////////////////////////////////////////////////////
+    //Last Name (TC Wise)------------------------------
     public void lastName() {
         // valid empty name
         editButton();
@@ -479,7 +566,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Father Name (TC Wise)------------------------------
     public void fatherName() {
 
         // invalid numeric character
@@ -605,6 +693,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
+    /////////////////////////////////////////////////////
+    //Mother Name (TC Wise)------------------------------
     public void motherName() {
 
         // invalid numeric character
@@ -729,7 +819,8 @@ public class BDJPersonalDetails extends BaseForm {
         saveButton.getElement().click();
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Death of birth (TC Wise)---------------------------
     public void dob() {
         //invalid empty name
         editButton();
@@ -813,7 +904,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Gender (TC Wise)----------------------------------
     public void gender() {
         try {
             // invalid gender Select
@@ -847,7 +939,8 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Religion (TC Wise)--------------------------------
     public void religion() {
         try {
             editButton();
@@ -916,7 +1009,8 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Marial Status (TC Wise)---------------------------
     public void maritalStatus() {
         try {
             editButton();
@@ -948,7 +1042,8 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Nationality (TC Wise)-----------------------------
     public void nationality() {
         //invalid empty space
         editButton();
@@ -1095,6 +1190,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
+    /////////////////////////////////////////////////////
+    //NIDh (TC Wise)-------------------------------------
     public void nID() {
         //invalid alphabet
         editButton();
@@ -1231,7 +1328,8 @@ public class BDJPersonalDetails extends BaseForm {
         saveButton.getElement().click();
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Passport (TC Wise)--------------------------------
     public void passport() {
         editButton();
 //        String originalName = passportIssueDate.getElement().getAttribute("value");
@@ -1353,6 +1451,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
+    /////////////////////////////////////////////////////
+    //Passport Issue Date (TC Wise)---------------------
     public void passportIssuedDate() {
         //invalid empty date
 //        editButton();
@@ -1436,7 +1536,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Primary Number (TC Wise)---------------------------
     public void primaryNumber() {
         if (primaryNumberDisabled.isNotPresent()) {
             //invalid empty entry
@@ -1613,6 +1714,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
+    /////////////////////////////////////////////////////
+    //Secondary Number (TC Wise)-------------------------
     public void secondaryNumber() {
         //invalid digits
         editButton();
@@ -1677,6 +1780,8 @@ public class BDJPersonalDetails extends BaseForm {
 
     }
 
+    /////////////////////////////////////////////////////
+    //Emergency Number (TC Wise)-------------------------
     public void emergencyNumber() {
         if (emergencyNumberNotPresent.isPresent()) {
             //Max character
@@ -1808,7 +1913,8 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Primary Email (TC Wise)---------------------------
     public void primaryEmail() {
         if (primaryEmailDisabled.isNotPresent()) {
             //invalid email a
@@ -1947,7 +2053,8 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
-    //tc wise done
+    /////////////////////////////////////////////////////
+    //Alternate Email (TC Wise)---------------------------
     public void alternateEmail() {
         if (alternateEmailNotPresent.isPresent()) {
             //invalid email a
@@ -2067,7 +2174,8 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
-    //tc wise done
+     /////////////////////////////////////////////////////
+    //Blood Group (TC Wise)---------------------------
     public void bloodGroup() {
         if (bloodGroupNotPresent.isPresent()) {
             //valid select
@@ -2126,104 +2234,80 @@ public class BDJPersonalDetails extends BaseForm {
         }
     }
 
+    /////////////////////////////////////////////////////
+    //Error Message methods------------------------------
     private void errorMessageText() {
         ExplicitWait.elementToBeVisible(fNameErrorMessage.getLocator());
         Assert.assertTrue(fNameErrorMessage.isDisplayed(), errorMessageText);
     }
-
     private void errorLastNameMessageText() {
         ExplicitWait.elementToBeVisible(lNameErrorMessage.getLocator());
         Assert.assertTrue(lNameErrorMessage.isDisplayed(), errorMessageText);
     }
-
     private void errorFatherNameMessageText() {
         ExplicitWait.elementToBeVisible(fatherErrorText.getLocator());
         Assert.assertTrue(fatherErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorMotherMessageText() {
         ExplicitWait.elementToBeVisible(motherErrorText.getLocator());
         Assert.assertTrue(motherErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorDobErrorMessageText() {
         ExplicitWait.elementToBeVisible(dobErrorText.getLocator());
         Assert.assertTrue(dobErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorGenderMessageText() {
         ExplicitWait.elementToBeVisible(genderSelectorErrorText.getLocator());
         Assert.assertTrue(genderSelectorErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorMaritalStatusMessageText() {
         ExplicitWait.elementToBeVisible(martialErrorText.getLocator());
         Assert.assertTrue(martialErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorNationalityMessageText() {
         ExplicitWait.elementToBeVisible(nationalityErrorText.getLocator());
         Assert.assertTrue(nationalityErrorText.isDisplayed(), errorMessageText);
     }
-
-    private void disableCheck() {
-        if (!nationalityField.isEnabled()) {
-            bangladeshiCheckbox.getElement().click();
-        }
-    }
-
     private void errorNIDMessageText() {
         ExplicitWait.elementToBeVisible(nationalIDFieldErrorText.getLocator());
         Assert.assertTrue(nationalIDFieldErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorPassportMessageText() {
         ExplicitWait.elementToBeVisible(passportFieldErrorText.getLocator());
         Assert.assertTrue(passportFieldErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorPassportIssuedDateMessageText() {
         ExplicitWait.elementToBeVisible(passportIssueErrorText.getLocator());
         Assert.assertTrue(passportIssueErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorPrimaryNumberMessageText() {
         ExplicitWait.elementToBeVisible(primaryNumberFieldErrorText.getLocator());
         Assert.assertTrue(primaryNumberFieldErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorSecondNumberMessageText() {
         ExplicitWait.elementToBeVisible(secondNumberFieldErrorText.getLocator());
         Assert.assertTrue(secondNumberFieldErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorEmergencyMessageText() {
         ExplicitWait.elementToBeVisible(emergencyNumberErrorText.getLocator());
         Assert.assertTrue(emergencyNumberErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorPrimaryEmailMessageText() {
         ExplicitWait.elementToBeVisible(primaryEmailFieldErrorText.getLocator());
         Assert.assertTrue(primaryEmailFieldErrorText.isDisplayed(), errorMessageText);
     }
-
     private void errorAlternateEmailMessageText() {
         ExplicitWait.elementToBeVisible(alternateEmailFieldErrorText.getLocator());
         Assert.assertTrue(alternateEmailFieldErrorText.isDisplayed(), errorMessageText);
     }
 
-//    private void editButton(){
-//        if(editButton.isPresent()){
-//            ExplicitWait.elementToBeClickable(editButton.getLocator());
-//            editButton.scrollUntilElementIsVisible();
-//            editButton.getElement().click();
-//        }else {
-//            ExplicitWait.elementToBeClickable(editButton2.getLocator());
-//            editButton2.scrollUntilElementIsVisible();
-//            editButton2.getElement().click();
-//        }
-//    }
-
+    /////////////////////////////////////////////////////
+    //Common methods------------------------------------
+    private void disableCheck() {
+        if (!nationalityField.isEnabled()) {
+            bangladeshiCheckbox.getElement().click();
+        }
+    }
     private void editButton() {
         if (editButton.isPresent()) {
             ExplicitWait.elementToBeClickable(editButton.getLocator());

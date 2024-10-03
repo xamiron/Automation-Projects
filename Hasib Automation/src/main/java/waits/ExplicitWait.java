@@ -28,7 +28,7 @@ public class ExplicitWait {
 	}
 	public static void threadWait() {
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			e.printStackTrace(); // You can handle the exception here, or log it as needed
 		}

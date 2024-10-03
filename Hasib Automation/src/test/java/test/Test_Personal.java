@@ -52,7 +52,7 @@ public class Test_Personal {
         test.log(Status.PASS, "Entered username");
 
         bdjApplyPage.sendingPasswordInPasswordField();
-        test.log(Status.PASS, "Entered password ");
+        test.log(Status.PASS, "Entered password");
 //        bdjApplyPage.closeAdsIfPresent();
         bdjApplyPage.editProfile();
     }
