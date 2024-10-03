@@ -105,11 +105,6 @@ public class test {
             CompanyName.clear();
 
 
-
-
-
-
-
             // Iterate through dropdown options
             WebElement selectElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtsSelect")));
             Select selectDropdown = new Select(selectElement);
@@ -122,7 +117,7 @@ public class test {
                 selectDropdown.selectByVisibleText(option.getText());
                 System.out.println("Selected option: " + option.getText());
 
-                // Click search after each selection
+                // Click on search button after each selection
                 WebElement SearchButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
                 SearchButton1.click();
 
@@ -196,8 +191,6 @@ public class test {
             WebElement NoButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".boastNo")));
             NoButton.click();
             Thread.sleep(2000);
-
-
 
 
         } catch (Exception e) {
