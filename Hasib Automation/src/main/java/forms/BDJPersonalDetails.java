@@ -100,6 +100,7 @@ public class BDJPersonalDetails extends BaseForm {
     private final Element uploadPhotoButton1 = new Element(By.cssSelector("#uploadPhoto"));
     private final Element youtube = new Element(By.xpath("//div[@id='accordion5']//a[@target='_blank']"));
     private final Element cropAndSkipButton = new Element(By.xpath("//button[@id='cropNuploadPhoto']"));
+    private final Element cancelButton = new Element(By.xpath("//a[@id='btnCancel']"));
 
     private final String errorMessageText = "Error message is not displayed.";
 
@@ -143,10 +144,6 @@ public class BDJPersonalDetails extends BaseForm {
             if (!originalWindow.equals(windowHandle)) {
                 // Switch to the new window (YouTube tab)
                 driver.switchTo().window(windowHandle);
-
-                // Perform actions in the new window (if needed)
-
-                // Close the new tab/window
                 driver.close();
             }
         }
@@ -163,68 +160,196 @@ public class BDJPersonalDetails extends BaseForm {
             ExplicitWait.presenceOfElementLocated(yesDeleteButton.getLocator());
             yesDeleteButton.getElement().click();
 
-
-
-        } else if(choosePhoto.isDisplayed() && uploadPhotoButton1.isDisplayed()) {
             // Invalid image upload (8MB image)
-            ///////////////////////////////
+            ExplicitWait.elementToBeClickable(choosePhoto.getLocator());
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath8MB);
             handleAlertIfPresent();
 
             // Invalid image upload (5.2MB image)
-            ///////////////////////////////
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath5MB);
             handleAlertIfPresent();
 
             // Invalid PDF upload (PDF File)
-            ///////////////////////////////
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(pdfFile);
             handleAlertIfPresent();
 
             // Invalid exe upload (exe File)
-            ///////////////////////////////
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(exeFile);
             handleAlertIfPresent();
+
             // Invalid exe upload (exe File)
-            ///////////////////////////////
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(exeFile2);
             handleAlertIfPresent();
 
             // Valid image upload (2KB image)
-            ///////////////////////////////
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath2KB);
             skipCropButton();
             ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
             uploadPhotoButton1.getElement().click();
 
-            // Valid gif image upload
-            ///////////////////////////////
+            // Valid gif image upload and Crop and Skipp button
             ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
             uploadPhotoButton.getElement().click();
             ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(gifImage);
+            ExplicitWait.presenceOfElementLocated(cropAndSkipButton.getLocator());
+            cropAndSkipButton.scrollUntilElementIsVisible();
+            cropAndSkipButton.getElement().click();
+
+            // Valid gif image upload and Crop and cancel Button
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(gifImage);
+            ExplicitWait.presenceOfElementLocated(cropAndSkipButton.getLocator());
+            cancelButton.scrollUntilElementIsVisible();
+            cancelButton.getElement().click();
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(gifImage);
             skipCropButton();
             ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
             uploadPhotoButton1.getElement().click();
 
             // Valid gif image upload
-            ///////////////////////////////
             ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
             uploadPhotoButton.getElement().click();
             ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath4MB);
             skipCropButton();
             ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
             uploadPhotoButton1.getElement().click();
 
             // Valid image upload
-            ///////////////////////////////
             ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
             uploadPhotoButton.getElement().click();
             ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePathCorrect);
             skipCropButton();
             ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
+            uploadPhotoButton1.getElement().click();
+
+        } else if(choosePhoto.isDisplayed() && uploadPhotoButton1.isDisplayed()) {
+            // Invalid image upload (8MB image)
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(filePath8MB);
+            handleAlertIfPresent();
+
+            // Invalid image upload (5.2MB image)
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(filePath5MB);
+            handleAlertIfPresent();
+
+            // Invalid PDF upload (PDF File)
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(pdfFile);
+            handleAlertIfPresent();
+
+            // Invalid exe upload (exe File)
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(exeFile);
+            handleAlertIfPresent();
+
+            // Invalid exe upload (exe File)
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(exeFile2);
+            handleAlertIfPresent();
+
+            // Valid image upload (2KB image)
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(filePath2KB);
+            skipCropButton();
+            ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
+            uploadPhotoButton1.getElement().click();
+
+            // Valid gif image upload and Crop and Skipp button
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(gifImage);
+            ExplicitWait.presenceOfElementLocated(cropAndSkipButton.getLocator());
+            cropAndSkipButton.scrollUntilElementIsVisible();
+            cropAndSkipButton.getElement().click();
+
+            // Valid gif image upload and Crop and cancel Button
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(gifImage);
+            ExplicitWait.presenceOfElementLocated(cropAndSkipButton.getLocator());
+            cancelButton.scrollUntilElementIsVisible();
+            cancelButton.getElement().click();
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(gifImage);
+            skipCropButton();
+            ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
+            uploadPhotoButton1.getElement().click();
+
+            // Valid gif image upload
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(filePath4MB);
+            skipCropButton();
+            ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
+            uploadPhotoButton1.getElement().click();
+
+            // Valid image upload
+            ExplicitWait.presenceOfElementLocated(uploadPhotoButton.getLocator());
+            uploadPhotoButton.scrollUntilElementIsVisible();
+            uploadPhotoButton.getElement().click();
+            ExplicitWait.presenceOfElementLocated(changePhoto.getLocator());
+            changePhoto.scrollUntilElementIsVisible();
+            changePhoto.getElement().click();
+            choosePhoto.scrollUntilElementIsVisible();
+            choosePhoto.getElement().sendKeys(filePathCorrect);
+            skipCropButton();
+            ExplicitWait.elementToBeClickable(uploadPhotoButton1.getLocator());
+            uploadPhotoButton1.scrollUntilElementIsVisible();
             uploadPhotoButton1.getElement().click();
         }
     }
@@ -250,6 +375,7 @@ public class BDJPersonalDetails extends BaseForm {
     public void skipCropButton() {
         try {
             Thread.sleep(5000);
+            skipCropButton.scrollUntilElementIsVisible();
             skipCropButton.getElement().click();
         } catch (InterruptedException e) {
             e.printStackTrace();
