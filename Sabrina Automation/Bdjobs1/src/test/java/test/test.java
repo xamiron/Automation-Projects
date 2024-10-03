@@ -3,11 +3,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class test {
 
@@ -36,7 +38,7 @@ public class test {
 
             // Enter username
             WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='TXTUSERNAME']")));
-            usernameField.sendKeys("renmondal");
+            usernameField.sendKeys("01980855752");
 
             // Click Continue button
             WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Continue']")));
@@ -44,7 +46,7 @@ public class test {
 
             // Enter password
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='TXTPASS']")));
-            passwordField.sendKeys("12345678");
+            passwordField.sendKeys("123456789");
 
             // Click Sign in button
             WebElement signInButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Sign in']")));
@@ -54,28 +56,84 @@ public class test {
             WebElement manageProfileDropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='manageResumeMenu']")));
             manageProfileDropdown.click();
 
-            // Wait for the Dashboard link to be visible and clickable
-            WebElement dashboardLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Dashboard']")));
-            dashboardLink.click();
+            // Wait for and click the Video CV link
+            WebElement videoCV = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Video CV']")));
+            videoCV.click();
 
+            // Switch to the new tab for Video CV
+            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
 
+            // Close the popup tutorial if it appears
+            WebElement closeButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[id='videoTutorialCloseBtn'] span[aria-hidden='true']")));
+            closeButton.click();
 
-            //will click on personalized cv
-            WebElement customizedcv = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#tab-personaliz")));
-            customizedcv.click();
+            // Optionally click the "Take Preparation" button
+            WebElement takePreparation = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Take Preparation']")));
             Thread.sleep(2000);
+            takePreparation.click();
 
-            wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".bactbtn"))).click();//view button click
-            Thread.sleep(2000);
-
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='icon-video-help-o']"))).click(); //video icon click
-            Thread.sleep(400);
-
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Close']"))).click(); //cross icon click
+            // Close the "Take Preparation" modal
+            WebElement crossButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='videoResumeTakePreparation']//button[@type='button'][normalize-space()='×']")));
             Thread.sleep(200);
+            crossButton.click();
 
+            // Switch to the "User Guide" tab
+            WebElement userGuide = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='User Guide']")));
+            userGuide.click();
+            Thread.sleep(3000);
 
+            // Switch to the newly opened User Guide tab
+            tabs = new ArrayList<>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(2));
+            Thread.sleep(3000);
+            driver.close();
 
+            // Switch back to the main window
+            driver.switchTo().window(tabs.get(1));
+           Thread.sleep(2000);
+
+            // Click on the "Video Guide" link
+            WebElement videoGuide = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Video Guide']")));
+            videoGuide.click();
+            Thread.sleep(3000);
+
+            // Switch to the new tab for Video Guide
+            tabs = new ArrayList<>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(2));
+            Thread.sleep(3000);
+            driver.close();
+
+            // Switch back to the main window
+            driver.switchTo().window(tabs.get(1));
+            Thread.sleep(2000);
+
+            //click on create video cv
+            WebElement createvideocv = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='act-btn']")));
+            createvideocv.click();
+
+            //click on samplevideos
+            WebElement samplevideos = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Sample Video']")));
+            samplevideos.click();
+            Thread.sleep(2000);
+
+            //click on sample videos popup close
+            WebElement sampleiconclose = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='videoTutorialCloseBtn']//span[@aria-hidden='true'][normalize-space()='×']")));
+            sampleiconclose.click();
+
+            // Hover over the tooltip element
+            WebElement tooltipElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@id='anstlnk']")));
+
+            // Use Actions class to hover over the tooltip
+            Actions action = new Actions(driver);
+            action.moveToElement(tooltipElement).perform();
+
+           // Add a delay to keep the tooltip visible for a moment
+            Thread.sleep(3000);
+
+            //click on Record Now button
+            WebElement Recordnow = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='no-vid-er-wrap']//div[2]//button[1]")));
+            Recordnow.click();
 
 
         } catch (Exception e) {
