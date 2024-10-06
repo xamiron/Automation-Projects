@@ -4,6 +4,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
@@ -31,7 +32,7 @@ public class test {
 
             // Login process
             WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("TXTUSERNAME")));
-            usernameField.sendKeys("vb9@gmil.vom");
+            usernameField.sendKeys("avary");
 
             WebElement nextButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn.btn-success.btn-signin")));
             nextButton.click();
@@ -134,7 +135,7 @@ public class test {
             // Click on the job title link after refreshing
             WebElement JobTitle = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] a[class='ajtlnk']")));
             JobTitle.click();
-            Thread.sleep(2000);
+            Thread.sleep(4000);
 
             // Switch to the newly opened tab and close it
             String originalWindow = driver.getWindowHandle();
@@ -161,7 +162,9 @@ public class test {
             driver.navigate().back();
             Thread.sleep(2000);
 
-            SmsIcon.click();
+            /// Interact with the SMS icon
+            WebElement SmsIcon1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] span[class='icon-send-message isndmsg']")));
+            SmsIcon1.click();
             Thread.sleep(2000);
 
             // Close the SMS modal
@@ -176,7 +179,7 @@ public class test {
 
             WebElement YesButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".visitbdjp")));
             YesButton.click();
-            Thread.sleep(3000);
+            Thread.sleep(2000);
 
             // Switch to the newly opened tab
             String originalWindow1 = driver.getWindowHandle();
@@ -196,13 +199,70 @@ public class test {
 
             // Continue with the Boost icon interaction
             //WebElement BoostIcon1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
-            BoostIcon.click();
-            Thread.sleep(2000);
+            //click on Boost icon
+            WebElement BoostIcon2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
+            BoostIcon2.click();
+            Thread.sleep(3000);
 
             // Continue with the Boost icon interaction
             WebElement NoButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".boastNo")));
             NoButton.click();
+            Thread.sleep(5000);
+/*
+            // Click on video Cv Icon
+            WebElement VcvIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='ajcart'] a[class='pelnk']]")));
+            VcvIcon.click();
+            Thread.sleep(3000);
+
+            // Switch to the newly opened tab
+            String originalWindow2 = driver.getWindowHandle();
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!originalWindow2.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    break;
+                }
+            }
+
+            // Close the new tab
+            driver.close();
+
+            // Switch back to the original tab
+            driver.switchTo().window(originalWindow);
+            driver.navigate().refresh();
+*/
+
+            //Click on Expected Salary
+            WebElement Esalary = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[class='edit'] span[class='icon-edit icon']")));
+            Esalary.click();
             Thread.sleep(2000);
+
+            // Clear Expected Salary
+
+            WebElement EsalaryClear = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#expSalary0")));
+            EsalaryClear.clear();
+            Thread.sleep(2000);
+
+            WebElement Canacle = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='write-amo-wrap salary-edit'] a[class='btn cancel']")));
+            Canacle.click();
+            Thread.sleep(2000);
+
+            Esalary.click();
+            Thread.sleep(2000);
+            EsalaryClear.clear();
+            Thread.sleep(2000);
+            EsalaryClear.sendKeys("250000");
+            Thread.sleep(2000);
+
+            WebElement ESave = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='write-amo-wrap salary-edit'] button[type='submit']")));
+            ESave.click();
+
+
+
+
+
+
+
+
 
 
         } catch (Exception e) {
