@@ -197,8 +197,6 @@ public class test {
             driver.switchTo().window(originalWindow);
             driver.navigate().refresh();
 
-            // Continue with the Boost icon interaction
-            //WebElement BoostIcon1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
             //click on Boost icon
             WebElement BoostIcon2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
             BoostIcon2.click();
@@ -207,12 +205,13 @@ public class test {
             // Continue with the Boost icon interaction
             WebElement NoButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".boastNo")));
             NoButton.click();
-            Thread.sleep(5000);
-/*
-            // Click on video Cv Icon
-            WebElement VcvIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='ajcart'] a[class='pelnk']]")));
-            VcvIcon.click();
             Thread.sleep(3000);
+
+            //Click on Video Cv Icon
+            WebElement VcvIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='ajcart'] span[class='icon-vdeo-resume icon']")));
+            VcvIcon.click();
+            Thread.sleep(5000);
+
 
             // Switch to the newly opened tab
             String originalWindow2 = driver.getWindowHandle();
@@ -229,35 +228,88 @@ public class test {
             // Switch back to the original tab
             driver.switchTo().window(originalWindow);
             driver.navigate().refresh();
-*/
 
-            //Click on Expected Salary
-            WebElement Esalary = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[class='edit'] span[class='icon-edit icon']")));
-            Esalary.click();
-            Thread.sleep(2000);
+            //Expected Salary Section
+            try {
+                WebElement Esalary = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[class='edit'] span[class='icon-edit icon']")));
+                Esalary.click();
+                Thread.sleep(2000);  // Adding a delay after the click action
+            } catch (TimeoutException e) {
+                System.out.println("Expected Salary field not found.");
+            }
 
             // Clear Expected Salary
-
             WebElement EsalaryClear = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#expSalary0")));
             EsalaryClear.clear();
             Thread.sleep(2000);
-
             WebElement Canacle = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='write-amo-wrap salary-edit'] a[class='btn cancel']")));
             Canacle.click();
             Thread.sleep(2000);
 
-            Esalary.click();
+            //Salary Section Empty
+            WebElement Esalary1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[class='edit'] span[class='icon-edit icon']")));
+            Esalary1.click();
             Thread.sleep(2000);
             EsalaryClear.clear();
             Thread.sleep(2000);
-            EsalaryClear.sendKeys("250000");
+            EsalaryClear.sendKeys("");
             Thread.sleep(2000);
-
             WebElement ESave = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='write-amo-wrap salary-edit'] button[type='submit']")));
             ESave.click();
+            Thread.sleep(4000);
+
+            // Switch to the alert
+            Alert alert = driver.switchTo().alert();
+            // Click the OK button
+            alert.accept();
+            driver.navigate().refresh();
+            Thread.sleep(4000);
 
 
+            // Enter Valid Salary
+            WebElement Esalary2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[class='edit'] span[class='icon-edit icon']")));
+            Esalary2.click();
+            Thread.sleep(2000);
+            WebElement EsalaryClear2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#expSalary0")));
+            EsalaryClear2.clear();
+            Thread.sleep(2000);
+            WebElement EsalaryEnter = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#expSalary0")));
+            EsalaryEnter.sendKeys("29000");
+            Thread.sleep(2000);
+            WebElement ESave2 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='write-amo-wrap salary-edit'] button[type='submit']")));
+            ESave2.click();
+            Thread.sleep(4000);
 
+/*
+            //Click on Video Cv Icon
+            WebElement VcvIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='ajcart'] span[class='icon-vdeo-resume icon']")));
+            VcvIcon.click();
+            Thread.sleep(2000);
+
+
+            // Switch to the newly opened tab
+            String originalWindow2 = driver.getWindowHandle();
+            for (String windowHandle : driver.getWindowHandles()) {
+                if (!originalWindow2.equals(windowHandle)) {
+                    driver.switchTo().window(windowHandle);
+                    break;
+                }
+            }
+
+            // Close the new tab
+            driver.close();
+
+            // Switch back to the original tab
+            driver.switchTo().window(originalWindow);
+            driver.navigate().refresh();
+
+ */
+            try {
+                WebElement nyetButton = driver.findElement(By.id("nyet-btn2"));
+                nyetButton.click();
+            } catch (NoSuchElementException e) {
+                System.out.println("button not found.");
+            }
 
 
 
