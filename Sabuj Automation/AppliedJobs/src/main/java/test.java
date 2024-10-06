@@ -155,9 +155,19 @@ public class test {
             SmsIcon.click();
             Thread.sleep(2000);
 
+            //Click on bdjobs pro Link
+            WebElement BdjPro = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn.btn-green.pro")));
+            BdjPro.click();
+            driver.navigate().back();
+            Thread.sleep(2000);
+
+            SmsIcon.click();
+            Thread.sleep(2000);
+
             // Close the SMS modal
             WebElement CloseIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cancel.chatclose.icon-times-o")));
             CloseIcon.click();
+            Thread.sleep(2000);
 
             //click on Boost icon
             WebElement BoostIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
@@ -166,6 +176,8 @@ public class test {
 
             WebElement YesButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".visitbdjp")));
             YesButton.click();
+            Thread.sleep(3000);
+
             // Switch to the newly opened tab
             String originalWindow1 = driver.getWindowHandle();
             for (String windowHandle : driver.getWindowHandles()) {
@@ -183,8 +195,8 @@ public class test {
             driver.navigate().refresh();
 
             // Continue with the Boost icon interaction
-            WebElement BoostIcon1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
-            BoostIcon1.click();
+            //WebElement BoostIcon1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
+            BoostIcon.click();
             Thread.sleep(2000);
 
             // Continue with the Boost icon interaction
