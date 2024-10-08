@@ -32,7 +32,7 @@ public class pro {
 
             // Login process
             WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("TXTUSERNAME")));
-            usernameField.sendKeys("avary");
+            usernameField.sendKeys("avary)");
 
             WebElement nextButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".btn.btn-success.btn-signin")));
             nextButton.click();
@@ -41,7 +41,7 @@ public class pro {
             passwordField.sendKeys("12345678");
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
-            Thread.sleep(2000);
+            Thread.sleep(3000);
 /*
             // Wait for and close the pop-up if it appears
             try {
@@ -151,10 +151,49 @@ public class pro {
 
             driver.navigate().refresh();  // Refresh the original tab
 
-            /// Interact with the SMS icon
-            WebElement SmsIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] span[class='icon-send-message isndmsg']")));
-            SmsIcon.click();
-            Thread.sleep(2000);
+
+
+            try {
+                // Interact with the SMS icon
+                WebElement SmsIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='1'] span[class='icon-send-message isndmsg']")));
+                SmsIcon.click();
+                Thread.sleep(2000);
+
+                // Try to interact with the SMS input field and proceed with sending a message
+                WebElement TypeSms = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#msginput")));
+                TypeSms.sendKeys("");  // Initial empty input
+
+
+                WebElement SendSms = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[class='icon-send-email']")));
+                SendSms.click();
+
+
+                WebElement OkBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+                OkBtn.click();
+
+
+                // Send a test message if everything was successful so far
+                TypeSms.sendKeys("Hello This is Test Message!");
+                SendSms.click();
+
+            } catch (TimeoutException e) {
+                // If any step in the try block fails, handle it by closing the chat
+                System.out.println("Element not found or action failed, closing the chat.");
+
+                // Click the close icon if the input field or other elements weren't found
+                WebElement CrossIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cancel.chatclose.icon-times-o")));
+                CrossIcon.click();
+                Thread.sleep(2000);
+            }
+
+            // After everything (whether success or fail), ensure chat is closed or continue further actions
+            try {
+                WebElement CrossIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cancel.chatclose.icon-times-o")));
+                CrossIcon.click();
+                Thread.sleep(2000);
+            } catch (TimeoutException e) {
+                System.out.println("Failed to close the chat.");
+            }
 
 
 
