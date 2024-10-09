@@ -10,6 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.time.Duration;
 
+import static org.bouncycastle.asn1.crmf.SinglePubInfo.web;
+
 public class pro {
 
     public static void main(String[] args) {
@@ -42,7 +44,7 @@ public class pro {
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(3000);
-/*
+
             // Wait for and close the pop-up if it appears
             try {
                 WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
@@ -52,7 +54,7 @@ public class pro {
             } catch (TimeoutException ignored) {
                 System.out.println("No pop-up appeared.");
             }
-*/
+
             // Navigate to Applied Jobs section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
@@ -166,6 +168,7 @@ public class pro {
 
                 WebElement SendSms = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("span[class='icon-send-email']")));
                 SendSms.click();
+                Thread.sleep(2000);
 
 
                 WebElement OkBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
@@ -175,6 +178,8 @@ public class pro {
                 // Send a test message if everything was successful so far
                 TypeSms.sendKeys("Hello This is Test Message!");
                 SendSms.click();
+
+                //OkBtn.click();
 
             } catch (TimeoutException e) {
                 // If any step in the try block fails, handle it by closing the chat
@@ -186,14 +191,15 @@ public class pro {
                 Thread.sleep(2000);
             }
 
-            // After everything (whether success or fail), ensure chat is closed or continue further actions
-            try {
-                WebElement CrossIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".cancel.chatclose.icon-times-o")));
-                CrossIcon.click();
-                Thread.sleep(2000);
-            } catch (TimeoutException e) {
-                System.out.println("Failed to close the chat.");
-            }
+            driver.navigate().refresh();  // Refresh the original tab
+
+            //Click on Boost Icon
+            WebElement BoostIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv0'] span[class='icon-boost']")));
+            BoostIcon.click();
+            Thread.sleep(2000);
+            WebElement CloseButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".visitbdjp")));
+            CloseButton.click();
+
 
 
 
