@@ -193,8 +193,8 @@ public class pro {
 
             driver.navigate().refresh();  // Refresh the original tab
 
-            //Click on Boost Icon
-            WebElement BoostIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv0'] span[class='icon-boost']")));
+            //click on Boost icon
+            WebElement BoostIcon = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[id='boostdiv3'] span[class='icon-boost']")));
             BoostIcon.click();
             Thread.sleep(2000);
             WebElement CloseButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".visitbdjp")));
