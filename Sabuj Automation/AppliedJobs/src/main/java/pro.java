@@ -44,7 +44,7 @@ public class pro {
 
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(3000);
-
+/*
             // Wait for and close the pop-up if it appears
             try {
                 WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
@@ -54,7 +54,7 @@ public class pro {
             } catch (TimeoutException ignored) {
                 System.out.println("No pop-up appeared.");
             }
-
+*/
             // Navigate to Applied Jobs section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
