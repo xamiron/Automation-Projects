@@ -122,6 +122,7 @@ public class Test_Personal {
 
         bdjPersonalDetails.uploadImage();
         test.log(Status.PASS, "Upload image entered");
+
     }
 
     @AfterClass
