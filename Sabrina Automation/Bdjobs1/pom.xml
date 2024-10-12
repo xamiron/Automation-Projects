@@ -12,8 +12,27 @@
           <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.23.1</version>
+            <version>4.25.0</version>
           </dependency>
+          <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+          <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.9.2</version>
+          </dependency>
+          <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools -->
+          <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools</artifactId>
+            <version>4.0.0-rc-1</version>
+          </dependency>
+          <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v124 -->
+          <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v124</artifactId>
+            <version>4.22.0</version>
+          </dependency>
+
 
 
         </dependencies>

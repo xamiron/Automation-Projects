@@ -1,3 +1,4 @@
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,11 +8,14 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 import java.io.File;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-public class test {
+public class videocvupload {
 
     public static void main(String[] arg) {
         // Set up ChromeOptions to include the ad blocker extension
@@ -24,7 +28,6 @@ public class test {
         if (extensionFile.exists() && extensionFile.isFile()) {
             options.addExtensions(extensionFile);
         }
-
         // Initialize WebDriver with ChromeOptions
         WebDriver driver = new ChromeDriver(options);
 
@@ -34,7 +37,7 @@ public class test {
             // Navigate to the SignIn page
             driver.get("https://mybdjobs.bdjobs.com/mybdjobs/signin.asp");
 
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
             // Enter username
             WebElement usernameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='TXTUSERNAME']")));
@@ -91,7 +94,7 @@ public class test {
 
             // Switch back to the main window
             driver.switchTo().window(tabs.get(1));
-           Thread.sleep(2000);
+            Thread.sleep(2000);
 
             // Click on the "Video Guide" link
             WebElement videoGuide = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Video Guide']")));
@@ -128,13 +131,22 @@ public class test {
             Actions action = new Actions(driver);
             action.moveToElement(tooltipElement).perform();
 
-           // Add a delay to keep the tooltip visible for a moment
+            // Add a delay to keep the tooltip visible for a moment
             Thread.sleep(3000);
 
             //click on Record Now button
             WebElement Recordnow = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='no-vid-er-wrap']//div[2]//button[1]")));
             Recordnow.click();
+            Thread.sleep(5000);
 
+            // Wait for the popup to appear (adjust the timeout as needed)
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+            Thread.sleep(3000);
+
+            // will click on Record button
+            WebElement startrecording = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("input[value='Start Recording']")));
+            startrecording.click();
 
         } catch (Exception e) {
             throw new RuntimeException(e);
