@@ -67,23 +67,20 @@ public class test {
             TOverview .click();
             Thread.sleep(2000);
 
-            // Filtering jobs based on dates and company name
+            // Filtering Transaction based on dates
             WebElement FromDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
             FromDateField.sendKeys("05/01/2024");
-            // Filtering jobs based on dates and company name
-
+            // Filtering Transaction based on dates
             WebElement ToDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
             ToDateField.sendKeys("09/01/2024");
             WebElement SearchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
             SearchButton.click();
             Thread.sleep(2000);
 
-
-
-
             FromDateField.clear();
             ToDateField.clear();
-            /// Invalid Date & Company Name
+
+            /// Invalid Date
             FromDateField.sendKeys("2024");
             Thread.sleep(2000);
             ToDateField.sendKeys("05");
@@ -97,6 +94,7 @@ public class test {
             FromDateField.clear();
             Thread.sleep(2000);
             ToDateField.clear();
+
             /// Invalid Date
             FromDateField.sendKeys("greirtrkhj");
             Thread.sleep(2000);
@@ -109,33 +107,24 @@ public class test {
 
             FromDateField.clear();
             ToDateField.clear();
+
+            // Search by valid date
             FromDateField.sendKeys("05/01/2023");
             ToDateField.sendKeys("10/22/2024");
             SearchButton.click();
 
-
             // Locate the dropdown
             WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("category")));
 
-// Create a Select object to interact with the dropdown
+            // Create a Select object to interact with the dropdown
             Select selectDropdown = new Select(dropdown);
-
-// Get all options from the dropdown
             List<WebElement> allOptions = selectDropdown.getOptions();
-
-// Loop through each option, select it, and click the search button
             for (int i = 0; i < allOptions.size(); i++) {
-                // Select the option by index
                 selectDropdown.selectByIndex(i);
-
                 // Wait for the Search button to be clickable
                 WebElement SearchButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
-
-                // Click the Search button
                 SearchButton1.click();
-
-                // Optionally, add a short wait or other logic to handle results after the click
-                Thread.sleep(2000); // This is just an example, adjust the wait as needed
+                Thread.sleep(2000);
             }
 
 
