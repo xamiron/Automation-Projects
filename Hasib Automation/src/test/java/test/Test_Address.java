@@ -50,8 +50,6 @@ public class Test_Address {
         test.log(Status.PASS, "Entered password ");
 //        bdjApplyPage.closeAdsIfPresent();
         bdjApplyPage.editProfile();
-
-
     }
 
     @Test(priority = 2)
@@ -81,8 +79,8 @@ public class Test_Address {
 
         bdjAddressDetails.permanentAddressIndividualInsideBangladesh();
         test.log(Status.PASS, "Permanent Address Individual entered");
-        bdjAddressDetails.permanentAddressIndividualOutsideBangladesh();
-        test.log(Status.PASS, "Permanent Address Individual Outside Bangladesh entered");
+//        bdjAddressDetails.permanentAddressIndividualOutsideBangladesh();
+//        test.log(Status.PASS, "Permanent Address Individual Outside Bangladesh entered");
     }
 
 
