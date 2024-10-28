@@ -58,7 +58,7 @@ public class test {
                 System.out.println("No pop-up appeared.");
             }
 
-            // Navigate to Transaction section
+            /// Navigate to Transaction section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
             Thread.sleep(2000);
