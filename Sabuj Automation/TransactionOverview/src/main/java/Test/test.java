@@ -48,7 +48,7 @@ public class test {
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(3000);
 
-            // Wait for and close the pop-up if it appears
+            ///Wait for and close the pop-up if it appears
             try {
                 WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
                 if (popUpButton.isDisplayed()) {
