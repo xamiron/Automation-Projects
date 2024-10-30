@@ -58,7 +58,7 @@ public class test {
                 System.out.println("No pop-up appeared.");
             }
 
-            /// Navigate to Transaction section
+            // Navigate to Transaction section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
             Thread.sleep(2000);
@@ -80,7 +80,7 @@ public class test {
             FromDateField.clear();
             ToDateField.clear();
 
-            /////// Invalid Date
+            // Invalid Date
             FromDateField.sendKeys("2024");
             Thread.sleep(2000);
             ToDateField.sendKeys("05");
@@ -105,20 +105,19 @@ public class test {
             FromDateField.sendKeys("05/01/2023");
             ToDateField.sendKeys("10/22/2024");
             SearchButton.click();
+            //Search By Company Name
+            WebElement CompanyName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
+            CompanyName.sendKeys("Bdjobs");
+            SearchButton.click();
+            Thread.sleep(2000);
+            CompanyName.clear();
+            CompanyName.sendKeys("@&*%$");
+            Thread.sleep(2000);
+            SearchButton.click();
 
-            // Locate the dropdown
-            WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.id("category")));
 
-            // Create a Select object to interact with the dropdown
-            Select selectDropdown = new Select(dropdown);
-            List<WebElement> allOptions = selectDropdown.getOptions();
-            for (int i = 0; i < allOptions.size(); i++) {
-                selectDropdown.selectByIndex(i);
-                // Wait for the Search button to be clickable
-                WebElement SearchButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
-                SearchButton1.click();
-                Thread.sleep(2000);
-            }
+
+
 
 
 
