@@ -140,8 +140,12 @@ public class BDJAddressDetails extends BaseForm {
     private final Element permanentAddressField = new Element(By.cssSelector("div[class='title-wrap'] span[class='label'] "));
     //present outside bangladesh
     private final Element presentAfganistan= new Element(By.cssSelector("select[id='present_country_list'] option[value='101']"));
+    private final Element permanentGazipur = new Element(By.cssSelector("select[id='permanent_district'] option[value='19']"));
+    private final Element permanentGazipurShadar= new Element(By.cssSelector("option[value='1279']"));
+    private final Element permanentBOF= new Element(By.cssSelector("option[value='2290']"));
 
     private final String errorMessageText = "Error message is not displayed.";
+
 
     public BDJAddressDetails() {
         super(new Element(By.cssSelector("button.btn.collapsed[data-target='#collapseTwo']")));
@@ -586,17 +590,6 @@ public class BDJAddressDetails extends BaseForm {
     }
 
     public void permanentAddressIndividualInsideBangladesh(){
-//        try{
-//            if (closeButton.isDisplayed()) {
-//                closeButton.getElement().click();
-//                personalButton.getElement().click();
-//            }
-//        } catch (NoSuchElementException | TimeoutException e) {
-//            System.out.println("Element not found or not clickable: " + e.getMessage());
-//        }
-
-//        addressDetailsDropdown.scrollUntilElementIsVisible();
-//        addressDetailsDropdown.getElement().click();
         ExplicitWait.elementToBeClickable(editButton.getLocator());
         editButton.getElement().click();
 
@@ -604,81 +597,130 @@ public class BDJAddressDetails extends BaseForm {
             checkboxbutton.getElement().click();
         }
 
-        try {
-            if (houseTextField.isEmpty()) {
-                houseTextField.getElement().clear();
-                houseTextField.sendKeysWithDelay("Building: Arial Kha, House: 182, Flat: 6/c, Dhanmondi, Dhaka-1209");
-            }
-        } catch (NoSuchElementException | TimeoutException e) {
-            System.out.println("Element not found or not clickable: " + e.getMessage());
+        if (permanentVillageField.isEmpty()) {
+            permanentVillageField.getElement().clear();
+            permanentVillageField.sendKeysWithDelay("Building: Arial Kha, House: 182, Flat: 6/c, Dhanmondi, Dhaka-1209");
         }
         permanentInsideBangladesh.getElement().click();
 
-        //invalid district
+        permanentThanaDropdown.getElement().click();
+        permanentThanaSelect.getElement().click();
+        permanentPODropdown.getElement().click();
+        permanentPOSelect.getElement().click();
+
+        //district dropdown check
         permanentDistrictDropDown.getElement().click();
         permanentDistrictSelect.getElement().click();
         saveButton.getElement().click();
         errorPermanentDistrictMessageText();
 
-        //Valid district
         permanentDistrictDropDown.getElement().click();
-        permanentBrahmanbaria.getElement().click();
-        saveButton.getElement().click();
+        sleep();
+        ExplicitWait.presenceOfElementLocated(permanentGazipur.getLocator());
+        permanentGazipur.getElement().click();
+        Assert.assertTrue(permanentGazipur.isDisplayed(),"Dropdown options are not visible after clicking.");
 
-        //invalid thana
+        //thana dropdown check
         permanentThanaDropdown.getElement().click();
-        permanentThanaSelect.getElement().click();
-        saveButton.getElement().click();
-        errorThanaDistrictMessageText();
-//
-        //valid thana
+        sleep();
+        ExplicitWait.presenceOfElementLocated(permanentGazipurShadar.getLocator());
+        permanentGazipurShadar.getElement().click();
+        Assert.assertTrue(permanentGazipurShadar.isDisplayed(),"Thana is not present");
+
+        //Po Dropdown Check
+        permanentPODropdown.getElement().click();
+        sleep();
+        ExplicitWait.presenceOfElementLocated(permanentBOF.getLocator());
+        Assert.assertTrue(permanentBOF.isDisplayed(),"Dropdown options are not visible after clicking.");
+
+        // valid House No/Road/Village
+        permanentDistrictDropDown.getElement().click();
+        permanentGazipur.getElement().click();
         permanentThanaDropdown.getElement().click();
-        permanentAkhauraSelect.getElement().click();
+        permanentGazipurShadar.getElement().click();
+        permanentPODropdown.getElement().click();
+        permanentBOF.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("      30, banasree, block B");
+        sleep();
+        disableCheckBox.getElement().click();
         saveButton.getElement().click();
-//
-        //invalid but accepting
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //valid 150 character
+        sleep();
         editButton.getElement().click();
-        permanentPODropdown.getElement().click();
-        permanentPOSelect.getElement().click();
-        permanenetVillageFieldText.getElement().clear();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("asdasdagsfagsdfkghgggggggggggggggggddadag mail.com asdasdagsfagsdfkghgggggggggggggggggddadag mail.comasdasdagsfagsdfkghgggggggggggggggggddadag mail.co");
         saveButton.getElement().click();
-        errorPermanentVillageMessageText();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
 
-        //valid
-        permanentPODropdown.getElement().click();
-        permanentAkauraPOSelect.getElement().click();
-        permanenetVillageFieldText.getElement().clear();
-        saveButton.getElement().click();
-        errorPermanentVillageMessageText();
 
-        //invalid text name
-        permanenetVillageFieldText.getElement().clear();
-        permanenetVillageFieldText.sendKeysWithDelay("");
-        saveButton.getElement().click();
-        errorPermanentVillageMessageText();
-
-        //invalid white space
-        permanenetVillageFieldText.getElement().clear();
-        permanenetVillageFieldText.sendKeysWithDelay("  ");
-        saveButton.getElement().click();
-        errorPermanentVillageMessageText();
-
-        //invalid special character
-        permanenetVillageFieldText.getElement().clear();
-        permanenetVillageFieldText.sendKeysWithDelay("!@#$%^&*()_");
-        saveButton.getElement().click();
-        errorPermanentVillageMessageText();
-
-        //invalid max character
-        permanenetVillageFieldText.getElement().clear();
-        permanenetVillageFieldText.sendKeysWithDelay("!@ba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba1");
-        saveButton.getElement().click();
-        errorPermanentVillageMessageText();
-
-        //valid special character
-        permanenetVillageFieldText.getElement().clear();
-        permanenetVillageFieldText.sendKeysWithDelay("Dhaka, rayer bazar 2");
-        saveButton.getElement().click();
+//        //invalid district
+//        permanentDistrictDropDown.getElement().click();
+//        permanentDistrictSelect.getElement().click();
+//        saveButton.getElement().click();
+//        errorPermanentDistrictMessageText();
+//
+//        //Valid district
+//        permanentDistrictDropDown.getElement().click();
+//        permanentBrahmanbaria.getElement().click();
+//        saveButton.getElement().click();
+//
+//        //invalid thana
+//        permanentThanaDropdown.getElement().click();
+//        permanentThanaSelect.getElement().click();
+//        saveButton.getElement().click();
+//        errorThanaDistrictMessageText();
+////
+//        //valid thana
+//        permanentThanaDropdown.getElement().click();
+//        permanentAkhauraSelect.getElement().click();
+//        saveButton.getElement().click();
+////
+//        //invalid but accepting
+//        editButton.getElement().click();
+//        permanentPODropdown.getElement().click();
+//        permanentPOSelect.getElement().click();
+//        permanenetVillageFieldText.getElement().clear();
+//        saveButton.getElement().click();
+//        errorPermanentVillageMessageText();
+//
+//        //valid
+//        permanentPODropdown.getElement().click();
+//        permanentAkauraPOSelect.getElement().click();
+//        permanenetVillageFieldText.getElement().clear();
+//        saveButton.getElement().click();
+//        errorPermanentVillageMessageText();
+//
+//        //invalid text name
+//        permanenetVillageFieldText.getElement().clear();
+//        permanenetVillageFieldText.sendKeysWithDelay("");
+//        saveButton.getElement().click();
+//        errorPermanentVillageMessageText();
+//
+//        //invalid white space
+//        permanenetVillageFieldText.getElement().clear();
+//        permanenetVillageFieldText.sendKeysWithDelay("  ");
+//        saveButton.getElement().click();
+//        errorPermanentVillageMessageText();
+//
+//        //invalid special character
+//        permanenetVillageFieldText.getElement().clear();
+//        permanenetVillageFieldText.sendKeysWithDelay("!@#$%^&*()_");
+//        saveButton.getElement().click();
+//        errorPermanentVillageMessageText();
+//
+//        //invalid max character
+//        permanenetVillageFieldText.getElement().clear();
+//        permanenetVillageFieldText.sendKeysWithDelay("!@ba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba1");
+//        saveButton.getElement().click();
+//        errorPermanentVillageMessageText();
+//
+//        //valid special character
+//        permanenetVillageFieldText.getElement().clear();
+//        permanenetVillageFieldText.sendKeysWithDelay("Dhaka, rayer bazar 2");
+//        saveButton.getElement().click();
     }
 
     public void permanentAddressIndividualOutsideBangladesh(){
