@@ -58,7 +58,7 @@ public class test {
                 System.out.println("No pop-up appeared.");
             }
 
-            // Navigate to Transaction section
+            // Navigate to Shortlisted Jobs  section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
             Thread.sleep(2000);
@@ -67,7 +67,7 @@ public class test {
             TOverview .click();
             Thread.sleep(2000);
 
-            // Filtering Transaction based on dates
+            // Filtering Shortlisted Jobs based on dates
             WebElement FromDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
             FromDateField.sendKeys("05/01/2024");
             // Filtering Transaction based on dates
