@@ -29,7 +29,7 @@ public class test {
 
         // Maximize the window and set up WebDriverWait
         driver.manage().window().maximize();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
         try {
             // Navigate to bdjobs.com
@@ -48,20 +48,20 @@ public class test {
             wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input[value='Sign in']"))).click();
             Thread.sleep(3000);
 
-            ///Wait for and close the pop-up if it appears
             try {
                 WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
                 if (popUpButton.isDisplayed()) {
                     popUpButton.click();  // Close the pop-up
                 }
-            } catch (TimeoutException ignored) {
-                System.out.println("No pop-up appeared.");
+            } catch (TimeoutException e) {
+                // Pop-up is not visible, so we can skip it and proceed
             }
 
-            // Navigate to Shortlisted Jobs  section
+            // Navigate to Shortlisted Jobs section
             WebElement ActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='myActivitiesMenu'] i[class='icon-angle-down']")));
             ActivityMenu.click();
             Thread.sleep(2000);
+
 
             WebElement TOverview = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".icon-star")));
             TOverview .click();
@@ -94,7 +94,7 @@ public class test {
             /// Invalid Date
             FromDateField.sendKeys("greirtrkhj");
             Thread.sleep(2000);
-            ToDateField.sendKeys("gbjtnjk");
+            ToDateField.sendKeys("43641354");
             Thread.sleep(2000);
             SearchButton.click();
 
@@ -107,13 +107,59 @@ public class test {
             SearchButton.click();
             //Search By Company Name
             WebElement CompanyName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
-            CompanyName.sendKeys("Bdjobs");
+            CompanyName.sendKeys("12345678954555");
             SearchButton.click();
             Thread.sleep(2000);
             CompanyName.clear();
             CompanyName.sendKeys("@&*%$");
             Thread.sleep(2000);
             SearchButton.click();
+
+            CompanyName.clear();
+            CompanyName.sendKeys("grhgdiaaaaaaaaaaaieutwi");
+            Thread.sleep(2000);
+            SearchButton.click();
+
+            FromDateField.clear();
+            ToDateField.clear();
+
+            CompanyName.clear();
+            CompanyName.sendKeys("Hossain Group of Industriess");
+            Thread.sleep(2000);
+            SearchButton.click();
+            driver.navigate().refresh();
+
+            //Click on check box and delete Shortlisted Jobs
+            WebElement deletebtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-default.tab-button02")));
+            deletebtn.click();
+            Thread.sleep(2000);
+            
+            WebElement ok = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            ok.click();
+            Thread.sleep(2000);
+
+            WebElement Checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#chkJobID5")));
+            Checkbox.click();
+            Thread.sleep(2000);
+            //WebElement deletebtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-default.tab-button02")));
+            deletebtn.click();
+
+            WebElement Cancelbtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)")));
+            Cancelbtn.click();
+            Thread.sleep(2000);
+
+            deletebtn.click();
+            Thread.sleep(2000);
+            WebElement YES = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)")));
+            YES.click();
+            driver.navigate().refresh();
+
+
+
+
+
+
+
 
 
 
