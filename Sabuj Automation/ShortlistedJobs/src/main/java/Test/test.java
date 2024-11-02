@@ -133,12 +133,12 @@ public class test {
             WebElement deletebtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-default.tab-button02")));
             deletebtn.click();
             Thread.sleep(2000);
-            
+
             WebElement ok = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
             ok.click();
             Thread.sleep(2000);
 
-            WebElement Checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#chkJobID5")));
+            WebElement Checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#chkJobID1")));
             Checkbox.click();
             Thread.sleep(2000);
             //WebElement deletebtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-default.tab-button02")));
@@ -161,7 +161,8 @@ public class test {
 
 
 
-
+           // div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)
+           // div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)
 
 
 
