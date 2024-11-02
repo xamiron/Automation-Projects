@@ -72,6 +72,7 @@ public class Test_Address {
 //        bdjAddressDetails.permanentAddressAllChecking();
 //        test.log(Status.PASS, "Permanent address entered");
 
+        //work from here
         bdjAddressDetails.presentAddressIndividualInsideBangladesh();
         test.log(Status.PASS, "Present address individual entered");
         bdjAddressDetails.presentAddressIndividualOutsideBangladesh();
