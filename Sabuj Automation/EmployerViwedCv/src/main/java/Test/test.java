@@ -58,23 +58,74 @@ public class test {
             }
             driver.navigate().refresh();
 
-            // Navigate to Shortlisted Jobs section
-            WebElement EActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a[id='employeerActivitiesMenu'] i[class='icon-angle-up']")));
+            // Navigate to EActivityMenu
+            WebElement EActivityMenu = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#employeerActivitiesMenu")));
             EActivityMenu.click();
             Thread.sleep(2000);
-
-
             WebElement TOverview = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='Employer Viewed CV']")));
             TOverview .click();
             Thread.sleep(2000);
 
 
+            //Search By Invalid From Date
+            WebElement FromDateField1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
+            FromDateField1.sendKeys("2024");
+            WebElement SearchButton1 = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
+            SearchButton1.click();
+            Thread.sleep(2000);
+            WebElement popok1 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            Thread.sleep(2000);
+            popok1.click();
+            Thread.sleep(2000);
+            FromDateField1.clear();
+            Thread.sleep(2000);
+
+            FromDateField1.sendKeys("Adigkkjhgjhghjghjgjhgjhgjjhj");
+            SearchButton1.click();
+            Thread.sleep(2000);
+            popok1.click();
+            Thread.sleep(2000);
+            FromDateField1.clear();
+            Thread.sleep(2000);
+
+            FromDateField1.sendKeys("20.20.2050");
+            SearchButton1.click();
+            Thread.sleep(2000);
+            popok1.click();
+            Thread.sleep(2000);
+            FromDateField1.clear();
+            Thread.sleep(2000);
+
+            //Search By Invalid To Date
+
+            WebElement ToDateField1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
+            ToDateField1.sendKeys("2024");
+            SearchButton1.click();
+            Thread.sleep(2000);
+            popok1.click();
+            Thread.sleep(2000);
+            ToDateField1.clear();
+
+            ToDateField1.sendKeys("gtrhtjhyjyjhyj");
+            SearchButton1.click();
+            Thread.sleep(2000);
+            popok1.click();
+            Thread.sleep(2000);
+            ToDateField1.clear();
+
+            ToDateField1.sendKeys("htjsa245.5.35");
+            SearchButton1.click();
+            Thread.sleep(2000);
+            popok1.click();
+            Thread.sleep(2000);
+            ToDateField1.clear();
 
 
-            // Filtering Shortlisted Jobs based on dates
+
+            // Filtering EViewedCv based on dates
             WebElement FromDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("fromDate")));
             FromDateField.sendKeys("05/01/2024");
-            // Filtering Transaction based on dates
+            // Filtering EViewedCv based on dates
             WebElement ToDateField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
             ToDateField.sendKeys("09/01/2024");
             WebElement SearchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
@@ -90,6 +141,10 @@ public class test {
             ToDateField.sendKeys("05");
             Thread.sleep(2000);
             SearchButton.click();
+            WebElement popok = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            Thread.sleep(2000);
+            popok.click();
+            Thread.sleep(2000);
 
             FromDateField.clear();
             Thread.sleep(2000);
@@ -98,9 +153,12 @@ public class test {
             /// Invalid Date
             FromDateField.sendKeys("greirtrkhj");
             Thread.sleep(2000);
-            ToDateField.sendKeys("43641354");
+            ToDateField.sendKeys("gbjtnjk");
             Thread.sleep(2000);
             SearchButton.click();
+            WebElement popupok = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            Thread.sleep(2000);
+            popupok.click();
 
             FromDateField.clear();
             ToDateField.clear();
@@ -109,6 +167,10 @@ public class test {
             FromDateField.sendKeys("05/01/2023");
             ToDateField.sendKeys("10/22/2024");
             SearchButton.click();
+
+            FromDateField.clear();
+            ToDateField.clear();
+
             //Search By Company Name
             WebElement CompanyName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("compName")));
             CompanyName.sendKeys("12345678954555");
@@ -123,53 +185,12 @@ public class test {
             CompanyName.sendKeys("grhgdiaaaaaaaaaaaieutwi");
             Thread.sleep(2000);
             SearchButton.click();
-
-            FromDateField.clear();
-            ToDateField.clear();
-
             CompanyName.clear();
+
             CompanyName.sendKeys("Hossain Group of Industriess");
             Thread.sleep(2000);
             SearchButton.click();
             driver.navigate().refresh();
-
-            //Click on check box and delete Shortlisted Jobs
-            WebElement deletebtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-default.tab-button02")));
-            deletebtn.click();
-            Thread.sleep(2000);
-
-            WebElement ok = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
-            ok.click();
-            Thread.sleep(2000);
-
-            WebElement Checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#chkJobID1")));
-            Checkbox.click();
-            Thread.sleep(2000);
-            //WebElement deletebtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-default.tab-button02")));
-            deletebtn.click();
-
-            WebElement Cancelbtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)")));
-            Cancelbtn.click();
-            Thread.sleep(2000);
-
-            deletebtn.click();
-            Thread.sleep(2000);
-            WebElement YES = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)")));
-            YES.click();
-            driver.navigate().refresh();
-
-
-
-
-
-
-
-
-            // div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)
-            // div[class='jconfirm jconfirm-light jconfirm-open'] button:nth-child(1)
-
-
-
 
 
 
