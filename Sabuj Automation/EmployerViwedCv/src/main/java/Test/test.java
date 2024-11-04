@@ -83,15 +83,16 @@ public class test {
             FromDateField1.sendKeys("Adigkkjhgjhghjghjgjhgjhgjjhj");
             SearchButton1.click();
             Thread.sleep(2000);
-            popok1.click();
+            WebElement popok11 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
             Thread.sleep(2000);
+            popok11.click();
             FromDateField1.clear();
             Thread.sleep(2000);
 
             FromDateField1.sendKeys("20.20.2050");
             SearchButton1.click();
             Thread.sleep(2000);
-            popok1.click();
+            popok11.click();
             Thread.sleep(2000);
             FromDateField1.clear();
             Thread.sleep(2000);
