@@ -41,10 +41,11 @@ public class BDJOCareerAndApplication extends BaseForm{
     public void careerObjective(){
         ExplicitWait.elementToBeClickable(careerAndAppDropdown.getLocator());
         careerAndAppDropdown.getElement().click();
+        ExplicitWait.elementToBeClickable(editButton.getLocator());
+        sleep();
+        editButton.getElement().click();
 
         //invalid objective
-        ExplicitWait.elementToBeClickable(editButton.getLocator());
-        editButton.getElement().click();
         ExplicitWait.elementToBeVisible(objectiveTextField.getLocator());
         objectiveTextField.getElement().clear();
         ExplicitWait.elementToBeVisible(saveButton.getLocator());
@@ -203,5 +204,15 @@ public class BDJOCareerAndApplication extends BaseForm{
     private void errorExpectedSalaryTextField(){
         ExplicitWait.elementToBeClickable(expectedSalaryDigitErrorText.getLocator());
         Assert.assertTrue(expectedSalaryDigitErrorText.isDisplayed(), ErrorMessageText);
+    }
+
+    private void sleep() {
+        try {
+            Thread.sleep(3000); // 3 seconds sleep
+        } catch (InterruptedException e) {
+            // Handle the exception
+            System.out.println("Thread was interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt(); // Optional: reset the interrupted status
+        }
     }
 }

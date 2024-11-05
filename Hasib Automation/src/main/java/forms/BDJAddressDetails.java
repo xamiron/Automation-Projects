@@ -643,7 +643,7 @@ public class BDJAddressDetails extends BaseForm {
         permanentVillageField.getElement().clear();
         permanentVillageField.sendKeys("      30, banasree, block B");
         sleep();
-        disableCheckBox.getElement().click();
+       // disableCheckBox.getElement().click();
         saveButton.getElement().click();
         Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
 
@@ -655,72 +655,99 @@ public class BDJAddressDetails extends BaseForm {
         saveButton.getElement().click();
         Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
 
+        //valid only character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("123456");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
 
-//        //invalid district
-//        permanentDistrictDropDown.getElement().click();
-//        permanentDistrictSelect.getElement().click();
-//        saveButton.getElement().click();
-//        errorPermanentDistrictMessageText();
-//
-//        //Valid district
-//        permanentDistrictDropDown.getElement().click();
-//        permanentBrahmanbaria.getElement().click();
-//        saveButton.getElement().click();
-//
-//        //invalid thana
-//        permanentThanaDropdown.getElement().click();
-//        permanentThanaSelect.getElement().click();
-//        saveButton.getElement().click();
-//        errorThanaDistrictMessageText();
-////
-//        //valid thana
-//        permanentThanaDropdown.getElement().click();
-//        permanentAkhauraSelect.getElement().click();
-//        saveButton.getElement().click();
-////
-//        //invalid but accepting
-//        editButton.getElement().click();
-//        permanentPODropdown.getElement().click();
-//        permanentPOSelect.getElement().click();
-//        permanenetVillageFieldText.getElement().clear();
-//        saveButton.getElement().click();
-//        errorPermanentVillageMessageText();
-//
-//        //valid
-//        permanentPODropdown.getElement().click();
-//        permanentAkauraPOSelect.getElement().click();
-//        permanenetVillageFieldText.getElement().clear();
-//        saveButton.getElement().click();
-//        errorPermanentVillageMessageText();
-//
-//        //invalid text name
-//        permanenetVillageFieldText.getElement().clear();
-//        permanenetVillageFieldText.sendKeysWithDelay("");
-//        saveButton.getElement().click();
-//        errorPermanentVillageMessageText();
-//
-//        //invalid white space
-//        permanenetVillageFieldText.getElement().clear();
-//        permanenetVillageFieldText.sendKeysWithDelay("  ");
-//        saveButton.getElement().click();
-//        errorPermanentVillageMessageText();
-//
-//        //invalid special character
-//        permanenetVillageFieldText.getElement().clear();
-//        permanenetVillageFieldText.sendKeysWithDelay("!@#$%^&*()_");
-//        saveButton.getElement().click();
-//        errorPermanentVillageMessageText();
-//
-//        //invalid max character
-//        permanenetVillageFieldText.getElement().clear();
-//        permanenetVillageFieldText.sendKeysWithDelay("!@ba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba  aba1");
-//        saveButton.getElement().click();
-//        errorPermanentVillageMessageText();
-//
-//        //valid special character
-//        permanenetVillageFieldText.getElement().clear();
-//        permanenetVillageFieldText.sendKeysWithDelay("Dhaka, rayer bazar 2");
-//        saveButton.getElement().click();
+        //valid only alphabets character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("qwert");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //valid Decimal character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("145.45");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //Formated number character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("1,234.568");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //Uppercase alphabets character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("AVDFCD");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //lowercase alphabets character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("asfadgaf");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //Alphanumeric character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("east wes(){}*");
+        saveButton.getElement().click();
+        errorPermanentVillageMessageText();
+
+        //upper and lowercase character
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("ASSDcadfa");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //HTML, jscript character
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("<p>east west;</p>");
+        saveButton.getElement().click();
+        errorPermanentVillageMessageText();
+
+        //invalid empty check
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("");
+        saveButton.getElement().click();
+        errorPermanentVillageMessageText();
+
+        //Trailing spaces and leading spaces
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("      145458645245          ");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //invalid check
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("@");
+        saveButton.getElement().click();
+        errorPermanentVillageMessageText();
+
+        //Valid special character check
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys(".-#, ");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
+
+        //valid address
+        editButton.getElement().click();
+        permanentVillageField.getElement().clear();
+        permanentVillageField.sendKeys("Building: Arial Kha, House: 182, Flat: 6/c, Dhanmondi, Dhaka-1210");
+        saveButton.getElement().click();
+        Assert.assertTrue(editButton.isDisplayed(),"Edit button is not displayed.");
     }
 
     public void permanentAddressIndividualOutsideBangladesh(){
