@@ -11,12 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 import java.time.Duration;
-import java.util.ArrayList;
 
-public class VideoInterview {
+public class AIAssessment {
     public static void main(String[] args) {
-
-        // Set up ChromeOptions to include the ad blocker extension
         ChromeOptions options = new ChromeOptions();
         String adblockerPath = "src/main/resources/uBlock-Origin-Chrome-Web-Store.crx";
 
@@ -29,6 +26,7 @@ public class VideoInterview {
 
         // Initialize WebDriver with ChromeOptions
         WebDriver driver = new ChromeDriver(options);
+
         try {
             // Maximize the browser window
             driver.manage().window().maximize();
@@ -51,50 +49,44 @@ public class VideoInterview {
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='TXTPASS']")));
             passwordField.sendKeys("123456789");
 
-            // Click Sign in button
-            WebElement signInButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Sign in']")));
-            signInButton.click();
+            // (Optional) Click on login button if there's one to submit the form
+            WebElement signIn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@value='Sign in']")));
+            signIn.click();
             Thread.sleep(2000);
 
-            // Wait for the view button to be clickable and click it
-            WebElement Viewbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[normalize-space()='View']")));
-            Viewbutton.click();
-            Thread.sleep(2000);
+            // click the cross button
+            WebElement crossbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='modal-content vinstruction']//button[@type='button'][normalize-space()='×']")));
+            crossbutton.click();
 
-            // Switch to the new tab for Video CV
-            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-            driver.switchTo().window(tabs.get(1));
+            // click the invitation dropdown
+            WebElement dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='invitationsMenu']")));
+            dropdown.click();
+            Thread.sleep(200);
 
-           // Wait for the View details link to be clickable and click it
-            WebElement Viewdetails = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='itivw-cart-cont']//div[2]//div[1]//div[5]//a[1]")));
-            Viewdetails.click();
-            Thread.sleep(2000);
+            // click the AI Assessment
+            WebElement AIAssessment = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class='icon-ai-audio iaudio']")));
+            AIAssessment.click();
 
-            // Wait for the Proceed To Record button to be clickable and click it
-            WebElement Proceedtorecord = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='act-btn']")));
-            Proceedtorecord.click();
-            Thread.sleep(2000);
+            // click the AI details
+            WebElement Assessmentdetails = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='cart n-viewed']//a[@class='vdet-lnk'][normalize-space()='View Details']")));
+            Assessmentdetails.click();
 
-            // Wait for the Next button to be clickable and click it
-            WebElement Nextbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space()='Next']")));
-            Nextbutton.click();
-            Thread.sleep(2000);
-
-            // Wait for the Record button to be clickable and click it
-            WebElement Recordbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='recs']")));
-            Recordbutton.click();
-
-
-            //webcam permission
+            //microphone permission
             Alert myalert=driver.switchTo().alert();
             myalert.accept();
+
+            // click the proceed button
+            //WebElement proceedbutton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[normalize-space()='Proceed to Record'])[1]")));
+            //proceedbutton.click();
+
+
 
         } catch (Exception e) {
             e.printStackTrace();  // Print stack trace to help debug if needed
         } finally {
             // Close the browser after execution
             if (driver != null) {
-                //driver.quit();  // Uncomment this line to close the browser after execution
+                //driver.quit();  // Ensure the browser is closed after execution
             }
         }
     }
