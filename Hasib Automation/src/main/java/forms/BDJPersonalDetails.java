@@ -164,26 +164,31 @@ public class BDJPersonalDetails extends BaseForm {
             ExplicitWait.elementToBeClickable(choosePhoto.getLocator());
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath8MB);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid image upload (5.2MB image)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath5MB);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid PDF upload (PDF File)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(pdfFile);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid exe upload (exe File)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(exeFile);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid exe upload (exe File)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(exeFile2);
+            sleep1();
             handleAlertIfPresent();
 
             // Valid image upload (2KB image)
@@ -260,26 +265,31 @@ public class BDJPersonalDetails extends BaseForm {
             // Invalid image upload (8MB image)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath8MB);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid image upload (5.2MB image)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(filePath5MB);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid PDF upload (PDF File)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(pdfFile);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid exe upload (exe File)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(exeFile);
+            sleep1();
             handleAlertIfPresent();
 
             // Invalid exe upload (exe File)
             choosePhoto.scrollUntilElementIsVisible();
             choosePhoto.getElement().sendKeys(exeFile2);
+            sleep1();
             handleAlertIfPresent();
 
             // Valid image upload (2KB image)
@@ -2444,6 +2454,17 @@ public class BDJPersonalDetails extends BaseForm {
             editButton2.scrollUntilElementIsVisible();
             editButton2.getElement().click();
         }
+    }
+
+    private void sleep1(){
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            // Handle the exception
+            e.printStackTrace();
+            Thread.currentThread().interrupt(); // Optionally restore the interrupted status
+        }
+
     }
 
 }

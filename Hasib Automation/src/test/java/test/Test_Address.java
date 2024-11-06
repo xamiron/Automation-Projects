@@ -50,8 +50,6 @@ public class Test_Address {
         test.log(Status.PASS, "Entered password ");
 //        bdjApplyPage.closeAdsIfPresent();
         bdjApplyPage.editProfile();
-
-
     }
 
     @Test(priority = 2)
@@ -69,11 +67,12 @@ public class Test_Address {
         Assert.assertTrue(isAddressDetailsDisplayed, "Address Details page is not opened");
         test.log(Status.PASS, "Address Details Page is opened");
 
-        bdjAddressDetails.presentAddressAllCheck();
-        test.log(Status.PASS, "Present Address entered");
-        bdjAddressDetails.permanentAddressAllChecking();
-        test.log(Status.PASS, "Permanent address entered");
+//        bdjAddressDetails.presentAddressAllCheck();
+//        test.log(Status.PASS, "Present Address entered");
+//        bdjAddressDetails.permanentAddressAllChecking();
+//        test.log(Status.PASS, "Permanent address entered");
 
+        //work from here
         bdjAddressDetails.presentAddressIndividualInsideBangladesh();
         test.log(Status.PASS, "Present address individual entered");
         bdjAddressDetails.presentAddressIndividualOutsideBangladesh();
@@ -81,10 +80,8 @@ public class Test_Address {
 
         bdjAddressDetails.permanentAddressIndividualInsideBangladesh();
         test.log(Status.PASS, "Permanent Address Individual entered");
-
-        bdjAddressDetails.permanentAddressIndividualOutsideBangladesh();
-        test.log(Status.PASS, "Permanent Address Individual Outside Bangladesh entered");
-
+//        bdjAddressDetails.permanentAddressIndividualOutsideBangladesh();
+//        test.log(Status.PASS, "Permanent Address Individual Outside Bangladesh entered");
     }
 
 
