@@ -51,7 +51,7 @@ public class test {
             try {
                 WebElement popUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='modal-content vinstruction'] button[type='button']")));
                 if (popUpButton.isDisplayed()) {
-                    popUpButton.click();  // Close the pop-up
+                    popUpButton.click();
                 }
             } catch (TimeoutException e) {
                 // Pop-up is not visible, so we can skip it and proceed
@@ -98,8 +98,8 @@ public class test {
             FromDateField1.clear();
             Thread.sleep(2000);
 
-            //Search By Invalid To Date...............
 
+            // Search By Invalid To Date
             WebElement ToDateField1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("toDate")));
             ToDateField1.sendKeys("2024");
             SearchButton1.click();
@@ -140,7 +140,7 @@ public class test {
             FromDateField.clear();
             ToDateField.clear();
 
-            // Invalid Date Search
+            // Search by Invalid Date
             FromDateField.sendKeys("2024");
             Thread.sleep(2000);
             ToDateField.sendKeys("05");
@@ -155,7 +155,7 @@ public class test {
             Thread.sleep(2000);
             ToDateField.clear();
 
-            // Invalid Date
+            // Search by Invalid Date
             FromDateField.sendKeys("greirtrkhj");
             Thread.sleep(2000);
             ToDateField.sendKeys("gbjtnjk");
