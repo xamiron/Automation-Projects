@@ -83,16 +83,17 @@ public class test {
             FromDateField1.sendKeys("Adigkkjhgjhghjghjgjhgjhgjjhj");
             SearchButton1.click();
             Thread.sleep(2000);
-            WebElement popok11 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            WebElement popok2 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
             Thread.sleep(2000);
-            popok11.click();
+            popok2.click();
             FromDateField1.clear();
             Thread.sleep(2000);
 
             FromDateField1.sendKeys("20.20.2050");
             SearchButton1.click();
             Thread.sleep(2000);
-            popok11.click();
+            WebElement popok3 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            popok3.click();
             Thread.sleep(2000);
             FromDateField1.clear();
             Thread.sleep(2000);
@@ -103,21 +104,24 @@ public class test {
             ToDateField1.sendKeys("2024");
             SearchButton1.click();
             Thread.sleep(2000);
-            popok1.click();
+            WebElement popok4 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            popok4.click();
             Thread.sleep(2000);
             ToDateField1.clear();
 
             ToDateField1.sendKeys("gtrhtjhyjyjhyj");
             SearchButton1.click();
             Thread.sleep(2000);
-            popok1.click();
+            WebElement popok5 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            popok5.click();
             Thread.sleep(2000);
             ToDateField1.clear();
 
             ToDateField1.sendKeys("htjsa245.5.35");
             SearchButton1.click();
             Thread.sleep(2000);
-            popok1.click();
+            WebElement popok6 = wait .until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='jconfirm-buttons'] button[type='button']")));
+            popok6.click();
             Thread.sleep(2000);
             ToDateField1.clear();
 
@@ -151,7 +155,7 @@ public class test {
             Thread.sleep(2000);
             ToDateField.clear();
 
-            /// Invalid Date
+            // Invalid Date
             FromDateField.sendKeys("greirtrkhj");
             Thread.sleep(2000);
             ToDateField.sendKeys("gbjtnjk");
@@ -192,6 +196,20 @@ public class test {
             Thread.sleep(2000);
             SearchButton.click();
             driver.navigate().refresh();
+
+            //Apply filter Search
+            WebElement selectElement = driver.findElement(By.id("txtStatus"));
+            Select select = new Select(selectElement);
+
+            // Loop through each option in the select element
+            for (WebElement option : select.getOptions()) {
+                select.selectByVisibleText(option.getText());
+
+                // Wait for the search button to become clickable, then click it
+                WebElement searchButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#search")));
+                searchButton.click();
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("loading-spinner"))); // Example condition
+            }
 
 
 
