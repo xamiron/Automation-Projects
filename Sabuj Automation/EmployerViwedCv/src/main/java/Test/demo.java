@@ -24,7 +24,7 @@ public class demo {
         WebDriver driver = new ChromeDriver(options);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
-        // Maximize the window
+        /// Maximize the window
         driver.manage().window().maximize();
 
         try {
